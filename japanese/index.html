@@ -8,7 +8,7 @@
     <meta name="keywords" content="洛阳白云山|河南白云山|洛阳白云山景区|嵩县白云山|白云山国家森林公园|白云山" />
     <meta name="description"
         content="洛阳白云山景区唯一官方网站，为广大游客提供最新最详实的出行信息：交通指南、景区景点、食实住宿等，白云山国家森林公园欢迎您的到来。旅游热线：0379—66590158 66590004 66590127" />
-    <link rel="stylesheet" href="/static/css/portal.css" />
+    <link rel="stylesheet" href="../static/css/portal.css" />
     <style type="text/css">
         .content {
             padding-bottom: 135px;
@@ -27,7 +27,7 @@
         <div class="divider"></div>
         <div class="center">
             <div class="logo">
-                <img src="/static/www/images/logo2.png" alt="白云山" />
+                <img src="../static/images/logo.png" alt="白云山" />
             </div>
             <div class="nav">
                 <ul>
@@ -55,7 +55,7 @@
                     </li>
                     <li onclick="window.location.href='/website/aboutUsView.do?type=2&daima=about'">
                         <div class="nav_divider"></div>
-                        <p class="nav_txt">关于我们<span>ABOUT US</span></p>
+                        <p class="nav_txt">私たちについて<span>ABOUT US</span></p>
                     </li>
                 </ul>
             </div>
@@ -64,7 +64,7 @@
             </div>
             <!--头部 end-->
             <!-- 登录注册 -->
-            <script src="/static/www/js/jquery-2.1.4.min.js"></script>
+            <script src="../static/js/jquery-2.1.4.min.js"></script>
             <script type="text/javascript">
                 $(function () {
                     if (0) {
@@ -75,16 +75,16 @@
             </script>
             <!--未登录显示这个div -->
             <div id="ctlhd_divLoginBefor" class="top_right login_befor">
-                <img src="/static/www/images/tell.png">
-                <img src="/static/www/images/login.png" style="margin-left: 10px;">
+                <img src="../static/images/tell.png">
+                <img src="../static/images/login.png" style="margin-left: 10px;">
                 <a href="javascript:;" id="loginP" onclick="showLogin();">登录</a><!-- $('#divLogin').show(); -->
                 <a href="javascript:;" id="signP" onclick="showRegister();">注册</a><!-- $('#divRegister').show(); -->
             </div>
             <!--新增加的  登录后显示这个div-->
             <div id="ctlhd_divLoginAfter" class="top_right" style="display:none;">
-                <img src="/static/www/images/tell.png">
+                <img src="../static/images/tell.png">
                 <div class="lg_icon">
-                    <img src="/static/www/images/login.png" style="margin-left: 10px; cursor: pointer;">
+                    <img src="../static/images/login.png" style="margin-left: 10px; cursor: pointer;">
                     <span class="show">
                         <a href="/personal/personalView.do">个人中心</a><a href="/websiteLogin/logout.do">退出</a>
                     </span>
@@ -92,7 +92,7 @@
             </div>
         </div>
     </div>
-    <link rel="stylesheet" href="/static/css/login.css" />
+    <link rel="stylesheet" href="../static/css/login.css" />
     <!--注册 begin-->
     <div id="divRegister" style="display: none;">
     </div>
@@ -160,35 +160,35 @@
                 <a href="javascript:void(0);">
                     <img alt="" width="" height=""
                         style="background: url(http://www.chinabym.com/imgs/bysticket/images/uploadFiles/uploadImgs/2018/09/19/1537318986296.png) no-repeat center;"
-                        src="static/www/images/alpha.png" />
+                        src="../static/images/alpha.png" />
                 </a>
             </li>
             <li>
                 <a href="javascript:void(0);">
                     <img alt="" width="1920" height="745"
                         style="background: url(http://www.chinabym.com/imgs/bysticket/images/uploadFiles/uploadImgs/2018/03/16/1521189218408.png) no-repeat center;"
-                        src="static/www/images/alpha.png" />
+                        src="../static/images/alpha.png" />
                 </a>
             </li>
             <li>
                 <a href="javascript:void(0);">
                     <img alt="" width="1920" height="745"
                         style="background: url(http://www.chinabym.com/imgs/bysticket/images/uploadFiles/uploadImgs/2018/09/19/1537319070787.png) no-repeat center;"
-                        src="static/www/images/alpha.png" />
+                        src="../static/images/alpha.png" />
                 </a>
             </li>
             <li>
                 <a href="javascript:void(0);">
                     <img alt="" width="1920" height="745"
                         style="background: url(http://www.chinabym.com/imgs/bysticket/images/uploadFiles/uploadImgs/2018/03/16/1521188838963.png) no-repeat center;"
-                        src="static/www/images/alpha.png" />
+                        src="../static/images/alpha.png" />
                 </a>
             </li>
             <li>
                 <a href="javascript:void(0);">
                     <img alt="" width="1920" height="745"
                         style="background: url(http://www.chinabym.com/imgs/bysticket/images/uploadFiles/uploadImgs/2018/09/19/1537319350341.png) no-repeat center;"
-                        src="static/www/images/alpha.png" />
+                        src="../static/images/alpha.png" />
                 </a>
             </li>
         </ul>
@@ -264,135 +264,7 @@
                 </ul>
             </div>
             <!--end-->
-            <!--新闻部分-->
-            <div class="new_box">
-                <div class="pic_new">
-                    <ul>
-                        <li>
-                            <img src="/static/www/images/cont_1.png" />
-                            <div class="pic_new_cont">
-                                <img src="/static/www/images/down_mb.png" />
-                                <div class="txt">
-                                    <h1>
-                                        <img src="/static/www/images/img1.png" alt="景区资讯"
-                                            onclick="window.location.href='/website/zhutihuodonglView.do?type=1&daima=news'">
-                                    </h1>
-                                    <p>
-                                        <a href="/website/toActiveContentView.do?id=18688298848437292"
-                                            target="_blank">千年银杏开启视觉盛宴，白云山秀爆你的朋友圈</a>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="mask"
-                                onclick="window.location.href='/website/zhutihuodonglView.do?type=1&daima=news'"></div>
-                        </li>
-                        <li class="list_center">
-                            <img src="/static/www/images/cont_2.png" />
-                            <div class="pic_new_cont">
-                                <img src="/static/www/images/down_mb2.png" />
-                                <div class="txt">
-                                    <h1>
-                                        <img src="/static/www/images/img2.png" alt="在线公告"
-                                            onclick="window.location.href='/website/zhutihuodonglView.do?type=1&daima=notice'">
-                                    </h1>
-
-                                    <p><a href="/website/toActiveContentView.do?id=14184963386116760"
-                                            target="_blank">洛阳白云山景区“国家服务业标准化试点单位”创建中期评估验收工作简报</a></p>
-                                </div>
-                            </div>
-                            <div class="mask"
-                                onclick="window.location.href='/website/zhutihuodonglView.do?type=1&daima=notice'">
-                            </div>
-                        </li>
-                        <li>
-                            <img src="/static/www/images/cont_3.png" />
-                            <div class="pic_new_cont">
-                                <img src="/static/www/images/down_mb.png" />
-                                <div class="txt">
-                                    <h1>
-                                        <img src="/static/www/images/img3.png" alt="活动专题"
-                                            onclick="window.location.href='/website/zhutihuodonglView.do?type=1&daima=activity'">
-                                    </h1>
-
-                                    <p><a href="/website/toActiveContentView.do?id=3efc991de87943608042874c6e9b9562"
-                                            target="_blank">#97周年建党节#不忘初心，砥砺前行</a></p>
-                                </div>
-                            </div>
-                            <div class="mask"
-                                onclick="window.location.href='/website/zhutihuodonglView.do?type=1&daima=activity'">
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <!--新闻列表-->
-                <div class="new_panel">
-                    <div class="txtScroll-top">
-                        <div class="bd">
-                            <ul>
-                                <li><a href="/website/toActiveContentView.do?id=18688298848437292"
-                                        target="_blank">千年银杏开启视觉盛宴，白云山秀爆你的朋友圈</a></li>
-
-                                <li><a href="/website/toActiveContentView.do?id=14184963386116760"
-                                        target="_blank">洛阳白云山景区“国家服务业标准化试点单位”创建中期评估验收工作简报</a></li>
-
-                                <li><a href="/website/toActiveContentView.do?id=13740012298637571"
-                                        target="_blank">喜迎民运会，白云山对郑州市民免门票</a></li>
-
-                                <li><a href="/website/toActiveContentView.do?id=9866906810531192"
-                                        target="_blank">加强旅游标准化培训，着力打造一流品牌</a></li>
-
-                                <li><a href="/website/toActiveContentView.do?id=8142963265801483"
-                                        target="_blank">洛阳白云山荣誉证书</a></li>
-
-                                <li><a href="/website/toActiveContentView.do?id=42d57fc254f3459ea5b451ef0c339dbd"
-                                        target="_blank">白云山新购豪华大巴，金祥汽车检测站助力入户上牌</a></li>
-
-                                <li><a href="/website/toActiveContentView.do?id=825b28e7527a46c4a63502d54323a713"
-                                        target="_blank">洛阳白云山2019年新春祈福庙会火热招商了！</a></li>
-
-                                <li><a href="/website/toActiveContentView.do?id=bdf60e531a08450388d321cb1f9fd952"
-                                        target="_blank">高山牡丹园</a></li>
-
-                                <li><a href="/website/toActiveContentView.do?id=897f3a049c514fc38df1c8d476a12ae4"
-                                        target="_blank">洛阳白云山旅游度假区简介</a></li>
-
-                                <li><a href="/website/toActiveContentView.do?id=f3a5c1835b334a348028e7c7b1a413e3"
-                                        target="_blank">中国摄影地之白云山生态摄影大展征稿启事</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="contact">
-                        <ul>
-                            <li class="active">
-                                <div class="contact_item">
-                                    <div class="contact_icon iconAll contact_icon1"></div>
-                                    微信
-                                </div>
-                            </li>
-                            <li>
-                                <div class="contact_item">
-                                    <div class="contact_icon iconAll contact_icon2"></div>
-                                    微博
-                                </div>
-                            </li>
-                            <li>
-                                <div class="contact_item" style="text-align: right;">
-                                    <div class="contact_icon iconAll contact_icon3"></div>
-                                    <img src="/static/www/images/tell2.png"
-                                        style="vertical-align: middle; position: relative; top: -3px;" />
-                                </div>
-                            </li>
-                            <li>
-                                <div class="contact_item">
-                                    <div class="contact_icon iconAll contact_icon4"></div>
-                                    客服
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <!--新闻列表 end-->
-            </div>
+           
             <!--end！-->
             <!---->
             <div class="cont_mag">
@@ -404,7 +276,7 @@
                             <div class="cont_txt">
                                 景点<span>SCENIC SPOT</span>
                             </div>
-                            <img src="/static/www/images/cont_foot.png" class="bg_img" />
+                            <img src="../static/images/cont_foot.png" class="bg_img" />
                         </div>
                     </li>
                     <li class="item2 active"
@@ -414,7 +286,7 @@
                             <div class="cont_txt">
                                 景区文化 <span>CULTURE</span>
                             </div>
-                            <img src="/static/www/images/cont_foot.png" class="bg_img" />
+                            <img src="../static/images/cont_foot.png" class="bg_img" />
                         </div>
 
                     </li>
@@ -424,7 +296,7 @@
                             <div class="cont_txt">
                                 旅游指南 <span>GUIDE</span>
                             </div>
-                            <img src="/static/www/images/cont_foot.png" class="bg_img" />
+                            <img src="../static/images/cont_foot.png" class="bg_img" />
                         </div>
                     </li>
                     <li class="item4"
@@ -434,7 +306,7 @@
                             <div class="cont_txt">
                                 旅游攻略 <span>RAIDERS</span>
                             </div>
-                            <img src="/static/www/images/cont_foot.png" class="bg_img" />
+                            <img src="../static/images/cont_foot.png" class="bg_img" />
                         </div>
                     </li>
                     <li class="item5" onclick="window.location.href='/website/aboutUsView.do?type=2&daima=about'">
@@ -443,7 +315,7 @@
                             <div class="cont_txt">
                                 关于我们 <span>ABOUT US</span>
                             </div>
-                            <img src="/static/www/images/cont_foot.png" class="bg_img" />
+                            <img src="../static/images/cont_foot.png" class="bg_img" />
                         </div>
                     </li>
                     <!--
@@ -453,7 +325,7 @@
                             <div class="cont_txt">
                              	 便民服务<span>SERVICES</span>
                             </div>
-                            <img src="/static/www/images/cont_foot.png" class="bg_img" />
+                            <img src="../static/images/cont_foot.png" class="bg_img" />
                         </div>
                     </li>
                     
@@ -463,7 +335,7 @@
                             <div class="cont_txt">
                              	 帮助中心<span>HELP</span>
                             </div>
-                            <img src="/static/www/images/cont_foot.png" class="bg_img" />
+                            <img src="../static/images/cont_foot.png" class="bg_img" />
                         </div>
                     </li>
 					-->
@@ -484,7 +356,7 @@
         <div class="footer-weixin">
             洛阳白云山旅游有限责任公司©版权所有<a style="color: #888888;" href="http://www.beian.miit.gov.cn/"
                 target="_blank">豫ICP17018704号—2</a>
-            <img src="/static/www/images/beianicon.png" />&nbsp;<a style="color: #888888;"
+            <img src="../static/images/beianicon.png" />&nbsp;<a style="color: #888888;"
                 href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=41032502000114" target="_blank">豫公网安备
                 41032502000114号</a>
         </div>
@@ -510,12 +382,12 @@
     <!--弹出二维码-->
     <div class="code_box">
         <div class="code">
-            <img src="/static/www/images/weixin.jpg" alt="微信二维码" />
+            <img src="../static/images/weixin.jpg" alt="微信二维码" />
             <br />
             关注白云山微信公众号
         </div>
         <div class="code">
-            <img src="/static/www/images/weibo.png" alt="微博二维码" />
+            <img src="../static/images/weibo.png" alt="微博二维码" />
             <br />
             关注白云山微博
         </div>
@@ -524,11 +396,11 @@
     </div>
 
     <!---->
-    <script src="/static/www/js/jquery-2.1.4.min.js"></script>
-    <script src="/static/www/js/common.js"></script>
-    <script src="/static/www/js/jquery.SuperSlide.js"></script>
-    <script src="/static/www/js/slider.js"></script>
-    <script src="/static/www/js/login.js"></script>
+    <script src="../static/js/jquery-2.1.4.min.js"></script>
+    <script src="../static/js/common.js"></script>
+    <script src="../static/js/jquery.SuperSlide.js"></script>
+    <script src="../static/js/slider.js"></script>
+    <script src="../static/js/login.js"></script>
     <script>
         $(function () {
             //轮播图
@@ -569,7 +441,7 @@
     <script type="text/javascript">
             (function () {
                 var hm = document.createElement("script");
-                hm.src = "/static/www/js/stat.js";
+                hm.src = "../static/js/stat.js";
                 var s = document.getElementsByTagName("script")[0];
                 s.parentNode.insertBefore(hm, s);
             })();
