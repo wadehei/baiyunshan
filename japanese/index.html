@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>洛阳白云山景区官方网站</title>
+    <!-- <base href="http://www.chinabym.com:80/"> -->
+    <meta name="keywords" content="洛阳白云山|河南白云山|洛阳白云山景区|嵩县白云山|白云山国家森林公园|白云山" />
+    <meta name="description"
+        content="洛阳白云山景区唯一官方网站，为广大游客提供最新最详实的出行信息：交通指南、景区景点、食实住宿等，白云山国家森林公园欢迎您的到来。旅游热线：0379—66590158 66590004 66590127" />
+    <link rel="stylesheet" href="/static/css/portal.css" />
+    <style type="text/css">
+        .content {
+            padding-bottom: 135px;
+        }
+
+        #banner_tabs a {
+            cursor: default;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 官网头部 -->
+    <!--头部-->
+    <div class="top">
+        <div class="divider"></div>
+        <div class="center">
+            <div class="logo">
+                <img src="/static/www/images/logo2.png" alt="白云山" />
+            </div>
+            <div class="nav">
+                <ul>
+                    <li onclick="location.href='/website/websiteView.do'">
+                        <div class="nav_divider"></div>
+                        <p class="nav_txt">トップページ<span>HOME</span></p>
+                    </li>
+                    <li onclick="window.location.href='/website/resortHotelView.do'">
+                        <div class="nav_divider"></div>
+                        <p class="nav_txt">観光地案内<span>INTRODUCTIN</span></p>
+                    </li>
+                    <li onclick="window.location.href='/website/zhutihuodonglView.do?type=1&daima=activity'">
+                        <div class="nav_divider"></div>
+                        <p class="nav_txt">入場予定<span>TICKET</span></p>
+                    </li>
+                    <li onclick="window.location.href='/website/zhutihuodonglView.do?type=1&daima=estate'">
+
+                        <div class="nav_divider"></div>
+                        <p class="nav_txt">ホテルパンフレット<span>HOTEL</span></p>
+                    </li>
+                    <li onclick="window.location.href='/website/zhutihuodonglView.do?type=1&daima=club'">
+
+                        <div class="nav_divider"></div>
+                        <p class="nav_txt">電話<span>PHONE</span></p>
+                    </li>
+                    <li onclick="window.location.href='/website/aboutUsView.do?type=2&daima=about'">
+                        <div class="nav_divider"></div>
+                        <p class="nav_txt">关于我们<span>ABOUT US</span></p>
+                    </li>
+                </ul>
+            </div>
+            <div style="padding-top: 40px;text-align: left;">
+                <a href="/website/websiteView.do?request_locale=en_US">choose english</a>
+            </div>
+            <!--头部 end-->
+            <!-- 登录注册 -->
+            <script src="/static/www/js/jquery-2.1.4.min.js"></script>
+            <script type="text/javascript">
+                $(function () {
+                    if (0) {
+                        document.getElementById("ctlhd_divLoginBefor").style.display = "none";
+                        document.getElementById("ctlhd_divLoginAfter").style.display = "";
+                    }
+                })
+            </script>
+            <!--未登录显示这个div -->
+            <div id="ctlhd_divLoginBefor" class="top_right login_befor">
+                <img src="/static/www/images/tell.png">
+                <img src="/static/www/images/login.png" style="margin-left: 10px;">
+                <a href="javascript:;" id="loginP" onclick="showLogin();">登录</a><!-- $('#divLogin').show(); -->
+                <a href="javascript:;" id="signP" onclick="showRegister();">注册</a><!-- $('#divRegister').show(); -->
+            </div>
+            <!--新增加的  登录后显示这个div-->
+            <div id="ctlhd_divLoginAfter" class="top_right" style="display:none;">
+                <img src="/static/www/images/tell.png">
+                <div class="lg_icon">
+                    <img src="/static/www/images/login.png" style="margin-left: 10px; cursor: pointer;">
+                    <span class="show">
+                        <a href="/personal/personalView.do">个人中心</a><a href="/websiteLogin/logout.do">退出</a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <link rel="stylesheet" href="/static/css/login.css" />
+    <!--注册 begin-->
+    <div id="divRegister" style="display: none;">
+    </div>
+    <!--注册 end-->
+    <!--登录 begin-->
+    <div id="divLogin" style="display: none;">
+    </div>
+    <!--登录 end-->
+    <!--忘记密码 begin-->
+    <div id="divForget" style="display: none;">
+    </div>
+    <!--忘记密码 end-->
+    <script type="text/javascript">
+        /* 打开登录窗口 */
+        function showLogin() {
+            $('#divLogin').show();
+            $('#divLogin').empty();
+            var text = "<div class='loginMask'></div>" +
+                "<div class='loginPop'>" +
+                "<iframe src='/websiteLogin/loginView.do' style='border: 0; width: 100%; height: 449px;'></iframe>" +
+                "</div>";
+            $('#divLogin').append(text);
+        }
+        /* 关闭登录窗口 */
+        function hideLogin() {
+            $('#divLogin').hide();
+            $('#divLogin').empty();
+        }
+        /* 打开注册窗口 */
+        function showRegister() {
+            $('#divRegister').show();
+            $('#divRegister').empty();
+            var text = "<div class='loginMask'></div>" +
+                "<div class='loginPop'>" +
+                "<iframe src='/websiteLogin/registerView.do' style='border: 0; width: 100%; height: 656px;'></iframe>" +
+                "</div>";
+            $('#divRegister').append(text);
+        }
+        /* 关闭注册窗口 */
+        function hideRegister() {
+            $('#divRegister').hide();
+            $('#divRegister').empty();
+        }
+        /* 打开忘记密码窗口 */
+        function showForget() {
+            $('#divForget').show();
+            $('#divForget').empty();
+            var text = "<div class='loginMask'></div>" +
+                "<div class='loginPop'>" +
+                "<iframe src='/websiteLogin/forgetPasswordView.do' style='border: 0; width: 100%; height: 609px;'></iframe>" +
+                "</div>";
+            $('#divForget').append(text);
+
+        }
+        /* 关闭忘记密码窗口 */
+        function hideForget() {
+            $('#divForget').hide();
+            $('#divForget').empty();
+        }
+    </script>
+    <!-- 登录注册end -->
+    <div id="banner_tabs" class="flexslider banner">
+        <ul class="slides">
+            <li>
+                <a href="javascript:void(0);">
+                    <img alt="" width="" height=""
+                        style="background: url(http://www.chinabym.com/imgs/bysticket/images/uploadFiles/uploadImgs/2018/09/19/1537318986296.png) no-repeat center;"
+                        src="static/www/images/alpha.png" />
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0);">
+                    <img alt="" width="1920" height="745"
+                        style="background: url(http://www.chinabym.com/imgs/bysticket/images/uploadFiles/uploadImgs/2018/03/16/1521189218408.png) no-repeat center;"
+                        src="static/www/images/alpha.png" />
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0);">
+                    <img alt="" width="1920" height="745"
+                        style="background: url(http://www.chinabym.com/imgs/bysticket/images/uploadFiles/uploadImgs/2018/09/19/1537319070787.png) no-repeat center;"
+                        src="static/www/images/alpha.png" />
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0);">
+                    <img alt="" width="1920" height="745"
+                        style="background: url(http://www.chinabym.com/imgs/bysticket/images/uploadFiles/uploadImgs/2018/03/16/1521188838963.png) no-repeat center;"
+                        src="static/www/images/alpha.png" />
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0);">
+                    <img alt="" width="1920" height="745"
+                        style="background: url(http://www.chinabym.com/imgs/bysticket/images/uploadFiles/uploadImgs/2018/09/19/1537319350341.png) no-repeat center;"
+                        src="static/www/images/alpha.png" />
+                </a>
+            </li>
+        </ul>
+        <ol id="bannerCtrl" class="flex-control-nav flex-control-paging">
+            <li class="active">
+                <a style="cursor:default;">1</a>
+            </li>
+            <li class="">
+                <a style="cursor:default;">2</a>
+            </li>
+            <li class="">
+                <a style="cursor:default;">3</a>
+            </li>
+            <li class="">
+                <a style="cursor:default;">4</a>
+            </li>
+            <li class="">
+                <a style="cursor:default;">5</a>
+            </li>
+        </ol>
+    </div>
+    <!--轮播图 end-->
+    <!--内容-->
+    <div class="content">
+        <div class="center">
+            <div class="tab_info">
+                <ul>
+                    <li>
+                        <a href="/website/piaowuyudingView.do">
+                            <div class="tab_item">
+                                <div class="tab_icon icon1"></div>
+                                <div class="tab_txt">
+                                    票务预订<span>TICKET</span>
+                                </div>
+                                <div class="nav_divider"></div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/website/jiudianyudingView.do">
+                            <div class="tab_item">
+                                <div class="tab_icon icon2"></div>
+                                <div class="tab_txt">
+                                    酒店预订<span>HOTEL</span>
+                                </div>
+                                <div class="nav_divider"></div>
+                            </div>
+                        </a>
+
+                    </li>
+                    <li onclick="window.location.href='/website/zhutihuodonglView.do?type=1&daima=coffee'">
+
+                        <div class="tab_item">
+                            <div class="tab_icon icon3"></div>
+                            <div class="tab_txt">
+                                休闲娱乐<span>COFFEE</span>
+                            </div>
+                            <div class="nav_divider"></div>
+                        </div>
+
+                    </li>
+                    <li onclick="window.location.href='/website/zhutihuodonglView.do?type=1&daima=estate'">
+
+                        <div class="tab_item">
+                            <div class="tab_icon icon4"></div>
+                            <div class="tab_txt">
+                                旅游地产<span>ESTATE</span>
+                            </div>
+                            <div class="nav_divider"></div>
+                        </div>
+
+                    </li>
+                </ul>
+            </div>
+            <!--end-->
+            <!--新闻部分-->
+            <div class="new_box">
+                <div class="pic_new">
+                    <ul>
+                        <li>
+                            <img src="/static/www/images/cont_1.png" />
+                            <div class="pic_new_cont">
+                                <img src="/static/www/images/down_mb.png" />
+                                <div class="txt">
+                                    <h1>
+                                        <img src="/static/www/images/img1.png" alt="景区资讯"
+                                            onclick="window.location.href='/website/zhutihuodonglView.do?type=1&daima=news'">
+                                    </h1>
+                                    <p>
+                                        <a href="/website/toActiveContentView.do?id=18688298848437292"
+                                            target="_blank">千年银杏开启视觉盛宴，白云山秀爆你的朋友圈</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="mask"
+                                onclick="window.location.href='/website/zhutihuodonglView.do?type=1&daima=news'"></div>
+                        </li>
+                        <li class="list_center">
+                            <img src="/static/www/images/cont_2.png" />
+                            <div class="pic_new_cont">
+                                <img src="/static/www/images/down_mb2.png" />
+                                <div class="txt">
+                                    <h1>
+                                        <img src="/static/www/images/img2.png" alt="在线公告"
+                                            onclick="window.location.href='/website/zhutihuodonglView.do?type=1&daima=notice'">
+                                    </h1>
+
+                                    <p><a href="/website/toActiveContentView.do?id=14184963386116760"
+                                            target="_blank">洛阳白云山景区“国家服务业标准化试点单位”创建中期评估验收工作简报</a></p>
+                                </div>
+                            </div>
+                            <div class="mask"
+                                onclick="window.location.href='/website/zhutihuodonglView.do?type=1&daima=notice'">
+                            </div>
+                        </li>
+                        <li>
+                            <img src="/static/www/images/cont_3.png" />
+                            <div class="pic_new_cont">
+                                <img src="/static/www/images/down_mb.png" />
+                                <div class="txt">
+                                    <h1>
+                                        <img src="/static/www/images/img3.png" alt="活动专题"
+                                            onclick="window.location.href='/website/zhutihuodonglView.do?type=1&daima=activity'">
+                                    </h1>
+
+                                    <p><a href="/website/toActiveContentView.do?id=3efc991de87943608042874c6e9b9562"
+                                            target="_blank">#97周年建党节#不忘初心，砥砺前行</a></p>
+                                </div>
+                            </div>
+                            <div class="mask"
+                                onclick="window.location.href='/website/zhutihuodonglView.do?type=1&daima=activity'">
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <!--新闻列表-->
+                <div class="new_panel">
+                    <div class="txtScroll-top">
+                        <div class="bd">
+                            <ul>
+                                <li><a href="/website/toActiveContentView.do?id=18688298848437292"
+                                        target="_blank">千年银杏开启视觉盛宴，白云山秀爆你的朋友圈</a></li>
+
+                                <li><a href="/website/toActiveContentView.do?id=14184963386116760"
+                                        target="_blank">洛阳白云山景区“国家服务业标准化试点单位”创建中期评估验收工作简报</a></li>
+
+                                <li><a href="/website/toActiveContentView.do?id=13740012298637571"
+                                        target="_blank">喜迎民运会，白云山对郑州市民免门票</a></li>
+
+                                <li><a href="/website/toActiveContentView.do?id=9866906810531192"
+                                        target="_blank">加强旅游标准化培训，着力打造一流品牌</a></li>
+
+                                <li><a href="/website/toActiveContentView.do?id=8142963265801483"
+                                        target="_blank">洛阳白云山荣誉证书</a></li>
+
+                                <li><a href="/website/toActiveContentView.do?id=42d57fc254f3459ea5b451ef0c339dbd"
+                                        target="_blank">白云山新购豪华大巴，金祥汽车检测站助力入户上牌</a></li>
+
+                                <li><a href="/website/toActiveContentView.do?id=825b28e7527a46c4a63502d54323a713"
+                                        target="_blank">洛阳白云山2019年新春祈福庙会火热招商了！</a></li>
+
+                                <li><a href="/website/toActiveContentView.do?id=bdf60e531a08450388d321cb1f9fd952"
+                                        target="_blank">高山牡丹园</a></li>
+
+                                <li><a href="/website/toActiveContentView.do?id=897f3a049c514fc38df1c8d476a12ae4"
+                                        target="_blank">洛阳白云山旅游度假区简介</a></li>
+
+                                <li><a href="/website/toActiveContentView.do?id=f3a5c1835b334a348028e7c7b1a413e3"
+                                        target="_blank">中国摄影地之白云山生态摄影大展征稿启事</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="contact">
+                        <ul>
+                            <li class="active">
+                                <div class="contact_item">
+                                    <div class="contact_icon iconAll contact_icon1"></div>
+                                    微信
+                                </div>
+                            </li>
+                            <li>
+                                <div class="contact_item">
+                                    <div class="contact_icon iconAll contact_icon2"></div>
+                                    微博
+                                </div>
+                            </li>
+                            <li>
+                                <div class="contact_item" style="text-align: right;">
+                                    <div class="contact_icon iconAll contact_icon3"></div>
+                                    <img src="/static/www/images/tell2.png"
+                                        style="vertical-align: middle; position: relative; top: -3px;" />
+                                </div>
+                            </li>
+                            <li>
+                                <div class="contact_item">
+                                    <div class="contact_icon iconAll contact_icon4"></div>
+                                    客服
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!--新闻列表 end-->
+            </div>
+            <!--end！-->
+            <!---->
+            <div class="cont_mag">
+                <ul>
+                    <li class="item1"
+                        onclick="window.location.href='/website/zhutihuodonglView.do?type=1&daima=scenic'">
+                        <div class="cont_item">
+                            <div class="cont_icon contact_icon"></div>
+                            <div class="cont_txt">
+                                景点<span>SCENIC SPOT</span>
+                            </div>
+                            <img src="/static/www/images/cont_foot.png" class="bg_img" />
+                        </div>
+                    </li>
+                    <li class="item2 active"
+                        onclick="window.location.href='/website/zhutihuodonglView.do?type=1&daima=culture'">
+                        <div class="cont_item">
+                            <div class="cont_icon contact_icon"></div>
+                            <div class="cont_txt">
+                                景区文化 <span>CULTURE</span>
+                            </div>
+                            <img src="/static/www/images/cont_foot.png" class="bg_img" />
+                        </div>
+
+                    </li>
+                    <li class="item3" onclick="window.location.href='/website/zhutihuodonglView.do?type=1&daima=guide'">
+                        <div class="cont_item">
+                            <div class="cont_icon contact_icon"></div>
+                            <div class="cont_txt">
+                                旅游指南 <span>GUIDE</span>
+                            </div>
+                            <img src="/static/www/images/cont_foot.png" class="bg_img" />
+                        </div>
+                    </li>
+                    <li class="item4"
+                        onclick="window.location.href='/website/zhutihuodonglView.do?type=1&daima=raiders'">
+                        <div class="cont_item">
+                            <div class="cont_icon contact_icon"></div>
+                            <div class="cont_txt">
+                                旅游攻略 <span>RAIDERS</span>
+                            </div>
+                            <img src="/static/www/images/cont_foot.png" class="bg_img" />
+                        </div>
+                    </li>
+                    <li class="item5" onclick="window.location.href='/website/aboutUsView.do?type=2&daima=about'">
+                        <div class="cont_item">
+                            <div class="cont_icon contact_icon"></div>
+                            <div class="cont_txt">
+                                关于我们 <span>ABOUT US</span>
+                            </div>
+                            <img src="/static/www/images/cont_foot.png" class="bg_img" />
+                        </div>
+                    </li>
+                    <!--
+                    <li class="item6" onclick="window.location.href='/website/zhutihuodonglView.do?type=1&daima=service'">
+                        <div class="cont_item">
+                            <div class="cont_icon contact_icon"></div>
+                            <div class="cont_txt">
+                             	 便民服务<span>SERVICES</span>
+                            </div>
+                            <img src="/static/www/images/cont_foot.png" class="bg_img" />
+                        </div>
+                    </li>
+                    
+                    <li class="item7" onclick="window.location.href='/website/zhutihuodonglView.do?type=1&daima=helpcenter'">
+                        <div class="cont_item">
+                            <div class="cont_icon contact_icon"></div>
+                            <div class="cont_txt">
+                             	 帮助中心<span>HELP</span>
+                            </div>
+                            <img src="/static/www/images/cont_foot.png" class="bg_img" />
+                        </div>
+                    </li>
+					-->
+                </ul>
+            </div>
+            <!---->
+        </div>
+    </div>
+    <!--底部-->
+    <div class="footer">
+        <div class="footer-detail">
+            <span><i class="footer-icon1"></i>世界地质公园</span>
+            <span><i class="footer-icon2"></i>国家5A级旅游景区</span>
+            <span><i class="footer-icon3"></i>中国十佳旅游胜地</span>
+            <span><i class="footer-icon4"></i>国家森林公园</span>
+            <span><i class="footer-icon5"></i>国家级自然保护区</span>
+        </div>
+        <div class="footer-weixin">
+            洛阳白云山旅游有限责任公司©版权所有<a style="color: #888888;" href="http://www.beian.miit.gov.cn/"
+                target="_blank">豫ICP17018704号—2</a>
+            <img src="/static/www/images/beianicon.png" />&nbsp;<a style="color: #888888;"
+                href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=41032502000114" target="_blank">豫公网安备
+                41032502000114号</a>
+        </div>
+    </div>
+
+    <!---->
+    <!--弹出二维码-->
+    <!--<div class="code_box">
+        <div class="code">
+            <img src="uploadFiles/uploadImgs//20190517100856\1558058936598.png" alt="关注白云山微信公众号" />
+            <br />
+            关注白云山微信公众号
+        </div>
+        <div class="code">
+            <img src="uploadFiles/uploadImgs//20190517100856\1558058936605.png" alt="关注白云山微博" />
+            <br />
+         	关注白云山微博
+        </div>
+        <div class=""></div>
+        <div class=""></div>
+    </div>-->
+
+    <!--弹出二维码-->
+    <div class="code_box">
+        <div class="code">
+            <img src="/static/www/images/weixin.jpg" alt="微信二维码" />
+            <br />
+            关注白云山微信公众号
+        </div>
+        <div class="code">
+            <img src="/static/www/images/weibo.png" alt="微博二维码" />
+            <br />
+            关注白云山微博
+        </div>
+        <div class=""></div>
+        <div class=""></div>
+    </div>
+
+    <!---->
+    <script src="/static/www/js/jquery-2.1.4.min.js"></script>
+    <script src="/static/www/js/common.js"></script>
+    <script src="/static/www/js/jquery.SuperSlide.js"></script>
+    <script src="/static/www/js/slider.js"></script>
+    <script src="/static/www/js/login.js"></script>
+    <script>
+        $(function () {
+            //轮播图
+            var bannerSlider = new Slider($('#banner_tabs'), {
+                time: 5000,
+                delay: 400,
+                event: 'hover',
+                auto: true,
+                mode: 'fade',
+                controller: $('#bannerCtrl'),
+                activeControllerCls: 'active'
+            });
+            //文字滚动
+            jQuery(".txtScroll-top").slide({
+                mainCell: ".bd ul",
+                autoPage: true,
+                effect: "top",
+                autoPlay: true,
+                delayTime: 400,
+                vis: 5
+            });
+            //联系方式显示
+            $(".contact li").each(function (i) {
+                $(this).mouseover(function () {
+                    $(this).addClass("active").siblings().removeClass("active");
+                    $(".code_box>div:eq(" + i + ")").show().siblings().hide()
+                });
+                $(this).mouseout(function () {
+                    $(".code_box>div:eq(" + i + ")").hide()
+                })
+            })
+            //
+            $(".cont_mag li").hover(function () {
+                $(this).addClass("active").siblings().removeClass("active")
+            })
+        })
+    </script>
+    <script type="text/javascript">
+            (function () {
+                var hm = document.createElement("script");
+                hm.src = "/static/www/js/stat.js";
+                var s = document.getElementsByTagName("script")[0];
+                s.parentNode.insertBefore(hm, s);
+            })();
+    </script>
+</body>
+
+</html>
