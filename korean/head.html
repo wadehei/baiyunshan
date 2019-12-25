@@ -1,0 +1,156 @@
+<script type="text/javascript">
+    $(function() {
+        //导航效果
+        $(".nav li ").mouseover(function() {
+            $(this).append('<div class="long_nav "></div>');
+            $(this).addClass("active ");
+            $(this).find(".hotel_top ").show()
+        })
+        $(".nav li ").mouseout(function() {
+            $(this).children(".long_nav ").remove();
+            $(this).removeClass("active ");
+            $(this).find(".hotel_top ").hide()
+        })
+
+        $("." + $("#daima").val()).addClass("current");
+
+    })
+</script>
+
+<div class="top">
+    <div class="divider"></div>
+    <div class="center">
+        <script type="text/html" id="header">
+            <div class="logo">
+                <img src="../static/images/logo.png" alt="白云山" />
+            </div>
+            <div class="nav">
+                <ul>
+                    <li onclick="location.href='./index.html'">
+                        <div class="nav_divider"></div>
+                        <p class="nav_txt">{{header0}}<span>HOME</span></p>
+                    </li>
+                    <li onclick="window.location.href='./hotel.html'">
+                        <div class="nav_divider"></div>
+                        <p class="nav_txt">{{header1}}<span>SCENIC</span></p>
+                    </li>
+                    <li onclick="window.location.href='./ticket.html'">
+                        <div class="nav_divider"></div>
+                        <p class="nav_txt">{{header2}}<span>TICKET</span></p>
+                    </li>
+                    <li onclick="window.location.href='./hotel.html'">
+
+                        <div class="nav_divider"></div>
+                        <p class="nav_txt">{{header3}}<span>HOTEL</span></p>
+                    </li>
+                    <li onclick="window.location.href='./phone.html'">
+
+                        <div class="nav_divider"></div>
+                        <p class="nav_txt">{{header4}}<span>PHONE</span></p>
+                    </li>
+                    <li onclick="window.location.href='./about-us.html'">
+                        <div class="nav_divider"></div>
+                        <p class="nav_txt">{{header5}}<span>ABOUT US</span></p>
+                    </li>
+                </ul>
+            </div>
+            <div style="padding-top: 40px;text-align: left;">
+                <a href="/website/websiteView.do?request_locale=en_US">choose english</a>
+            </div>
+            <!--未登录显示这个div -->
+            <div id="ctlhd_divLoginBefor" class="top_right login_befor">
+                <img src="../static/images/tell.png">
+                <img src="../static/images/login.png" style="margin-left: 10px;">
+                <a href="javascript:;" id="loginP" onclick="showLogin();">{{header6}}</a>
+                <!-- $('#divLogin').show(); -->
+                <a href="javascript:;" id="signP" onclick="showRegister();">{{header7}}</a>
+                <!-- $('#divRegister').show(); -->
+            </div>
+            <!--新增加的  登录后显示这个div-->
+            <div id="ctlhd_divLoginAfter" class="top_right" style="display:none;">
+                <img src="../static/images/tell.png">
+                <div class="lg_icon">
+                    <img src="../static/images/login.png" style="margin-left: 10px; cursor: pointer;">
+                    <span class="show">
+                    <a href="/personal/personalView.do">{{header9}}</a><a href="/websiteLogin/logout.do">{{header10}}</a>
+                </span>
+                </div>
+            </div>
+        </script>
+
+        <link rel="stylesheet" href="../static/www/css/login.css" />
+        <!--注册 begin-->
+        <div id="divRegister" style="display: none;">
+        </div>
+        <!--注册 end-->
+
+        <!--登录 begin-->
+        <div id="divLogin" style="display: none;">
+        </div>
+        <!--登录 end-->
+
+        <!--忘记密码 begin-->
+        <div id="divForget" style="display: none;">
+        </div>
+        <!--忘记密码 end-->
+
+        <script type="text/javascript">
+            /* 打开登录窗口 */
+            function showLogin() {
+                $('#divLogin').show();
+                $('#divLogin').empty();
+                var text = "<div class='loginMask'></div>" +
+                    "<div class='loginPop'>" +
+                    "<iframe src='/websiteLogin/loginView.do' style='border: 0; width: 100%; height: 449px;'></iframe>" +
+                    "</div>";
+                $('#divLogin').append(text);
+
+            }
+            /* 关闭登录窗口 */
+            function hideLogin() {
+                $('#divLogin').hide();
+                $('#divLogin').empty();
+            }
+            /* 打开注册窗口 */
+            function showRegister() {
+                $('#divRegister').show();
+                $('#divRegister').empty();
+                var text = "<div class='loginMask'></div>" +
+                    "<div class='loginPop'>" +
+                    "<iframe src='/websiteLogin/registerView.do' style='border: 0; width: 100%; height: 656px;'></iframe>" +
+                    "</div>";
+                $('#divRegister').append(text);
+            }
+            /* 关闭注册窗口 */
+            function hideRegister() {
+                $('#divRegister').hide();
+                $('#divRegister').empty();
+            }
+            /* 打开忘记密码窗口 */
+            function showForget() {
+                $('#divForget').show();
+                $('#divForget').empty();
+                var text = "<div class='loginMask'></div>" +
+                    "<div class='loginPop'>" +
+                    "<iframe src='/websiteLogin/forgetPasswordView.do' style='border: 0; width: 100%; height: 609px;'></iframe>" +
+                    "</div>";
+                $('#divForget').append(text);
+
+            }
+            /* 关闭忘记密码窗口 */
+            function hideForget() {
+                $('#divForget').hide();
+                $('#divForget').empty();
+            }
+        </script>
+        <!--头部 end-->
+        <script type="text/javascript">
+            $(function() {
+                if (0) {
+                    document.getElementById("ctlhd_divLoginBefor").style.display = "none";
+                    document.getElementById("ctlhd_divLoginAfter").style.display = "";
+                }
+            })
+        </script>
+    </div>
+</div>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link href="/static/www/js/skin/WdatePicker.css" rel="stylesheet" type="text/css">
+    <!--<base href="http://www.chinabym.com:80/">-->
+    <meta charset="UTF-8">
+    <title>酒店预订</title>
+    <meta name="keywords" content="洛阳白云山|河南白云山|洛阳白云山景区|嵩县白云山|白云山国家森林公园|白云山">
+    <meta name="description"
+          content="洛阳白云山景区唯一官方网站，为广大游客提供最新最详实的出行信息：交通指南、景区景点、食实住宿等，白云山国家森林公园欢迎您的到来。旅游热线：0379—66590158 66590004 66590127">
+    <link href="../static/www/css/base.css" rel="stylesheet">
+    <link href="../static/www/css/room.css" rel="stylesheet">
+    <link href="../static/www/css/slide.css" rel="stylesheet">
+    <link href="../static/www/css/login.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/www/css/pagination.css">
+
+    <link href="../static/www/css/index.css" rel="stylesheet">
+    <link href="../static/www/css/bottomslide.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/www/css/portal.css">
+</head>
+
+<body>
+
+
+<!--<script type="text/javascript" async="" charset="utf-8"-->
+<!--src="http://c.cnzz.com/core.php?web_id=1262940786&amp;t=z"></script>-->
+<!--<script src="http://v1.cnzz.com/stat.php?id=1262940786&amp;web_id=1262940786"></script>-->
+<script type="text/javascript">
+    //酒店主题筛选
+    function themeFilter(theme) {
+        var price = null;
+        var hotelstar = null;
+        var inORout = null;
+        if ($("#price").val() != null && $("#price").val() != '') price = $("#price").val();
+        else {
+            price = "";
+        }
+        if ($("#hotelstar").val() != null && $("#hotelstar").val() != '') hotelstar = $("#hotelstar").val();
+        else {
+            hotelstar = "";
+        }
+        if ($("#inORout").val() != null && $("#inORout").val() != '') inORout = $("#inORout").val();
+        else {
+            inORout = "";
+        }
+        if (theme != null && theme != '' && theme != 0) jdType = $("#jdType").val();
+        else {
+            theme = "";
+        }
+        location.href = "/website/jiudianyudingView.do?jdType=" + theme +
+            "&highPrice=" + price + "&hotelstar=" + hotelstar + "&inORout=" + inORout;
+    }
+    //排序筛选
+    function sortFilter(type) {
+        if (type == "1") { //综合
+            var sort = "1";
+            sort = (sort == 1 ? 2 : 1);
+            //   location.href = "?theme=0&price=0&star=0&place=&sdate=2018-03-07&edate=2018-03-08&key=&sort=" + sort;
+        } else if (type == "2") { //价格
+            var sort = "1";
+            sort = (sort == 3 ? 4 : 3);
+            console.log(sort);
+            // location.href = "/website/jiudianyudingView.do?hotelName=";
+        }
+    }
+    //搜索
+    function goSearch() {
+        var hotelName = $("#txtHotelName").val();
+        var price = null;
+        var hotelstar = null;
+        var inORout = null;
+        var jdType = null;
+
+        if ($("#price").val() != null && $("#price").val() != '') price = $("#price").val();
+        else {
+            price = "";
+        }
+        if ($("#hotelstar").val() != null && $("#hotelstar").val() != '') hotelstar = $("#hotelstar").val();
+        else {
+            hotelstar = "";
+        }
+        if ($("#inORout").val() != null && $("#inORout").val() != '') inORout = $("#inORout").val();
+        else {
+            inORout = "";
+        }
+        if ($("#jdType").val() != null && $("#jdType").val() != '') jdType = $("#jdType").val();
+        else {
+            jdType = "";
+        }
+        location.href = "/website/jiudianyudingView.do?hotelName=" + hotelName + "&jdType=" + jdType + "&highPrice=" + price + "&hotelstar=" + hotelstar + "&inORout=" + inORout;
+    }
+</script>
+<style>
+    .hotel-feature {
+        height: 24px;
+        width: 1000px;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 1;
+    }
+
+    .roomtype-list {
+        width: 25%;
+        float: right;
+        margin-right: 5%;
+    }
+
+    .roomtype-detail {
+        border-bottom: 0
+    }
+
+    .hotel-content {
+        margin-top: 20px;
+    }
+</style>
+<!-- 头部 -->
+
+
+<style type="text/css">
+    .rewritenav li a {
+        padding: 0 10px;
+    }
+</style>
+<!--<script type="text/javascript">-->
+<!--$(function () {-->
+<!--if (0) {-->
+<!--document.getElementById("ctlhd_divLoginBefor").style.display = "none";-->
+<!--document.getElementById("ctlhd_divLoginAfter").style.display = "";-->
+<!--}-->
+<!--})-->
+<!--</script>-->
+<div class="content">
+    <div id="slideBox" class="slideBox">
+        <div class="filter-overlay"></div>
+        <div class="bd">
+            <ul>
+
+                <li><img width=" 1862" height="500"
+                         src="http://www.chinabym.com/imgs/bysticket/images/uploadFiles/uploadImgs/2018/03/26/1522034216782.png ">
+                </li>
+
+            </ul>
+        </div>
+    </div>
+
+    <div class="hotellist hotel-container" id="hotellist">
+        <script id="hotel" type="text/html">
+            {{each data item as i }}
+            <ul class="hotel-div">
+                <input type="hidden" name="rptHotel$ctl00$hidHotelID" id="rptHotel_ctl00_hidHotelID" value="11">
+                <li class="hotel-content">
+                    <div class="hotel-head">
+                        <div class="hotel-name">
+                            <a href="hotelview.aspx?id=11&amp;sdate=2018-03-07&amp;edate=2018-03-08">{{item.title}}</a>
+                        </div>
+                        <div class="hotel-instruction">
+                            <span class="hotel-feature">ホテルが付属する：
+                                無料Wifi
+                                無料駐車
+                                荷物預かり
+                                汤
+                                洗面用品
+                                ドライヤー
+                                サービスを起こす
+                                モバイル支払い
+                                </span>
+                            <a href="/hotelDetails/toHotelDetails.do?hID=1063115208361287370"><span
+                                    class="hotel-knowmore">詳しいことを知る</span></a>
+                        </div>
+                    </div>
+                    <div class="hotel-img">
+                        <a href="/hotelDetails/toHotelDetails.do?hID=1063115208361287370">
+                            <img src="http://www.chinabym.com/imgs/bysticket/images/uploadFiles/uploadImgs/2018/09/10/1536563296968.png"
+                                 class="yasuoimg"></a>
+                    </div>
+                </li>
+                <span class="hotel-feature"></span>
+                <ul class="roomtype-list GB">
+                    <div class="roomtype-detail">
+                        <span>￥<span class="price">{{item.price}}元から</span></span>
+                        <button style="float: right;" class="redBtn w_60" type="button"
+                                onclick="location.href='/hotelDetails/toHotelDetails.do?hID=1063115208361287370'">予算定
+                        </button>
+                    </div>
+                </ul>
+            </ul>
+            {{/each}}
+
+        </script>
+        <div class="pagelist">
+        </div>
+    </div>
+</div>
+
+<script src="../static/www/js/jquery-2.1.4.min.js"></script>
+<script src="../static/www/js/common.js"></script>
+<!--<script type="text/javascript" src="../static/www/js/WdatePicker.js"></script>-->
+
+<!-- 语言逻辑 -->
+<script src="../static/www/js/template-web.js"></script>
+<script src="../static/www/js/lang/japanese.js"></script>
+<script src="../static/www/js/commonLang.js"></script>
+
+</body>
+<script>
+    $(document).ready(function () {
+        window.initLanguage.initHotel();
+    });
+</script>
+
+</html>
