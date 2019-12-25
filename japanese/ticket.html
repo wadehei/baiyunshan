@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>票务预定</title>
+    <meta name="keywords" content="洛阳白云山|河南白云山|洛阳白云山景区|嵩县白云山|白云山国家森林公园|白云山">
+    <meta name="description" content="洛阳白云山景区唯一官方网站，为广大游客提供最新最详实的出行信息：交通指南、景区景点、食实住宿等，白云山国家森林公园欢迎您的到来。旅游热线：0379—66590158 66590004 66590127">
+    <!--<link href="../static/www/css/base.css" rel="stylesheet">-->
+    <link href="../static/www/css/slide.css" rel="stylesheet">
+    <style>
+        .slideBox {
+            min-width: 1200px;
+            width: 100%;
+            /* height: 500px; */
+            overflow: hidden;
+            position: relative;
+        }
+
+        .contentBox {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: #373b3e;
+            height: 50px;
+            line-height: 50px;
+        }
+
+        .wrap {
+            min-width: 1200px;
+            background: #f2f2f2;
+            width: 100%;
+            padding: 15px 0 150px 0;
+        }
+
+        .box ul {
+            max-width: 1061px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .box ul li {
+            margin-bottom: 15px;
+            float: left;
+        }
+
+        .ticket-left {
+            width: 374px;
+            height: 240px;
+            float: left;
+            border-radius: 15px;
+        }
+
+        .ticket-left img {
+            width: 374px;
+            height: 240px;
+            overflow: hidden;
+        }
+
+        .ticket-right {
+            width: 626px;
+            height: 180px;
+            float: left;
+            background-color: #373b3e;
+            border-left: 1px dashed #ffffff;
+            border-radius: 15px;
+            padding: 30px;
+        }
+
+        .ticket-right p {
+            color: #eeeeee;
+        }
+
+        .ticket-right .btn {
+            display: inline-block;
+            border: 1px solid #a1a1a1;
+            border-radius: 5px;
+            padding: 3px 6px;
+            float: right;
+        }
+
+        .ticket-right a {
+            color: #eeeeee;
+        }
+
+        .fs24 {
+            font-size: 24px;
+        }
+
+        .fs20 {
+            font-size: 20px;
+        }
+
+        .box ul li .txt {
+            line-height: 24px;
+            margin: 20px 0;
+        }
+    </style>
+    <link href="../static/www/css/index.css" rel="stylesheet">
+    <link href="../static/www/css/bottomslide.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/www/css/portal.css">
+</head>
+<body>
+    <!-- 头部 -->
+    <style type="text/css">
+        .rewritenav li a {
+            padding: 0 10px;
+        }
+    </style>
+    <!-- 登录注册end -->
+    <div id="slideBox" class="slideBox">
+        <div class="filter-overlay"></div>
+        <div class="bd">
+            <ul>
+                <li><img src=" http://www.chinabym.com/imgs/bysticket/images/uploadFiles/uploadImgs/2018/09/19/1537319203544.png"></li>
+            </ul>
+        </div>
+        <div class="contentBox"></div>
+    </div>
+    <div class="wrap">
+        <div class="box">
+            <ul class="clearfix ticket-container">
+                <script id="ticket" type="text/html">
+                    {{each data item as i }}
+                        <li class="clearfix">
+                            <div class="ticket-left">
+                                <img src="http://www.chinabym.com/imgs/bysticket/images/uploadFiles/uploadImgs/2018/09/10/1536574806246.png">
+                            </div>
+                            <div class="ticket-right">
+                                <p class="fs24"><a href="/website/toDangePiaopin.do?tID=5d8d3a1f111a4e818fd5194775c5b2b5">無料入場券</a></p>
+                                <p class="txt">
+                                    {{item.title}}
+                                    <br>
+                                    {{item.description}}。<br> スイート・ヒント ：観光期間限定で観光地にお立ち寄りください。
+                                </p>
+                                <p><span class="fs24">￥{{item.price}}元</span><i>から</i><span class="fs20 btn"><a href="/website/toDangePiaopin.do?tID=5d8d3a1f111a4e818fd5194775c5b2b5">即時購入</a></span></p>
+                            </div>
+                        </li>
+                    {{/each}}
+                </script>
+            </ul>
+        </div>
+    </div>
+
+</body>
+
+
+<script src="../static/www/js/jquery-2.1.4.min.js"></script>
+<script src="../static/www/js/common.js"></script>
+<!-- 语言逻辑 -->
+<script src="../static/www/js/template-web.js"></script>
+<script src="../static/www/js/lang/japanese.js"></script>
+<script src="../static/www/js/commonLang.js"></script>
+
+<script>
+    $(document).ready(function () {
+        window.initLanguage.initTicket();
+    });
+</script>
+
+</html>

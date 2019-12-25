@@ -1,0 +1,548 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+	session.setAttribute("appPath", path);
+%>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>
+	
+        ${model.hotel.hotelName } - 酒店预订
+</title><link href="${appPath }/static/www/css/base.css" rel="stylesheet" />
+<link href="${appPath }/static/www/css/verticalslide.css" rel="stylesheet" />
+<link href="${appPath }/static/www/css/ticket.css" rel="stylesheet" />
+    <style>
+        .hotel-right input[name='txtEndDate'], .hotel-right input[name='txtStartDate'] {
+            background: #f6f6f8 url('${appPath}/static/www/images/glyphicons-46-calendar.png') no-repeat 170px center;
+        }
+
+        .hotel-right input[name='txtEndDate'], .hotel-right input[name='txtStartDate'] {
+            height: 30px;
+            width: 200px;
+            border: 1px solid #dddddd;
+            font-size: 14px;
+        }
+
+        .hotel-form input[name='txtNum'] {
+            height: 30px;
+            width: 60px;
+            border: 1px solid #dddddd;
+            background: #f6f6f8;
+        }
+    </style>
+    <script type="text/javascript">
+        //减少
+        function reduce_num() {
+            if (parseInt($("#txtNum").val()) > 1) {
+                $("#txtNum").val(parseInt($("#txtNum").val()) - 1);
+                var price=$("#aaa").val();
+            	var sum=parseInt($("#txtNum").val());
+            	$("#price").text((price*sum).toFixed(2));
+                //价格汇总
+               // sumPrice();
+            }
+        }
+        //增加
+        function add_num() {
+        	if (parseInt($("#txtNum").val()) < parseInt($("#rm_avl").text())) {
+	            $("#txtNum").val(parseInt($("#txtNum").val()) + 1);
+	        	var price=$("#aaa").val();
+	        	var sum=parseInt($("#txtNum").val());
+            	$("#price").text((price*sum).toFixed(2));
+	            //价格汇总
+	            //sumPrice();
+            }
+        }
+		
+		//根据时间查询此房类房间数量
+		function searchRoomNum(){
+			//入住时间
+			var checkInTime = $("#txtStartDate").val();
+			//离店时间
+            var checkOutTime = $("#txtEndDate").val();
+            //酒店代码
+            var htl_cd = $("#htl_cd").val();
+            //房类代码
+            var rm_list = $("#rm_list").val();
+            //酒店id
+            var htl_ip = $("#htl_ip").val();
+            //酒店端口
+            var htl_port = $("#htl_port").val();
+            //酒店id
+            var hotelID = $("#hotelID").val();
+            //方案主键
+			var schemeID = $("#schemeID").val();           
+            //通过ajax查询剩余房间数量 及房间价格
+            $.ajax({
+                type: "POST",
+                url: "${appPath}/hotelDetails/searchRoomNum.do",
+                dataType: "json",
+                data: { 'htl_cd': htl_cd, rm_list: rm_list, 'htl_ip': htl_ip, 'htl_port': htl_port, 'checkInTime': checkInTime, 'checkOutTime': checkOutTime, 'hotelID': hotelID, 'schemeID': schemeID },
+                success: function (result) {     //回调函数，result，返回值  
+                   $("#rm_avl").text(result.rm_avl);
+                   $("#aaa").val(result.price);
+                   $("#txtNum").val(0);
+                   if(result.rm_avl>0){
+                   		add_num();
+                   		$("#btnBook").show();
+                        $("#btnNoBook").hide();
+                   }else{
+                   		$("#price").text(0);
+                   		$("#btnBook").hide();
+                        $("#btnNoBook").show();
+                   }
+                }
+            }); 
+		}
+		
+		//查询预订房间数是否大于剩余房间数，防止js篡改
+		function checkNum(){
+			//入住时间
+			var checkInTime = $("#txtStartDate").val();
+			//离店时间
+            var checkOutTime = $("#txtEndDate").val();
+            //酒店代码
+            var htl_cd = $("#htl_cd").val();
+            //房类代码
+            var rm_list = $("#rm_list").val();
+            //酒店id
+            var htl_ip = $("#htl_ip").val();
+            //酒店端口
+            var htl_port = $("#htl_port").val();
+            //酒店id
+            var hotelID = $("#hotelID").val();
+            //方案主键
+			var schemeID = $("#schemeID").val();
+			//预订房间数
+			var num = $("#txtNum").val();           
+            //通过ajax查询剩余房间数量 及房间价格
+            $.ajax({
+                type: "POST",
+                url: "${appPath}/hotelDetails/searchRoomNum.do",
+                dataType: "json",
+                data: { 'htl_cd': htl_cd, rm_list: rm_list, 'htl_ip': htl_ip, 'htl_port': htl_port, 'checkInTime': checkInTime, 'checkOutTime': checkOutTime, 'hotelID': hotelID, 'schemeID': schemeID },
+                success: function (result) {     //回调函数，result，返回值  
+                   $("#rm_avl").text(result.rm_avl);
+                   $("#aaa").val(result.price);
+                   if(result.rm_avl<num){
+                   		alert("非常抱歉，酒店房间数不足");
+                   }else{
+                   		roomBook();
+                   }
+                }
+            }); 
+		}
+		
+        //房间预定
+        function roomBook() {
+            var sdate = $("#txtStartDate").val();
+            var edate = $("#txtEndDate").val();
+            var num = $("#txtNum").val();
+            var price = $("#price").text();
+            var tID = $("#tID").val();
+            var danjia = $("#aaa").val();
+            var hotelID = $("#hotelID").val();
+            var schemeID = $("#schemeID").val();
+            var dayNum = $("#dayNum").val();
+        	//酒店代码
+            var htl_cd = $("#htl_cd").val();
+            //房类代码
+            var rm_cd = $("#rm_list").val();
+           // location.href = "${appPath }/hotelDetails/toRoomDetails.do?tID="+tID+"&sdate=" + sdate + "&edate=" + edate + "&num=" + num+ "&price=" + price+ "&hotelID=" + hotelID+ "&schemeID=" + schemeID+ "&danjia=" + danjia+ "&dayNum=" + dayNum;
+        	
+        	var URL = "${appPath}/hotelDetails/toRoomDetails.do";
+	  			var PARAMS = {
+	  				sdate:sdate,
+	  				edate:edate,
+	  				num:num,
+	  				price:price,
+	  				tID:tID,
+	  				danjia:danjia,
+	  				hotelID:hotelID,
+	  				schemeID:schemeID,
+					dayNum:dayNum,
+					htl_cd:htl_cd,
+					rm_cd:rm_cd
+	  			};
+  			  
+			  var temp = document.createElement("form"); 
+      		  temp.action = URL; 
+      		  temp.method = "post"; 
+      		  temp.style.display = "none"; 
+      		  for (var x in PARAMS) { 
+		      	var opt = document.createElement("textarea");      
+		        opt.name = x;      
+		        opt.value = PARAMS[x];      
+		        temp .appendChild(opt);      
+		      }      
+		      document.body.appendChild(temp);      
+		      temp.submit();   
+        	
+        }
+        //价格汇总
+        function sumPrice() {
+            var roomType = "25";
+            var planType = "3";
+            var bookNum = $("#txtNum").val();
+            var drpID = "0";
+            var arrivalTime = $("#txtStartDate").val();
+            var departureTime = $("#txtEndDate").val();
+            $.ajax({
+                type: "POST",
+                url: "../../ajax/hotel.ashx?action=get_book_amt",
+                dataType: "json",
+                data: { 'roomType': $.trim(roomType), 'planType': planType, 'bookNum': bookNum, 'drpID': drpID, 'arrivalTime': arrivalTime, 'departureTime': departureTime },
+                success: function (result) {     //回调函数，result，返回值  
+                    if (result.status == "y") {
+                        $("#price").html(result.info);
+                        $("#btnBook").show();
+                        $("#btnNoBook").hide();
+                    }
+                    else {
+                        alert(result.info);
+                        $("#btnBook").hide();
+                        $("#btnNoBook").show();
+                    }
+                }
+            });
+        }
+    </script>
+</head>
+<body onload="sumPrice();">
+    <!-- 头部 -->
+    <%@include file="bai-head.jsp" %>
+    <form name="form1" method="post" action="./view.aspx?id=25&amp;sdate=2018-03-14&amp;edate=2018-03-15" id="form1">
+<div>
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKLTM2Njk4NDEyMQ9kFgICAw9kFiBmD2QWAmYPFgIeBFRleHQFmQE8YSBocmVmPSJqYXZhc2NyaXB0OjsiIG9uY2xpY2s9IiQoJyNkaXZMb2dpbicpLnNob3coKTsiPueZu+W9lTwvYT4mbmJzcDsmbmJzcDs8YSBocmVmPSJqYXZhc2NyaXB0OjsiIG9uY2xpY2s9IiQoJyNkaXZSZWdpc3RlcicpLnNob3coKTsiPuazqOWGjDwvYT48L2Rpdj5kAgEPFgIfAAUn5rSb6Ziz55m95LqR5bGx55m95LqR5Zu96ZmF5bqm5YGH6YWS5bqXZAIMDxYCHwAFDOixquWNjuagh+mXtGQCDQ8WAh8ABSfmtJvpmLPnmb3kupHlsbHnmb3kupHlm73pmYXluqblgYfphZLlupdkAg4PFgIfAAXlAeeZveS6keWbvemZheW6puWBh+mFkuW6l+KAnematuWxnua0m+mYs+eZveS6keWxseeRnui0neWNoemFkuW6l+euoeeQhuaciemZkOWFrOWPuOWNleS9k+mFkuW6l+S5i+S4gCzlnZDokL3lnKjlm73lrrY1Qee6p+aZr+WMui3mtJvpmLPnmb3kupHlsbHpo47mma/ljLrlhoXvvIzmi6XmnInni6zkuIDml6DkuoznmoTmo67mnpfluqblgYfotYTmupDvvIzmmK/mtJvpmLPnmb3kupHlsbHmma/ljLrlhoXigKZkAhIPFgIfAAUM6LGq5Y2O5qCH6Ze0ZAITDxYCHwAFAjI1ZAIUDxYCHwAFATJkAhUPFgIfAAUG5ZCr5pepZAIWDxYCHwAFA+WQpmQCFw8WAh8ABQblhY3otLlkAhgPFgIfAAUD5ZCmZAIZDxYCHwBlZAIaDxYCHwBlZAIbDxYCHwBlZAIcDxYCHwBlZGSkMSAuM5K6S1PwLZkS8nVk3gNP4CSDjaiP9BbMWJD/sA==" />
+</div>
+<div>
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="2EF89AB3" />
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEdAAQpiZl+NGPp8aSHpQeGX7iLE6xT88eU23mXQtKt61lAGFDrnzM85amiq0HGwa5wnb8WJ5k2Vq50fJVcoLCs18bgSFviki7aO89FzPx3F8kbX91Me11DbaF57TLP45Y7dPI=" />
+</div>
+        
+<%-- <script src="${appPath }/static/www/js/jquery-1.8.3.min.js"></script> --%>
+<script src="${appPath }/static/www/js/common.js"></script>
+<style type="text/css">
+.rewritenav li a {padding: 0 10px;}
+.xq-sl{display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 3;overflow: hidden;max-height:60px;} 
+#txtStartDate,#txtEndDate{background-size:18px;}
+</style>
+<script type="text/javascript">
+    //菜单选择
+    var cUrl = location.href; //取得当前文件名
+    cUrl = cUrl.toLowerCase(); //转换成小写
+    var MenuFlag = new Array("", "resort/room", "resort/ticket", "resort/metting", "resort/gourmet", "resort/shop", "resort/help");
+    // 将导航菜单中的页面文件名存入arr数组
+    var flag = 0;
+    for (var Menui = 0; Menui < 7; Menui++) {
+        if (cUrl.indexOf(MenuFlag[Menui]) > 0) //判断当前页面是否存在数组中
+        {
+            document.getElementById("TopMenu" + Menui).className = "location";
+            flag++;
+        }
+    }
+    if (flag == 0) {
+        document.getElementById("TopMenu0").className = "location";
+    }
+</script>
+<link rel="stylesheet" href="${appPath }/static/www/css/login.css" />
+<!--忘记密码 end-->
+
+<!-- <!--支付页面 begin-->
+<div id="divPay" style="display: none;">
+    <div class="loginMask"></div>
+    <div class="loginPop">
+        <iframe id="payFrame" style="border: 0; width: 100%; height: 500px;"></iframe>
+    </div>
+</div> 
+<!--支付页面 end-->
+
+
+        <div class="wrap">
+            <div class="header red-rtname">
+                <span>您所在的页面 :&nbsp;&nbsp;<a href="${appPath}/website/resortHotelView.do">首页</a> > <a
+                    href="${appPath }/website/jiudianyudingView.do">酒店预订</a>
+                    > <a href="javascript:;">
+                        ${model.hotel.hotelName }</a></span>
+            </div>
+            <div class="tickettop">
+                <div class="hotelform clearfix">
+                    <div class="hotelform-pic" id="hotelpic">
+                        <div class="foucebox">
+                            <div class="bd">
+                                <ul>
+                                    <li id="liImage1" style="display: none;">
+                                        <img id="Image1" src="${image_base_path}${model.roomDetails.imgUrl1}" style="border-width:0px;" />
+                                    </li>
+                                    <c:if test="${not empty model.roomDetails.imgUrl2}">
+                                    <li id="liImage2" style="display: none;">
+                                        <img id="Image2" src="${image_base_path}${model.roomDetails.imgUrl2}" style="border-width:0px;" />
+                                    </li>
+                                    </c:if>
+                                    <c:if test="${not empty model.roomDetails.imgUrl3}">
+                                    <li id="liImage3" style="display: none;">
+                                        <img id="Image3" src="${image_base_path}${model.roomDetails.imgUrl3}" style="border-width:0px;" />
+                                    </li>
+                                    </c:if>
+                                    <c:if test="${not empty model.roomDetails.imgUrl4}">
+                                    <li id="liImage4" style="display: none;">
+                                        <img id="Image4" src="${image_base_path}${model.roomDetails.imgUrl4}" style="border-width:0px;" />
+                                    </li>
+                                    </c:if>
+                                <%--     <li id="liImage5" style="display: none;">
+                                        <img id="Image5" src="${image_base_path}${model.roomDetails.imgUrl5}" style="border-width:0px;" />
+                                    </li> --%>
+                                </ul>
+                            </div>
+                            <div class="hd">
+                                <div class="hoverBg">
+                                </div>
+                                <ul>
+                                    <li id="liImage11" style="display: none;">
+                                        <img id="Image11" src="${image_base_path}${model.roomDetails.imgUrl1}" style="border-width:0px;" />
+                                    </li>
+                                    <li id="liImage22" style="display: none;">
+                                        <img id="Image22" src="${image_base_path}${model.roomDetails.imgUrl2}" style="border-width:0px;" />
+                                    </li>
+                                    <li id="liImage33" style="display: none;">
+                                        <img id="Image33" src="${image_base_path}${model.roomDetails.imgUrl3}" style="border-width:0px;" />
+                                    </li>
+                                    <li id="liImage44" style="display: none;">
+                                        <img id="Image44" src="${image_base_path}${model.roomDetails.imgUrl4}" style="border-width:0px;" />
+                                    </li>
+                                   <%--  <li id="liImage55" style="display: none;">
+                                        <img id="Image55" src="${image_base_path}${model.roomDetails.imgUrl5}" style="border-width:0px;" />
+                                    </li> --%>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hotelform-text">
+
+                        <ul class="hotel-form">
+                            <li>
+                                <span class="rtname">
+                                  ${model.roomDetails.name }</span>
+                            </li>
+                            <li>
+                                <div class="clearfix">
+                                    <div class="hotel-left">所属酒店</div>
+                                    <div class="hotel-right">
+                                     ${model.hotel.hotelName }
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="clearfix">
+                                    <div class="hotelleft">酒店介绍</div>
+                                    <div class="hotelright"> 
+                                    	<div class="xq-sl">${model.hotel.desc }</div>
+                                     	<a href="#kfxq" style="color: #e76541">详情</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="clearfix">
+                                    <div class="hotel-left">入住日期</div>
+                                    <div class="hotel-right clearfix">
+                                        <div class="dateinput">
+                                            <input name="txtStartDate" type="text" id="txtStartDate" class="dateico" onclick="WdatePicker({ readOnly: true, onpicked: function () { set_enddate(&#39;txtStartDate&#39;, &#39;txtEndDate&#39;); searchRoomNum(); }, minDate: &#39;%y-%M-%d&#39;, maxDate: &#39;%y-%M-{%d+90}&#39; })" readonly="readonly" value="${model.param.checkInTime }" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="clearfix">
+                                    <div class="hotel-left">离店日期</div>
+                                    <div class="hotel-right clearfix">
+                                        <div class="dateinput">
+                                            <input name="txtEndDate" type="text" id="txtEndDate" class="dateico" onclick="WdatePicker({ readOnly: true, minDate: &#39;#F{ $dp.$D(\&#39;txtStartDate\&#39;,{d:1})}&#39;, maxDate: &#39;%y-%M-{%d+91}&#39;, onpicked: function () { searchRoomNum(); } })" value="${model.param.checkOutTime }" readonly="readonly"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="clearfix">
+                                    <div class="hotel-left">房间数量</div>
+                                    <div class="hotel-right">
+                                        <div class="spinner">
+                                            <a href="javascript:;" onclick="reduce_num()">－</a>
+                                            <input name="txtNum" type="text" id="txtNum" value="1" readonly="" />
+                                            <input type="hidden" id="dayNum" value="${model.param.num }">
+                                            <a href="javascript:;" onclick="add_num()">＋</a>
+                                            <span>&nbsp;&nbsp;剩余房间数 <label id="rm_avl">${model.rm_avl }</label></span>
+                                            <!-- 酒店代码 -->
+                                        	<input type="text" style="display: none;" id="htl_cd" value="${model.htl_cd }" />
+                                        	<!-- 酒店ip -->
+                                        	<input type="text" style="display: none;" id="htl_ip" value="${model.htl_ip }" />
+                                        	<!-- 酒店端口号 -->
+                                        	<input type="text" style="display: none;" id="htl_port" value="${model.htl_port }" />
+                                        	<!-- 酒店房类代码集合（目前一次只能选择一种房类） -->
+                                        	<input type="text" style="display: none;" id="rm_list" value="${model.rm_list }" />
+                                        	<!-- 酒店代码 -->
+                                        	<input type="text" style="display: none;" id="rm_list" value="${model.param.hotelID }" />
+                                        	<!-- 方案主键 -->
+                                        	<input type="text" style="display: none;" id="rm_list" value="${model.param.schemeID }" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="clearfix">
+                                    <div class="hotel-left">总 房 价</div>
+                                    <div class="hotel-right">
+                                        <span class="red">￥<label id="price">${model.param.price }</label></span>
+                                        <input type="hidden" id="aaa" value="${model.param.price }">
+                                        <input type="hidden" id="schemeID" value="${model.roomDetails.schemeID }">
+                                        <input type="hidden" id="tID" value="${model.roomDetails.tID }">
+                                        <input type="hidden" id="hotelID" value="${model.roomDetails.hotelID }">
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="button">
+                                    <label>
+                                    	<c:if test="${model.rm_avl>0 }">
+	                                        <button id="btnBook" class="redBtn w_60" type="button" onclick="checkNum()">预 定</button>
+	                                        <button id="btnNoBook" class="grayBtn w_60" type="button" style="display: none;">订 满</button>
+                                    	</c:if>
+                                    	<c:if test="${model.rm_avl==0 }">
+	                                        <button id="btnBook" class="redBtn w_60" type="button" style="display: none;" onclick="checkNum()">预 定</button>
+	                                        <button id="btnNoBook" class="grayBtn w_60" type="button">订 满</button>
+                                    	</c:if>
+                                    </label>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="jiageBox"
+                            style="display: none; z-index: 10000; position: relative; margin-left: -170px;">
+                            <div class="calendar">
+                                <div class="outer clearfix" id="calendarcontainer">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ticketdetail packTab" id="kfxq">
+                    <ul class="menuTop">
+                        <li class="on"><a href="#kfxq">客房详情</a></li>
+                        <li><a href="#ydxz">预订须知</a></li>
+                        <li><a href="#wxts">温馨提示</a></li>
+                    </ul>
+                    <div class="ticketdetail-head">
+                        客房详情
+                    </div>
+                    <div class="ticketdetail-instruction">
+                        <div id="roomservice">
+                            <table style="color: #895A47; font-family: 'Microsoft Yahei'; font-size: 14px; background-color: #FFFFFF;">
+                                <tbody>
+                                    <tr class="firstRow">
+                                        <td width="307" valign="top" align="left">
+                                            <span style="font-size: 14px; font-family: 微软雅黑, 'Microsoft YaHei';"><span style="color: #333333;">房型：</span><span style="color: #333333;">${model.roomDetails.name}</span></span>
+                                        </td>
+                                        <td width="307" valign="top" align="left">
+                                            <span style="font-size: 14px; font-family: 微软雅黑, 'Microsoft YaHei';"><span style="color: #333333;">面积：</span><span style="color: #333333;">${model.roomDetails.area }㎡</span></span>
+                                        </td>
+                                        <td width="307" valign="top" align="left">
+                                            <span style="font-size: 14px; font-family: 微软雅黑, 'Microsoft YaHei'; color: #333333;">入住人数：${model.roomDetails.peopleNum }人</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="307" valign="top" align="left">
+                                            <span style="font-size: 14px; font-family: 微软雅黑, 'Microsoft YaHei'; color: #333333;"><span style="color: #333333;">早餐：
+                                            <c:if test="${model.roomDetails.zaoCan==0 }">不含早</c:if>
+							               	 	<c:if test="${model.roomDetails.zaoCan==1 }">含早</c:if>
+							                	<c:if test="${model.roomDetails.zaoCan==2 }">含双早</c:if>
+							                	<c:if test="${model.roomDetails.zaoCan==3 }">含三早</c:if>
+							                	<c:if test="${model.roomDetails.zaoCan==4 }">早餐收费</c:if>
+                                            </span></span>
+                                        </td>
+                                        <td width="307" valign="top" align="left">
+                                            <span style="font-size: 14px; font-family: 微软雅黑, 'Microsoft YaHei'; color: #333333;">是否无烟房：
+                                            	<c:if test="${model.roomDetails.noSmoking==0 }">是</c:if>
+                  							 	<c:if test="${model.roomDetails.noSmoking==1 }">否</c:if>
+                                            </span>
+                                        </td>
+                                        <td width="307" valign="top" align="left">
+                                            <span style="font-size: 14px; font-family: 微软雅黑, 'Microsoft YaHei'; color: #333333;">是否免费宽带：
+                                            		<c:if test="${model.roomDetails.kuanDai==1 }">收费</c:if>
+								                   	<c:if test="${model.roomDetails.kuanDai==2 }">无</c:if>
+								                   	<c:if test="${model.roomDetails.kuanDai==0 }">免费</c:if>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td valign="top" colspan="1" rowspan="1" align="left">
+                                            <span style="font-size: 14px; font-family: 微软雅黑, 'Microsoft YaHei'; color: #333333;">是否可加床：
+                                            	      <c:if test="${model.roomDetails.extBed==1 }">否</c:if>
+                									<c:if test="${model.roomDetails.extBed==0 }">是</c:if>
+                                            </span>
+                                        </td>
+                                        <td valign="top" colspan="1" rowspan="1" align="left">
+                                            <span style="font-size: 14px; font-family: 微软雅黑, 'Microsoft YaHei'; color: #333333;"></span>
+                                        </td>
+                                        <td valign="top" colspan="1" rowspan="1" align="left">
+                                            <br />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td valign="top" colspan="3" rowspan="1" align="left">
+                                            <span style="line-height: 24px; font-size: 14px; font-family: 微软雅黑, 'Microsoft YaHei'; color: #333333;">房间描述：${model.roomDetails.desc }</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p style="text-align: center; color: #895A47; font-family: 'Microsoft Yahei'; font-size: 14px; background-color: #FFFFFF;">
+                                <br />
+                            </p>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div style="width: 100%; height: 25px; background: #f2f2f2;" id="ydxz" class="packTab"></div>
+                <div class="tickettop">
+                    <div class="pubdiv">
+                        <div class="pubheader">
+                            预订须知
+                        </div>
+                        <div id="instruction">
+                           ${model.roomDetails.reminder } 
+                        </div>
+                    </div>
+                </div>
+                <div style="width: 100%; height: 25px; background: #f2f2f2;" id="wxts" class="packTab"></div>
+                <div class="tickettop">
+                    <div class="pubdiv">
+                        <div class="pubheader">
+                            温馨提示
+                        </div>
+                        <div id="tips">
+                            ${model.roomDetails.desc }  
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="blank">
+            </div>
+        </div>
+ <%@ include file="footer.jsp" %>
+<script type="text/javascript">
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "http://v1.cnzz.com/stat.php?id=1262940786&web_id=1262940786";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+        <script type="text/javascript" src="${appPath }/static/www/js/WdatePicker.js"></script>
+        <script type="text/javascript" src="${appPath }/static/www/js/jquery.SuperSlide.js"></script>
+        <script type="text/javascript" src="${appPath }/static/www/js/tabLocation.js"></script>
+    </form>
+</body>
+</html>

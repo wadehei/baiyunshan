@@ -1,0 +1,304 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+	session.setAttribute("appPath", path);
+%>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>
+	订单详情
+</title><link href="${appPath }/static/www/css/base.css" rel="stylesheet" /><link href="${appPath }/static/www/css/order.css" rel="stylesheet" />
+<link href="${appPath }/static/www/css/login.css" rel="stylesheet" />
+    <style>
+        .box input[name='txtEndDate'], .box input[name='txtStartDate'] {
+            background: #f6f6f8 url('${appPath }/static/www/images/glyphicons-46-calendar.png') no-repeat 170px center;
+            height: 30px;
+            width: 200px;
+            border: 1px solid #dddddd;
+            font-size: 14px;
+            background-size: 18px;
+        }
+    </style>
+    <script type="text/javascript">
+        //减少
+        function reduce_num() {
+            if (parseInt($("#txtNum").val()) > 1) {
+                $("#txtNum").val(parseInt($("#txtNum").val()) - 1);
+                var price=$("#aaa").val();
+            	var sum=parseInt($("#txtNum").val());
+            	$("#price").text((price*sum).toFixed(2));
+            	$("#hidOrderAmtss").val($("#price").text());
+                //价格汇总
+                sumPrice();
+            }
+        }
+        //增加
+        function add_num() {
+            $("#txtNum").val(parseInt($("#txtNum").val()) + 1);
+        	var price=$("#aaa").val();
+        	var sum=parseInt($("#txtNum").val());
+        	$("#price").text((price*sum).toFixed(2));
+        	$("#hidOrderAmtss").val($("#price").text());
+            //价格汇总
+            sumPrice();
+        }
+        //价格汇总
+        function sumPrice() {
+            var roomType = "25";
+            var planType = "3";
+            var bookNum = $("#txtNum").val();
+            var drpID = "0";
+            var arrivalTime = $("#txtStartDate").val();
+            var departureTime = $("#txtEndDate").val();
+            $.ajax({
+                type: "POST",
+                url: "../../ajax/hotel.ashx?action=get_book_amt",
+                dataType: "json",
+                data: { 'roomType': $.trim(roomType), 'planType': planType, 'bookNum': bookNum, 'drpID': drpID, 'arrivalTime': arrivalTime, 'departureTime': departureTime },
+                success: function (result) {     //回调函数，result，返回值  
+                    if (result.status == "y") {
+                        $("#price").html(result.info);
+                        $("#hidOrderAmt").val(result.info);
+                        $(".booking-notice").hide();
+                        $(".right").show();
+                    }
+                    else {
+                        $("#errorMsg").html(result.info);
+                        $(".booking-notice").show();
+                        $(".right").hide();
+                    }
+                }
+            });
+        }
+
+        // 姓名校验
+        function checkName(nameId) {
+            var checkResult = true;
+            var emptyReg = /^\s*(\S+\s*)+$/;
+            if (emptyReg.test($("#" + nameId).val()) == false) {
+                showError(nameId, '请输入姓名');
+                checkResult = false;
+                return;
+            }
+            if (checkResult) {
+                hidError(nameId);
+            }
+            return checkResult;
+        }
+
+        // 手机号校验
+        function checkMobile(phoneNumberId) {
+            var checkResult = true;
+            var emptyReg = /^\s*(\S+\s*)+$/;
+            var reg = /^(1)\d{10}$/;
+            if (emptyReg.test($("#" + phoneNumberId).val()) == false) {
+                showError(phoneNumberId, '请输入手机号码');
+                checkResult = false;
+                return;
+            } else {
+                if (reg.test($("#" + phoneNumberId).val()) == false) {
+                    showError(phoneNumberId, "手机号码格式不正确");
+                    checkResult = false;
+                    return;
+                }
+            }
+            if (checkResult) {
+                hidError(phoneNumberId);
+            }
+            return checkResult;
+        }
+        //提交前校验
+        function submitOrder() {
+            var checkResult = true;
+            //姓名校验
+            if (!checkName('txtBookName')) {
+                checkResult = false;
+                return false;
+            }
+            //手机号校验
+            if (!checkMobile('txtBookMobile')) {
+                checkResult = false;
+                return false;
+            }
+            $.ajax({
+                type: "post",
+                url: "${appPath}/hotelDetails/checklogin.do",
+                cache: false,
+                async: false,
+                data: {},
+                dataType: 'json',
+                success: function (result) {
+                	console.log(result.code);
+                    if (result.code == -1) {
+                    	showLogin();
+                        /* $('#divLogin').show(); */
+                        checkResult = false;
+                        return false;
+                    }
+                },
+                error: function () {
+                    alert("网络连接错误，请检查");
+                    checkResult = false;
+                    return false;
+                }
+            });
+
+            return checkResult;
+        }
+
+        //错误
+        function showError(elementId, msg) {
+            $("#" + elementId + "Msg").html(msg);
+        }
+        //正确
+        function hidError(elementId) {
+            $("#" + elementId + "Msg").html("*");
+        }
+    </script>
+
+    <style>
+        .booktips {
+            clear: both;
+        }
+    </style>
+</head>
+<!-- 头部 -->
+    <%@include file="bai-head.jsp" %>
+<body style="background-color: #eee;" onload="sumPrice();">
+    <form name="form1" method="post" action="${appPath }/hotelDetails/saveHotelOrder.do" id="form1">
+<div>
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKMTU0OTA4MTYwNA9kFgICAw9kFgoCBw9kFgJmDxYCHgRUZXh0BeYBIDxzcGFuIGNsYXNzPSJsb2dpbi1waG90byI+PGltZyBzcmM9Imh0dHA6Ly93d3cuMTdieXMuY29tL2ltYWdlcy9waG90by5wbmciPjx1bD48bGk+PGEgaHJlZj0iaHR0cDovL3d3dy4xN2J5cy5jb20vdWMvYmFzZUluZm8uYXNweCI+5Liq5Lq65Lit5b+DPC9hPjwvbGk+PGxpPjxhIGhyZWY9Imh0dHA6Ly93d3cuMTdieXMuY29tL3VjL2xvZ291dC5hc3B4Ij7pgIDlh7o8L2E+PC9saT48L3VsPjwvc3Bhbj5kAgkPFgIfAAUn5rSb6Ziz55m95LqR5bGx55m95LqR5Zu96ZmF5bqm5YGH6YWS5bqXZAILDxYCHwAFDOixquWNjuagh+mXtGQCGw8WAh8AZWQCHQ8WAh8AZWRkykTOosJvnXvW4pUqTjyaESXmQj5xpNFM6P/VsqrWs1Q=" />
+</div>
+
+<div>
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="B02C7805" />
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEdAAvrEU+ooG1PEnyKiL6Wq8Pk2Kg3ibpc3A2Nb3yUALo1B8da9WHq/zm0VIwSwp8WwHZEUGrKzr3R3mG5MmLOXxtvE6xT88eU23mXQtKt61lAGFDrnzM85amiq0HGwa5wnb8WJ5k2Vq50fJVcoLCs18bgIRzLasxGJKCrtL/v4sB5FZzPIQFlJsb804048vtIfJqz3lRBN/XG7rgoaXB4efc1POaW1pQztoQA36D1w/+bXV6/R0pCsmbmvAqdy0zVc32pY8n23YAveZqgicoLTShC" />
+</div>
+        <input type="hidden" name="schemeID" value="${model.param.schemeID }" />
+        <input type="hidden" name="hotelID" value="${model.param.hotelID }" />
+        <input type="hidden" name="tID" value="${model.param.tID }" />
+        <input type="hidden" name="dayNum" value="${model.param.dayNum }" />
+        <input type="hidden" name="roomType" value="${model.roomDetails.name }" />
+        
+<%-- <script src="${appPath }/static/www/js/jquery-1.8.3.min.js"></script> --%>
+<script src="${appPath }/static/www/js/common.js"></script>
+<style type="text/css">
+    .rewritenav li a {
+        padding: 0 10px;
+    }
+</style>
+<script type="text/javascript">
+    //菜单选择
+    var cUrl = location.href; //取得当前文件名
+    cUrl = cUrl.toLowerCase(); //转换成小写
+    var MenuFlag = new Array("", "resort/room", "resort/ticket", "resort/metting", "resort/gourmet", "resort/shop", "resort/help");
+    // 将导航菜单中的页面文件名存入arr数组
+    var flag = 0;
+    for (var Menui = 0; Menui < 7; Menui++) {
+        if (cUrl.indexOf(MenuFlag[Menui]) > 0) //判断当前页面是否存在数组中
+        {
+            document.getElementById("TopMenu" + Menui).className = "location";
+            flag++;
+        }
+    }
+    if (flag == 0) {
+        document.getElementById("TopMenu0").className = "location";
+    }
+</script>
+
+<!--忘记密码 end-->
+<!--支付页面 begin-->
+<div id="divPay" style="display: none;">
+    <div class="loginMask"></div>
+    <div class="loginPop">
+        <iframe id="payFrame" style="border: 0; width: 100%; height: 500px;"></iframe>
+    </div>
+</div>
+<!--支付页面 end-->
+
+        <!--内容-->
+        <div class="wrap">
+            <div class="content" id="content">
+                <div class="title">订单信息</div>
+                <div class="box">
+                    <ul>
+                        <li><span>酒店名称：</span> ${model.hotel.hotelName }</li>
+                        <li><span>房型名称：</span> ${model.roomDetails.name }</li>
+                        <li>
+                            <span>入离日期：</span>
+                            <input type="hidden" name="htl_cd" value=" ${model.param.htl_cd}">
+                            <input type="hidden" name="rm_cd" value=" ${model.param.rm_cd}">
+                            <input type="hidden" name="hotelName" value=" ${model.hotel.hotelName }">
+                            <input type="hidden" name="fxName" value=" ${model.roomDetails.name }">
+                            <input name="txtStartDate" type="text" id="txtStartDate" class="dateico"  readonly="readonly" value="${model.param.sdate }" />
+                            - 
+                          <input name="txtEndDate" type="text" id="txtEndDate" class="dateico"  readonly="readonly" value="${model.param.edate }" />
+                        </li>
+                        <li>
+                            <span>房间数量：</span>
+                            <div class="spinner">
+                                <a href="javascript:;" >－</a>
+                                <input name="txtNum" type="text" id="txtNum" value="${model.param.num }" readonly="true" />
+                                <a href="javascript:;" >＋</a>
+                            </div>
+                        </li>
+                        <li class="ll">
+                            <span>预订人：</span>
+                            <input name="reserveName" type="text" id="txtBookName" onblur="checkName(&#39;txtBookName&#39;)" />
+                            <label class="red" id="txtBookNameMsg">*</label>
+                        </li>
+                        <li class="ll">
+                            <span>手机号码：</span>
+                            <input name="reserveMobile" type="text" id="txtBookMobile" onblur="checkMobile(&#39;txtBookMobile&#39;)" />
+                            <label class="red" id="txtBookMobileMsg">*</label>
+                        </li>
+                        <li>
+                            <span>总价：</span>
+                            <input type="hidden" name="hidOrderAmt" id="hidOrderAmtss" value="${model.param.price }" />
+                            <label id="price">${model.param.price }</label>
+                            <input type="hidden" id="aaa" name="unitPrice" value="${model.param.danjia }">
+                            元
+                            <div class="booking-notice" style="display: none;">
+                                您选的时间段<label id="errorMsg">库存不足</label>，请修改入住日期或返回重新下单。
+                            </div>
+                        </li>
+                        <li class="buyBtn" style="display: list-item;">
+                            <div class="right">
+                                <input type="submit" name="btnSubmit" value="提交订单" onclick="return submitOrder();" id="btnSubmit" class="redBtn" />
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="booktips">
+                        <span class="title">预订须知：</span>
+                        ${model.roomDetails.reminder } 
+                    </div>
+                    <div class="booktips">
+                        <span class="title">温馨提示：</span>
+                         ${model.roomDetails.desc }  
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end-->
+        
+ <%@ include file="footer.jsp" %>
+<!---->
+<script type="text/javascript">
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "http://v1.cnzz.com/stat.php?id=1262940786&web_id=1262940786";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+        <script src="${appPath }/static/www/js/My97DatePicker/WdatePicker.js"></script>
+        <script src="${appPath }/static/www/js/jquery.Spinner.js"></script>
+    </form>
+</body>
+</html>

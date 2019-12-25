@@ -1,0 +1,1049 @@
+<<<<<<< .mine
+.wrap {
+    min-width: 1200px;
+    width: 100%;
+    background: #f2f2f2;
+}
+
+.wrap .header {
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 46px;
+    line-height: 46px;
+    font-size: 12px;
+    background: #f2f2f2;
+}
+
+.header span {
+    padding-left: 16px;
+}
+
+.header a {
+    color: #0b0b0b;
+}
+
+.tickettop {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px 0;
+    background: #ffffff;
+}
+.tickettop_case{
+    padding-bottom: 0;
+    /*meetcaseé¡µé¢*/
+}
+.ticketform {
+    max-width: 1142px;
+    padding: 15px 0;
+    margin: 0 auto;
+}
+
+.ticketform-pic {
+    float: left;
+    width: 600px;
+    margin-right: 5px;
+}
+
+#ticketpic img {
+    vertical-align: middle;
+}
+
+.ticketform-text {
+    float: left;
+    width: 525px;
+}
+
+.ticket-form li {
+    float: left;
+}
+
+.hotelform {
+    max-width: 1142px;
+    margin: 0 auto;
+    padding: 15px 0;
+    height: 325px;
+}
+
+.packageform{
+    max-width: 1142px;
+    margin: 0 auto;
+    padding: 15px 0;
+}
+
+.hotelform-pic {
+    float: left;
+    width: 600px;
+    height: 300px;
+}
+
+#hotelpic img {
+    vertical-align: middle;
+}
+
+.hotelform-text {
+    float: left;
+    width: 525px;
+    height: 305px;
+}
+
+
+
+.rtname {
+    padding-left: 30px;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.hotel-form li {
+    margin-bottom: 5px;
+}
+.hotel-left ,.hotelleft{
+    float: left;
+    width: 70px;
+    padding-left: 30px;
+    padding-right: 5px;
+}
+.hotel-left,.hotel-right{
+    height: 35px;
+    line-height: 35px;
+}
+.hotel-right,.hotelright {
+    float: left;
+    width: 390px;
+    padding-left: 5px;
+}
+
+.button {
+    padding-left: 30px;
+}
+
+.ticket-left {
+    float: left;
+    width: 90px;
+    padding-left: 10px;
+    height: 40px;
+    line-height: 40px;
+}
+
+.ticket-right {
+    width: 400px;
+    float: left;
+    padding-left: 10px;
+    height: 40px;
+    line-height: 40px;
+}
+
+.ticket-rightlast {
+    width: 400px;
+    padding-left: 110px;
+}
+
+#ticketSelect, .ticket-form input[type='text'] {
+    height: 30px;
+    width: 200px;
+    border: 1px solid #dddddd;
+    background: #f6f6f8;
+}
+
+.hotel-right input[name='enddate'], .hotel-right input[name='startdate'] {
+    height: 30px;
+    width: 200px;
+    border: 1px solid #dddddd;
+    font-size: 14px;
+}
+
+.ticket-form input[name='usedate'], .hotel-right input[name='enddate'], .hotel-right input[name='startdate'] {
+    background: #f6f6f8 url('../images/glyphicons-46-calendar.png') no-repeat 170px center;
+}
+
+.ticket-form input[name='num'], .hotel-form input[name='num'] {
+    height: 30px;
+    width: 60px;
+    border: 1px solid #dddddd;
+    background: #f6f6f8;
+}
+
+#remark, #price, #total_price,#redRemark {
+    color: #e76451;
+    font-weight: bold;
+}
+#redRemark{
+    display: none;
+    font-size: 20px;
+}
+#price, #total_price {
+    font-size: 18px;
+}
+
+.ticketdetail {
+    width: 1142px;
+    margin: 10px auto;
+    padding-bottom: 40px;
+}
+
+.menuTop {
+    padding-left: 20px;
+    height: 56px;
+    background: #dedede;
+    width: 1120px;
+    margin: 0 auto;
+}
+
+.menuTop li {
+    display: block;
+    float: left;
+    padding: 0 25px;
+    height: 56px;
+}
+
+.menuTop li.on {
+    background: #f6f6f7;
+}
+
+.menuTop li a {
+    font: normal 18px/56px "Microsoft Yahei";
+    color: #5d4a42;
+    display: block;
+    text-decoration: none;
+}
+
+.ticketdetail-head {
+    padding-left: 20px;
+    height: 56px;
+    line-height: 56px;
+    background: #f6f6f8;
+    color: #6b6b6b;
+    font-size: 1.4em;
+}
+
+.ticketdetail-instruction {
+    border: 1px solid #dedede;
+    padding: 20px;
+
+}
+
+.blank {
+    width: 100%;
+    height: 20px;
+    background: #f2f2f2;
+}
+
+.pubdiv {
+    width: 1142px;
+    margin: 0 auto;
+    border: 1px solid #ffffff;
+    padding-bottom: 10px;
+}
+
+.pubheader {
+    height: 60px;
+    line-height: 60px;
+    background: #f6f6f8;
+    color: #6b6b6b;
+    font-size: 1.4em;
+    margin-top: 20px;
+    border: 1px solid #dedede;
+    padding-left: 30px;
+}
+
+.successheader {
+    height: 60px;
+    line-height: 60px;
+    font-size: 1.4em;
+    padding-left: 30px;
+    margin-top: 20px;
+    color: #6b6b6b;
+}
+
+#instruction, #tips,#ticketdetail {
+    border-bottom: 1px solid #dedede;
+    padding: 20px;
+}
+
+.add {
+    -moz-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
+}
+
+.mrjg {
+    padding-left: 5px;
+    font-size: 16px;
+}
+
+.roomdetail-middle {
+    float: left;
+}
+
+.roomdetail {
+    width: 330px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+}
+
+.roomlist {
+    max-width: 1142px;
+    margin: 0 auto;
+}
+
+.roomlist-search {
+    margin: 0 auto;
+    max-width: 1142px;
+    height: 60px;
+    line-height: 60px;
+    background: #dedede;
+}
+
+.search-content {
+    *float: left;
+    display: inline-block;
+    text-align: center;
+    font-size: 16px;
+    width: 370px;
+}
+
+.search-content input {
+    width: 190px;
+    height: 38px;
+    line-height: 38px;
+    border: none;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    background-color: #ffffff;
+    cursor: pointer;
+}
+
+.roomlist-header {
+    max-width: 1142px;
+    width: 100%;
+    margin: 0 auto;
+    height: 35px;
+    line-height: 35px;
+    background: #f6f6f7;
+    text-align: center;
+}
+
+.roomlist-header ul li {
+    *float: left;
+    display: inline-block;
+    font-size: 14px;
+    width: 18%;
+    height: 35px;
+    line-height: 35px;
+}
+
+.roomlist-detail {
+    width: 100%;
+    text-align: center;
+}
+
+.roomlist-detail ul li dl dd {
+    *float: left;
+    display: inline-block;
+    height: 56px;
+    line-height: 56px;
+    width: 18%;
+}
+
+.roomlist-detail ul li {
+    border-bottom: 1px solid #dedede;
+}
+
+.roomlist-search .dateico {
+    background: url('../images/glyphicons-46-calendar.png') no-repeat 155px center;
+    background-color: #ffffff;
+}
+
+.nightsdiv {
+    font-size: 14px;
+}
+
+.nightsdiv button {
+    margin-left: 25px;
+}
+
+.roomlist-detail-book {
+    float: left;
+    height: 65px;
+    line-height: 65px;
+    vertical-align: middle;
+    margin: 0 10px;
+}
+
+.disabled {
+    background: #ccc;
+}
+
+.meetingform {
+    max-width: 1142px;
+    margin: 0 auto;
+}
+
+.spot li {
+    height: 60px;
+    line-height: 60px;
+    border-bottom: 1px solid #dedede;
+}
+
+.spot_name {
+    float: left;
+    font-size: 22px;
+    padding-left: 20px;
+    color: #e84653;;
+}
+
+.bookBtn {
+    float: right;
+}
+
+.spot_detail {
+    margin: 30px auto;
+}
+
+.spot_detail table {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.spot_detail table tr {
+    width: 25%;
+    height: 35px;
+    line-height: 35px;
+}
+
+.spot_detail span {
+    color: #6b6b6b;
+}
+
+#successdata {
+    max-width: 1142px;
+    margin: 0 auto;
+    text-align: center;
+    padding-bottom: 30px;
+}
+
+#successdata li {
+    border-bottom: 1px solid #dedede;
+    height: 56px;
+    line-height: 56px;
+}
+
+.pubsuccess {
+    background: #f6f6f8;
+    border: 1px solid #dedede;
+}
+.pubsuccess dl,.successdiv dl{
+    width: 100%;
+}
+.pubsuccess dl dd {
+    display: inline-block;
+    color: #6b6b6b;
+    font-size: 1.2em;
+}
+
+.successdiv dl dd {
+    float: left;
+    width: 280px;
+    display: inline-block;
+}
+
+#comment {
+    padding-bottom: 20px;
+}
+
+#comment li {
+    padding: 10px 0;
+    border-bottom: 1px solid #dedede;
+}
+
+.commenttext {
+    padding:0 10px;
+}
+.commentdate{
+    color: #ccc;
+    padding:1px 10px;
+    font-style: italic;
+}
+.replay ,.emptycomment{
+    padding: 10px;
+    color: #AF874D;
+}
+.meetheader {
+    margin-top: -10px;
+    height: 50px;
+    line-height: 50px;
+    padding-left: 20px;
+    background: #dedede;
+}
+
+.meetheader a {
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    padding: 8px 20px;
+    margin: 0 10px;
+    text-decoration: none;
+    list-style-type: none;
+}
+.meetheader a span{
+    color: #333;
+}
+.meetheader a:hover span{
+    color: #fff;
+}
+.meetheader a:hover, .meetheadercss{
+    background: #e84653;
+    color: #ffffff;
+}
+.topblank{
+    max-width: 1200px;
+    background: #ffffff;
+    margin: 0 auto;
+    padding: 150px  0;
+}
+.topblank p{
+    padding: 5px 0;
+    text-align: center;
+}
+
+.topblank a{
+    margin: 0 10px;
+}
+.caseclass{
+    text-align: center;
+    padding: 20px 0;
+}
+
+.dateinput input,#usedate{
+    cursor: pointer;
+}=======
+.wrap {
+    min-width: 1200px;
+    width: 100%;
+    background: #f2f2f2;
+}
+
+.wrap .header {
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 46px;
+    line-height: 46px;
+    font-size: 12px;
+    background: #f2f2f2;
+}
+
+.header span {
+    padding-left: 16px;
+}
+
+.header a {
+    color: #0b0b0b;
+}
+
+.tickettop {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px 0;
+    background: #ffffff;
+}
+.tickettop_case{
+    padding-bottom: 0;
+    /*meetcaseÒ³Ãæ*/
+}
+.ticketform {
+    max-width: 1142px;
+    padding: 15px 0;
+    margin: 0 auto;
+}
+
+.ticketform-pic {
+    float: left;
+    width: 600px;
+    margin-right: 5px;
+}
+
+#ticketpic img {
+    vertical-align: middle;
+}
+
+.ticketform-text {
+    float: left;
+    width: 525px;
+}
+
+.ticket-form li {
+    float: left;
+}
+
+.hotelform {
+    max-width: 1142px;
+    margin: 0 auto;
+    padding: 15px 0;
+    height: 325px;
+}
+
+.packageform{
+    max-width: 1142px;
+    margin: 0 auto;
+    padding: 15px 0;
+}
+
+.hotelform-pic {
+    float: left;
+    width: 600px;
+    height: 300px;
+}
+
+#hotelpic img {
+    vertical-align: middle;
+}
+
+.hotelform-text {
+    float: left;
+    width: 525px;
+    height: 305px;
+}
+
+
+
+.rtname {
+    padding-left: 30px;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.hotel-form li {
+    margin-bottom: 5px;
+}
+.hotel-left ,.hotelleft{
+    float: left;
+    width: 70px;
+    padding-left: 30px;
+    padding-right: 5px;
+}
+.hotel-left,.hotel-right{
+    height: 35px;
+    line-height: 35px;
+}
+.hotel-right,.hotelright {
+    float: left;
+    width: 390px;
+    padding-left: 5px;
+}
+
+.button {
+    padding-left: 30px;
+}
+
+.ticket-left {
+    float: left;
+    width: 90px;
+    padding-left: 10px;
+    height: 40px;
+    line-height: 40px;
+}
+
+.ticket-right {
+    width: 400px;
+    float: left;
+    padding-left: 10px;
+    height: 40px;
+    line-height: 40px;
+}
+
+.ticket-rightlast {
+    width: 400px;
+    padding-left: 110px;
+}
+
+#ticketSelect, .ticket-form input[type='text'] {
+    height: 30px;
+    width: 200px;
+    border: 1px solid #dddddd;
+    background: #f6f6f8;
+}
+
+.hotel-right input[name='enddate'], .hotel-right input[name='startdate'] {
+    height: 30px;
+    width: 200px;
+    border: 1px solid #dddddd;
+    font-size: 14px;
+}
+
+.ticket-form input[name='usedate'], .hotel-right input[name='enddate'], .hotel-right input[name='startdate'] {
+    background: #f6f6f8 url('../images/glyphicons-46-calendar.png') no-repeat 170px center;
+}
+
+.ticket-form input[name='num'], .hotel-form input[name='num'] {
+    height: 30px;
+    width: 60px;
+    border: 1px solid #dddddd;
+    background: #f6f6f8;
+}
+
+#remark, #price, #total_price,#redRemark {
+    color: #e76451;
+    font-weight: bold;
+}
+#redRemark{
+    display: none;
+    font-size: 20px;
+}
+#price, #total_price {
+    font-size: 18px;
+}
+
+.ticketdetail {
+    width: 1142px;
+    margin: 10px auto;
+    padding-bottom: 40px;
+}
+
+.menuTop {
+    padding-left: 20px;
+    height: 56px;
+    background: #dedede;
+    width: 1120px;
+    margin: 0 auto;
+}
+
+.menuTop li {
+    display: block;
+    float: left;
+    padding: 0 25px;
+    height: 56px;
+}
+
+.menuTop li.on {
+    background: #f6f6f7;
+}
+
+.menuTop li a {
+    font: normal 18px/56px "Microsoft Yahei";
+    color: #5d4a42;
+    display: block;
+    text-decoration: none;
+}
+
+.ticketdetail-head {
+    padding-left: 20px;
+    height: 56px;
+    line-height: 56px;
+    background: #f6f6f8;
+    color: #6b6b6b;
+    font-size: 1.4em;
+}
+
+.ticketdetail-instruction {
+    border: 1px solid #dedede;
+    padding: 20px;
+
+}
+
+.blank {
+    width: 100%;
+    height: 20px;
+    background: #f2f2f2;
+}
+
+.pubdiv {
+    width: 1142px;
+    margin: 0 auto;
+    border: 1px solid #ffffff;
+    padding-bottom: 10px;
+}
+
+.pubheader {
+    height: 60px;
+    line-height: 60px;
+    background: #f6f6f8;
+    color: #6b6b6b;
+    font-size: 1.4em;
+    margin-top: 20px;
+    border: 1px solid #dedede;
+    padding-left: 30px;
+}
+
+.successheader {
+    height: 60px;
+    line-height: 60px;
+    font-size: 1.4em;
+    padding-left: 30px;
+    margin-top: 20px;
+    color: #6b6b6b;
+}
+
+#instruction, #tips,#ticketdetail {
+    border-bottom: 1px solid #dedede;
+    padding: 20px;
+}
+
+.add {
+    -moz-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
+}
+
+.mrjg {
+    padding-left: 5px;
+    font-size: 16px;
+}
+
+.roomdetail-middle {
+    float: left;
+}
+
+.roomdetail {
+    width: 330px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+}
+
+.roomlist {
+    max-width: 1142px;
+    margin: 0 auto;
+}
+
+.roomlist-search {
+    margin: 0 auto;
+    max-width: 1142px;
+    height: 60px;
+    line-height: 60px;
+    background: #dedede;
+}
+
+.search-content {
+    *float: left;
+    display: inline-block;
+    text-align: center;
+    font-size: 16px;
+    width: 370px;
+}
+
+.search-content input {
+    width: 190px;
+    height: 38px;
+    line-height: 38px;
+    border: none;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    background-color: #ffffff;
+    cursor: pointer;
+}
+
+.roomlist-header {
+    max-width: 1142px;
+    width: 100%;
+    margin: 0 auto;
+    height: 35px;
+    line-height: 35px;
+    background: #f6f6f7;
+    text-align: center;
+}
+
+.roomlist-header ul li {
+    *float: left;
+    display: inline-block;
+    font-size: 14px;
+    width: 18%;
+    height: 35px;
+    line-height: 35px;
+}
+
+.roomlist-detail {
+    width: 100%;
+    text-align: center;
+}
+
+.roomlist-detail ul li dl dd {
+    *float: left;
+    display: inline-block;
+    height: 56px;
+    line-height: 56px;
+    width: 18%;
+}
+
+.roomlist-detail ul li {
+    border-bottom: 1px solid #dedede;
+}
+
+.roomlist-search .dateico {
+    background: url('../images/glyphicons-46-calendar.png') no-repeat 155px center;
+    background-color: #ffffff;
+}
+
+.nightsdiv {
+    font-size: 14px;
+}
+
+.nightsdiv button {
+    margin-left: 25px;
+}
+
+.roomlist-detail-book {
+    float: left;
+    height: 65px;
+    line-height: 65px;
+    vertical-align: middle;
+    margin: 0 10px;
+}
+
+.disabled {
+    background: #ccc;
+}
+
+.meetingform {
+    max-width: 1142px;
+    margin: 0 auto;
+}
+
+.spot li {
+    height: 60px;
+    line-height: 60px;
+    border-bottom: 1px solid #dedede;
+}
+
+.spot_name {
+    float: left;
+    font-size: 22px;
+    padding-left: 20px;
+    color: #e84653;;
+}
+
+.bookBtn {
+    float: right;
+}
+
+.spot_detail {
+    margin: 30px auto;
+}
+
+.spot_detail table {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.spot_detail table tr {
+    width: 25%;
+    height: 35px;
+    line-height: 35px;
+}
+
+.spot_detail span {
+    color: #6b6b6b;
+}
+
+#successdata {
+    max-width: 1142px;
+    margin: 0 auto;
+    text-align: center;
+    padding-bottom: 30px;
+}
+
+#successdata li {
+    border-bottom: 1px solid #dedede;
+    height: 56px;
+    line-height: 56px;
+}
+
+.pubsuccess {
+    background: #f6f6f8;
+    border: 1px solid #dedede;
+}
+.pubsuccess dl,.successdiv dl{
+    width: 100%;
+}
+.pubsuccess dl dd {
+    display: inline-block;
+    color: #6b6b6b;
+    font-size: 1.2em;
+}
+
+.successdiv dl dd {
+    float: left;
+    width: 280px;
+    display: inline-block;
+}
+
+#comment {
+    padding-bottom: 20px;
+}
+
+#comment li {
+    padding: 10px 0;
+    border-bottom: 1px solid #dedede;
+}
+
+.commenttext {
+    padding:0 10px;
+}
+.commentdate{
+    color: #ccc;
+    padding:1px 10px;
+    font-style: italic;
+}
+.replay ,.emptycomment{
+    padding: 10px;
+    color: #AF874D;
+}
+.meetheader {
+    margin-top: -10px;
+    height: 50px;
+    line-height: 50px;
+    padding-left: 20px;
+    background: #dedede;
+}
+
+.meetheader a {
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    padding: 8px 20px;
+    margin: 0 10px;
+    text-decoration: none;
+    list-style-type: none;
+}
+.meetheader a span{
+    color: #333;
+}
+.meetheader a:hover span{
+    color: #fff;
+}
+.meetheader a:hover, .meetheadercss{
+    background: #e84653;
+    color: #ffffff;
+}
+.topblank{
+    max-width: 1200px;
+    background: #ffffff;
+    margin: 0 auto;
+    padding: 150px  0;
+}
+.topblank p{
+    padding: 5px 0;
+    text-align: center;
+}
+
+.topblank a{
+    margin: 0 10px;
+}
+.caseclass{
+    text-align: center;
+    padding: 20px 0;
+}
+
+.dateinput input,#usedate{
+    cursor: pointer;
+}>>>>>>> .r23329

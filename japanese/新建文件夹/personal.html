@@ -1,0 +1,140 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<s:i18n name="i18n.personal">
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+	session.setAttribute("appPath", path);
+%>
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>
+	<s:text name="title" />
+</title>
+<base href="<%=basePath%>">
+<link rel="stylesheet" href="${appPath}/static/www/css/base.css" />
+<link rel="stylesheet" href="${appPath}/static/www/css/order_list.css" />
+<link rel="stylesheet" href="${appPath}/static/www/css/help.css" />
+    <script type="text/javascript">
+        //判断是否登录
+        /* function loginValidate() {
+            $.ajax({
+                type: "post",
+                url: "${appPath}/ajax/ajax.ashx?action=loginvalidate",
+                cache: false,
+                async: false,
+                data: {},
+                dataType: 'json',
+                success: function (result) {
+                    if (result.status == "n") {
+                        $('#divLogin').show();
+                        return false;
+                    }
+                },
+                error: function () {
+                    alert("网络连接错误，请检查");
+                    return false;
+                }
+            });
+            return true;
+        } */
+    </script>
+</head>
+<body style="background-color: #eee;" ><!-- onload="loginValidate();" -->
+   
+        <!-- 头部 -->
+        
+		<%@ include file="bai-head.jsp" %>
+
+        <!---->
+        <!--内容-->
+        <div class="wrap">
+            <div class="content" id="content">
+                <div class="home_body_l clearfix">
+                    <ul class="pact-nav">
+                        <li class="active">
+                            <a href="${appPath}/personal/personalView.do"><s:text name="user_info" /></a>
+                        </li>
+                        <li>
+                            <a href="${appPath}/personal/modifypwdView.do"><s:text name="update_password" /></a>
+                        </li>
+                        <li>
+                            <a href="${appPath }/webOrderList/queryWebOrderList.do"><s:text name="hotel_order" /></a>
+                        </li>
+                        <li>
+                            <a href="${appPath }/webOrderList/queryTicketOrderNum.do"><s:text name="ticket_order" /></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="home_body_r clearfix">
+                    <div class="pact_box pact_4">
+                        <h3><s:text name="personal_data" /></h3>
+                        <div class="pact_content aboutLY">
+	                        <form action="${appPath}/personal/updatePersonalView.do" method="post">
+	                            <p>
+	                                <label><s:text name="user_name" />：</label>${model.data.phone }
+	                            </p>
+	                            <p>
+	                                <label><s:text name="nick_name" />：</label>
+	                                <input value="${model.data.nickname}" name="nickname" type="text" id="txtNickName" class="inTxt" />
+	                            </p>
+	                            <p>
+	                                <label><s:text name="name" />：</label>
+	                                <input name="name" value="${model.data.name }" type="text" id="txtRealName" class="inTxt" />
+	                            </p>
+	                            <p>
+	                                <label><s:text name="phone" />：</label>${model.data.phone }
+	                            </p>
+	                            <p>
+	                                <label><s:text name="ID_card" />：</label>
+	                                <input value="${model.data.papersNum}" name="papersNum" type="text" id="txtIDCard" class="inTxt" />
+	                            </p>
+	                            <p>
+	                                <label><s:text name="email" />：</label>
+	                                <input name="postbox" value="${model.data.postbox }" type="text" id="txtEmail" class="inTxt" />
+	                            </p>
+	                            <p>
+	                                <label></label>
+	                                <input type="submit" value="<s:text name="save" />" id="btnSubmit" class="redBtn w_60" />
+	                            </p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end-->
+        
+ <%@ include file="footer.jsp" %>
+<%-- <script type="text/javascript">
+$("#btnSubmit").click(function() {
+	 $.ajax({
+	    type: 'post',
+	    url: '<%=basePath%>advertising/update.do',
+	    data: formData,
+	  	processData : false,
+	  	contentType : false,
+	    success: function(data) {
+	    	siMenu('z181','lm176','广告列表','advertising/advertisingList.do')
+	    	top.mainFrame.tab.close('zzzz');
+	    }
+	});
+});
+</script> --%>
+<!---->
+<script type="text/javascript">
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "${appPath}/static/www/js/stat.js";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+</body>
+</html>
+</s:i18n>

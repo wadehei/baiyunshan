@@ -1,0 +1,256 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+	request.setAttribute("appPath", path);
+%>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1"><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>
+	详情 - 门票订单
+</title><link rel="stylesheet" href="${appPath}/static/www/css/base.css" />
+<link rel="stylesheet" href="${appPath}/static/www/css/order_list.css" />
+<link rel="stylesheet" href="${appPath}/static/www/css/help.css" />
+<link href="${appPath}/static/www/css/pagination.css" rel="stylesheet" />
+    <script type="text/javascript">
+        //判断是否登录
+        function loginValidate() {
+        	var checkResult = true;
+	       	 $.ajax({
+	                type: "post",
+	                url: "${appPath}/hotelDetails/checklogin.do",
+	                cache: false,
+	                async: false,
+	                data: {},
+	                dataType: 'json',
+	                success: function (result) {
+	                    if (result.code == -1) {
+	                    	showLogin();
+	                        /* $('#divLogin').show(); */
+	                        checkResult = false;
+	                        return false;
+	                    }
+	                },
+	                error: function () {
+	                    alert("网络连接错误，请检查");
+	                    checkResult = false;
+	                    return false;
+	                }
+	            });
+	       	 return checkResult;
+        }
+    </script>
+</head>
+<%@include file="bai-head.jsp" %>
+<body style="background-color: #eee;"  onload="loginValidate();">
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['form1'];
+if (!theForm) {
+    theForm = document.form1;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+        <!-- 头部 -->
+<script src="${appPath}/static/www/js/jquery-2.1.4.min.js"></script>
+<script src="${appPath}/static/www/js/common.js"></script>
+<link rel="stylesheet" href="${appPath }/static/www/css/login.css" />
+<style type="text/css">
+    .rewritenav li a {
+        padding: 0 10px;
+    }
+</style>
+
+<script type="text/javascript">
+    //菜单选择
+    var cUrl = location.href; //取得当前文件名
+    cUrl = cUrl.toLowerCase(); //转换成小写
+    var MenuFlag = new Array("", "resort/room", "resort/ticket", "resort/metting", "resort/gourmet", "resort/shop", "resort/help");
+    // 将导航菜单中的页面文件名存入arr数组
+    var flag = 0;
+    for (var Menui = 0; Menui < 7; Menui++) {
+        if (cUrl.indexOf(MenuFlag[Menui]) > 0) //判断当前页面是否存在数组中
+        {
+            document.getElementById("TopMenu" + Menui).className = "location";
+            flag++;
+        }
+    }
+    if (flag == 0) {
+        document.getElementById("TopMenu0").className = "location";
+    }
+</script>
+
+        <!---->
+        <!--内容-->
+        <div class="wrap">
+            <div class="content" id="content">
+                <div class="record_list" style="margin-top: 20px;">
+
+                    <div class="re_list_hd">
+                        <ul>
+                        	<c:if test="${pd.flag==2&&pds.surplus>0 }"><li>本次退票张数</li></c:if>
+                            <li>门票信息</li>
+                            <li>有效期</li>
+                            <li>实际数量</li>
+                            <c:if test="${pd.flag==1 }"><li>总金额</li></c:if>
+                        </ul>
+                    </div>
+                    
+                     <div class="re_list_cont">
+                         <ul>
+                         	<c:if test="${pd.flag==2&&pds.surplus>0 }">
+	                          	<li>
+	                                 <span style="color: red;"></span>
+	                                 <div style="">
+	                                     <input id='refundNum' type="text" value="1"
+	                                         class="inputNum" maxlength="3" onchange="singleChangeNum(this)" />
+	                                     张
+	                                 <input type="text" value="${pds.surplus }" id="surplus" class="inputNum" ac="410" style="display: none;" /><br />
+	                                     <font color="red">最多可退款张数${pds.surplus }</font>
+	                                 </div>
+	                             </li>
+                             </c:if>
+                             <li>${pds.ticketName }</li>
+                             <li>${pds.startTimer } 至 ${pds.endTime }</li>
+                             <li>${pds.ticketCount }（订购）- ${pds.expense }（消费） - ${pds.refund }（退款） = <b><span style="color: #f60">${pds.surplus }</span></b></li>
+                             <c:if test="${pd.flag==1 }">
+                             	<li>￥${pds.payAmt }</li>
+                             </c:if>
+                         </ul>
+                     </div>
+                     
+                     <c:if test="${pd.flag==2 && pds.refundTicketType!=1 &&pds.surplus>0 }">
+                     <div class="re_list_cont">
+                          <ul>
+                              <li>应退款金额：
+                                  <b><span style="color: #f60" id='spanRealPrice410'>￥${pds.canRefundAmt }</span></b> 元
+                                  <input type="hidden" id='canRefundAmt' value="${pds.canRefundAmt }" />
+                              </li>
+                              <li>单张手续费：${pds.refundFee } 元</li>
+                              <li>&nbsp;</li>
+                              <li>&nbsp;</li>
+                          </ul>
+                    </div>
+                        
+                    <div class="re_list_cont">
+                        <ul>
+                            <li>
+                                <input type="submit" name="btnSubmit" value="确 认 退 单" onclick="cancelOrderItem('${pds.orderID }')" class="redBtn" />
+							</li>
+                        </ul>
+                    </div>
+                    </c:if>
+                        
+                </div>
+                <div class="re_list_dt">
+                    <ul>
+                        <li><span>下单时间：</span>${fn:substring(pds.createDate,0,19) }</li>
+                        <li><span>订单号：</span>${pds.orderID }</li>
+                        <li><span>订单信息：</span>${pds.ticketName }*${pds.ticketCount }</li>
+                        <li><span>订单状态：</span>
+                        <c:choose>
+                        	<c:when test="${pds.orderStatus==4 }">
+                        		<span style="color:#f60;">待付款</span>  
+                        	</c:when>
+                        	<c:when test="${pds.orderStatus==5 }">
+                        		<span style="color:#f60;">已取消</span>  
+                        	</c:when>
+                        	<c:when test="${pds.orderStatus==3 }">
+                        		<c:if test="${pds.ticketCount==pds.yetRefundCount }">已退款</c:if>
+                            	<c:if test="${pds.yetRefundCount>0 && pds.ticketCount>pds.yetRefundCount}">部分退款</c:if>
+                        	</c:when>
+                        	<c:otherwise>
+                        		<span style="color:#f60;">预订成功</span>
+                        		<a href="javascript:;" style="color:#2A72C5;">
+	                        		<c:if test="${pds.yjp==0 }">未验证</c:if>
+                                    <c:if test="${pds.yjp>0 }">已校验</c:if>
+                                 </a>  
+                        		<a href="javascript:;" style="color:#999;">
+                        			<c:choose>
+                        				<c:when test="${pds.ticketCount==pds.yetRefundCount }">已退款</c:when>
+                        				<c:when test="${pds.yetRefundCount>0 }">部分退票</c:when>
+                        				<c:otherwise>正常无退票</c:otherwise>
+                        			</c:choose>
+                        		</a>
+                        	</c:otherwise>
+                        </c:choose>
+                        
+                        </li>
+                        <li><span>总金额：</span>￥${pds.payAmt }</li>
+                        <li><span>预订人：</span>${pds.buyName }</li>
+                        <li><span>手机号码：</span>${pds.buyMobile }</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--end-->
+ <%@ include file="footer.jsp" %>
+<!---->
+<script src="${appPath}/static/js/myjs/BCMath.js"></script>
+<script type="text/javascript">
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "http://v1.cnzz.com/stat.php?id=1262940786&web_id=1262940786";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+    
+    function singleChangeNum(obj) {
+    	if($("#surplus").val()<$(obj).val()){
+    		$(obj).val($("#surplus").val());
+    		alert("最大可退票数为"+$("#surplus").val());
+    		$("#spanRealPrice410").text("￥"+accMul($("#surplus").val(),$("#canRefundAmt").val()));
+    	}else{
+    		$("#spanRealPrice410").text("￥"+accMul($(obj).val(),$("#canRefundAmt").val()));
+    	}
+    }
+    
+    function cancelOrderItem(orderID){
+    	var valData={
+    			orderID:orderID,
+    			refundNum:$("#refundNum").val()
+    		};
+    	if($("#refundNum").val()=="" || $("#refundNum").val()==0){
+    		alert("请输入退票数量");
+    	}else{
+    		$.ajax({
+       		 type: "POST",
+           		url: '${appPath}/webOrderList/applyRefundTicket.do',
+               	data: valData,
+           		dataType:'json',
+           		cache: false,
+           		async: false,
+           		success: function(data){
+                        if(data.count>0){
+                       	 	alert("订单申请退票成功!");
+                        } else if(data.count==-1){
+                        	alert("订单退票数量超过可退数量!");
+                        } else if(data.count==-2){
+	   					
+	   					} else{
+                       	 	alert("订单退票申请失败，请重新操作!");
+                        }
+           			location.reload();
+           		}
+       		});
+    	}
+    	 
+    }
+</script>
+</body>
+</html>
+

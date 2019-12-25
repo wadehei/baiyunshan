@@ -1,0 +1,147 @@
+<<<<<<< .mine
+/* css é‡ç½® */
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+
+
+img {
+    border: 0;
+}
+
+
+/* æœ¬ä¾‹å­css */
+.foucebox {
+    position: relative;
+    width: 600px;
+    height: 300px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.foucebox .bd {
+    position: relative;
+    float: left;
+    width: 482px;
+    height: 300px;
+    overflow: hidden;
+}
+
+.foucebox .bd img {
+    width: 482px;
+    height: 300px;
+}
+
+.foucebox .hd {
+    position: relative;
+    width: 110px;
+    float: right;
+    padding-right: 4px;
+    z-index: 1;
+}
+
+.foucebox .hd ul {
+    position: relative;
+    width: 110px;
+    overflow: hidden;
+}
+
+.foucebox .hd li {
+    height: 50px;
+    padding: 5px;
+    overflow: hidden;
+    *padding-top:2px;
+}
+
+.foucebox .hd img {
+    width: 110px;
+    height: 50px;
+    display: block;
+}
+.foucebox .hoverBg {
+    position: absolute;
+    top: 0;
+    left: -10px;
+    width: 124px;
+    height: 64px;
+    z-index: 100;
+    background: url(verticalslidehover.png)/*tpa=http://www.wtown.com.cn/Public/Reservation/images/verticalslidehover.png*/ no-repeat;
+    _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=images/verticalslidehover.png);
+    _background: none;
+}=======
+/* css ÖØÖÃ */
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+
+
+img {
+    border: 0;
+}
+
+
+/* ±¾Àý×Ócss */
+.foucebox {
+    position: relative;
+    width: 600px;
+    height: 300px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.foucebox .bd {
+    position: relative;
+    float: left;
+    width: 482px;
+    height: 300px;
+    overflow: hidden;
+}
+
+.foucebox .bd img {
+    width: 482px;
+    height: 300px;
+}
+
+.foucebox .hd {
+    position: relative;
+    width: 110px;
+    float: right;
+    padding-right: 4px;
+    z-index: 1;
+}
+
+.foucebox .hd ul {
+    position: relative;
+    width: 110px;
+    overflow: hidden;
+}
+
+.foucebox .hd li {
+    height: 50px;
+    padding: 5px;
+    overflow: hidden;
+    *padding-top:2px;
+}
+
+.foucebox .hd img {
+    width: 110px;
+    height: 50px;
+    display: block;
+}
+.foucebox .hoverBg {
+    position: absolute;
+    top: 0;
+    left: -10px;
+    width: 124px;
+    height: 64px;
+    z-index: 100;
+    background: url(verticalslidehover.png)/*tpa=http://www.wtown.com.cn/Public/Reservation/images/verticalslidehover.png*/ no-repeat;
+    _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=images/verticalslidehover.png);
+    _background: none;
+}>>>>>>> .r23329

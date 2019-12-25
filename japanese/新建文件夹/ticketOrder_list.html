@@ -1,0 +1,230 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<s:i18n name="i18n.ticketOrder_list">
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+	request.setAttribute("appPath", path);
+%>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1"><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>
+	<s:text name="title" />
+</title><link rel="stylesheet" href="${appPath}/static/www/css/base.css" />
+<link rel="stylesheet" href="${appPath}/static/www/css/order_list.css" />
+<link rel="stylesheet" href="${appPath}/static/www/css/help.css" />
+<link href="${appPath}/static/www/css/pagination.css" rel="stylesheet" />
+   <script type="text/javascript">
+        //判断是否登录
+        function loginValidate() {
+        	var checkResult = true;
+	       	 $.ajax({
+	                type: "post",
+	                url: "${appPath}/hotelDetails/checklogin.do",
+	                cache: false,
+	                async: false,
+	                data: {},
+	                dataType: 'json',
+	                success: function (result) {
+	                    if (result.code == -1) {
+	                    	showLogin();
+	                        /* $('#divLogin').show(); */
+	                        checkResult = false;
+	                        return false;
+	                    }
+	                },
+	                error: function () {
+	                    alert('<s:text name="msg1" />');
+	                    checkResult = false;
+	                    return false;
+	                }
+	            });
+	       	 return checkResult;
+        }
+    </script>
+</head>
+<%@include file="bai-head.jsp" %>
+<body style="background-color: #eee;" onload="loginValidate();">
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['form1'];
+if (!theForm) {
+    theForm = document.form1;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+        <!-- 头部 -->
+        
+<script src="${appPath}/static/www/js/jquery-2.1.4.min.js"></script>
+<script src="${appPath}/static/www/js/common.js"></script>
+<style type="text/css">
+    .rewritenav li a {
+        padding: 0 10px;
+    }
+</style>
+
+<script type="text/javascript">
+    //菜单选择
+    var cUrl = location.href; //取得当前文件名
+    cUrl = cUrl.toLowerCase(); //转换成小写
+    var MenuFlag = new Array("", "resort/room", "resort/ticket", "resort/metting", "resort/gourmet", "resort/shop", "resort/help");
+    // 将导航菜单中的页面文件名存入arr数组
+    var flag = 0;
+    for (var Menui = 0; Menui < 7; Menui++) {
+        if (cUrl.indexOf(MenuFlag[Menui]) > 0) //判断当前页面是否存在数组中
+        {
+            document.getElementById("TopMenu" + Menui).className = "location";
+            flag++;
+        }
+    }
+    if (flag == 0) {
+        document.getElementById("TopMenu0").className = "location";
+    }
+</script>
+<link rel="stylesheet" href="${appPath }/static/www/css/login.css" />
+          <!---->
+        <!--内容-->
+        <div class="wrap">
+            <div class="content" id="content">
+                <div class="home_body_l clearfix">
+                    <ul class="pact-nav">
+                        <li >
+                            <a href="${appPath}/personal/personalView.do"><s:text name="user_info" /></a>
+                        </li>
+                        <li>
+                            <a href="${appPath}/personal/modifypwdView.do"><s:text name="update_password" /></a>
+                        </li>
+                        <li >
+                            <a href="${appPath }/webOrderList/queryWebOrderList.do"><s:text name="hotel_order" /></a>
+                        </li>
+                        <li class="active">
+                            <a href="${appPath }/webOrderList/queryTicketOrderNum.do"><s:text name="ticket_order" /></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="home_body_r clearfix">
+                    <div class="pact_box pact_4">
+                        <h3><s:text name="ticket_order" /></h3>
+                        <ul class="record_hd">
+                            <li><s:text name="hotel_order_info" /></li>
+							<li><s:text name="price" /></li>
+							<li><s:text name="status" /></li>
+							<li><s:text name="option" /></li>
+                        </ul>
+                        <c:forEach items="${list }" var="o">
+                        	<div style="margin-top: 20px; border: #d2d2d2 solid 1px;">
+                        		<div class="re_list_hd">
+	                               <span class="list_hd_date"><s:text name="order_time" />：${fn:substring(o.createDate,0,19) }</span> <span><s:text name="orderid" />：${o.orderID }</span>
+	                            </div>
+	                            
+	                            <!-- 内循环开始 -->
+	                            <c:forEach items="${o.orderDetail }" var="i">
+	                            	<ul class="re_list_cont">
+                                        <li>${i.ticketName }*${i.ticketCount }</li>
+                                        <li>￥${i.payAmt }</li>
+                                        <li>
+                                            <div <c:if test="${o.orderStatus==0 ||o.orderStatus==1 ||o.orderStatus==2}">style="display:none;"</c:if>>
+                                            	 <c:if test="${i.ticketCount==i.yetRefundCount }"><s:text name="status1" /></c:if>
+                                            	 <c:if test="${i.yetRefundCount>0 && i.ticketCount>i.yetRefundCount}"><s:text name="status2" /></c:if>
+                                            	 <c:if test="${o.orderStatus==4}"><s:text name="status3" /></c:if>
+                                            	 <c:if test="${o.orderStatus==5}"><s:text name="status4" /></c:if>
+                                            </div>
+                                            <div <c:if test="${o.orderStatus==3 ||o.orderStatus==4 ||o.orderStatus==5}">style="display:none;"</c:if>>
+                                                <p>
+                                                    <span style="color: #f60;"><s:text name="status5" />预</span>&nbsp;&nbsp;
+                                                    <span style="color: #2A72C5;">
+                                                    	<c:if test="${i.yjp==0 }"><s:text name="status6" /></c:if>
+                                                    	<c:if test="${i.yjp>0 }"><s:text name="status7" /></c:if>
+                                                    </span>
+                                                </p>
+                                                <p style="color: #999;">
+                                                	<c:choose>
+				                        				<c:when test="${i.yetRefundCount==i.ticketCount }"><s:text name="status8" /></c:when>
+				                        				<c:when test="${i.yetRefundCount>0 }"><s:text name="status9" /></c:when>
+				                        				<c:otherwise><s:text name="status10" /></c:otherwise>
+				                        			</c:choose>
+                                                </p>
+                                            </div>
+                                            <a href="${appPath }/webOrderList/queryTicketOrderNumItem.do?orderID=${o.orderID }&flag=1" target="_blank"><s:text name="detail" /></a>
+                                        </li>
+                                        <li>
+                                        	<c:if test="${i.payStatus==0 }">
+                                            <p>
+                                                <button type="button" class="mergeBtn"
+                                                    onclick="location.href='${appPath}/website/toPayPage.do?orderID=${o.orderID }'">
+                                                   	 <s:text name="pay" /> </button>
+                                            </p>
+                                            </c:if>
+                                            <c:if test="${(o.orderStatus==0 ||o.orderStatus==1)&&i.payStatus==0 }">
+                                            <p>
+                                               <a onclick="updateTicketOrder('${o.orderID }');" id="rptList_ctl01_lbtnCancel" class="btn"><s:text name="qu_xiao" /></a>
+                                            </p>
+                                            </c:if>
+                                            <c:if test="${i.refundTicketType!=1 && i.canRefundCount>0 &&i.payStatus==1 && o.orderStatus!=5}">
+                                            <button type="button" class="mergeBtn"
+                                                onclick="location.href='${appPath }/webOrderList/queryTicketOrderNumItem.do?orderID=${o.orderID }&flag=2'">
+                                             	   <s:text name="tui" /></button>
+                                            </c:if>
+                                        </li>
+                                    </ul>
+	                            </c:forEach>
+	                            <!-- 内循环结束 -->
+	                            
+                                </div>
+                          	</c:forEach>
+                            
+                    </div>
+                    <div class="pagelist">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end-->
+        
+ <%@ include file="footer.jsp" %>
+<!---->
+<script type="text/javascript">
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "http://v1.cnzz.com/stat.php?id=1262940786&web_id=1262940786";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+    
+    function updateTicketOrder(orderID){
+    	$.ajax({
+			type: "POST",
+			url: '<%=basePath%>webOrderList/updateTicketOrder.do',
+	    	data: {orderID:orderID,tm:new Date().getTime()},
+			dataType:'json',
+			cache: false,
+			success: function(data){
+				if(data.count==0){
+					alert('<s:text name="msg2" />' )
+				} else if(data.count==-1){
+   					
+   				} else {
+					alert('<s:text name="msg3" />' )
+				}
+				location.reload();
+			}
+		});
+    }
+</script>
+</body>
+</html>
+</s:i18n>

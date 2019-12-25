@@ -1,0 +1,247 @@
+.wrap {
+	min-width: 1200px;
+	width: 100%;
+	background-color: #eee;
+	padding: 15px 0;
+	color: #333333;
+	font-size: 14px;
+}
+
+.content {
+	width: 1120px;
+	margin: 0 auto;
+	padding: 10px 40px 140px;
+	background-color: #fff;
+	overflow: hidden;
+}
+.home_body_l {
+    float: left;
+    width: 12%;
+    color: #666666;
+}
+
+.home_body_l a:link{
+    color: #666666;
+}
+
+.home_body_l a:visited{
+    color: #666666;
+}
+
+.home_body_r {
+    width: 86%;
+    float: right;
+    padding-left: 5px;
+    color: #666666;
+}
+
+.pact-nav {
+    width: 140px;
+}
+
+.pact-nav li {
+    margin-bottom: 10px;
+    width: 140px;
+    height: 36px;
+    line-height: 36px;
+    border: 1px solid #fff;
+    border-left: 2px solid #fff;
+    font-size: 13px;
+    font-weight: 400;
+    white-space: nowrap;
+    text-align: center;
+    cursor: pointer;
+}
+
+.pact-nav li a {
+    display: block;
+}
+
+.pact-nav .active, .pact-nav li:hover {
+    border: 1px solid #ccc;
+    border-left: 2px solid #e84653;
+    -moz-box-shadow: 1px 1px 4px #dbdad9;
+    -webkit-box-shadow: 1px 1px 4px #dbdad9;
+    box-shadow: 1px 1px 4px #dbdad9;
+    color: #e84653;
+}
+
+.pact_box h3 {
+    font-size: 16px;
+    color: #e9515d;
+    margin: 0;
+    line-height: 36px;
+}
+
+.pact_box p {
+    margin-bottom: 0;
+}
+
+.pact_box .pact_content {
+    margin: 20px 0;
+}
+
+.pact_box .pact_content_name {
+    color: #e84653;
+}
+
+.pact_content {
+    margin-top: 5px;
+    padding-left: 2em;
+}
+
+.pact_content p {
+    line-height: 24px;
+}
+
+.aboutLY {
+    margin-top: 0px !important;
+}
+
+.aboutLY .firstP {
+    margin-top: 0;
+}
+
+.aboutLY p {
+    margin: 15px 0;
+}
+
+.aboutLY a {
+    text-decoration: underline;
+    color: #e84653;
+}
+
+.aboutLY .vedio_box {
+    width: 664px;
+    height: 506px;
+}
+
+.aboutLY .vedio_box iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.w1{
+    width: 100px;
+    padding: 5px;
+}
+.w2{
+    width: 500px;
+    padding: 5px;
+}
+.w3{
+    width: 500px;
+    padding: 5px;
+}
+#ticket_policy table td{
+    border: 1px solid #666666;
+}
+.inTxt {
+    padding: 0 6px;
+    border-radius: 5px;
+    border: 1px solid #ccc !important;
+    outline: none;
+    line-height: 35px;
+    height: 35px;
+}
+.pact_content p label {
+    width: 80px;
+    display: inline-block;
+}
+/*资讯*/
+.stream-list-item {
+	/*overflow: hidden;*/
+	border-bottom: 1px solid #eee;
+	padding:20px 0px
+}
+
+.stream-list-item:hover {
+	background-color: #fafafa
+}
+.stream-list-item:hover .stream-list-title a{
+	color:#e9515d;
+}
+.stream-list-image {
+	width: 120px;
+	height: 120px;
+	float: left;
+	position: relative
+}
+
+.stream-list-image img {
+	width: 120px!important;
+	height: 120px!important
+}
+.stream-list-content {
+	/* margin-left: 150px; */
+	min-height: 120px;
+}
+.stream-list-title {
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 1.8;
+	
+	margin-bottom: 5px;
+	position: relative
+}
+.stream-list-title a{
+	color: #333;
+}
+.stream-list-snipper{
+	overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    white-space: initial;
+    font-size: 15px;
+    color: #666;
+    line-height: 24px;
+    width: 98%;
+    min-height: 46px;
+}
+.stream-list-footer{
+	margin-top: 10px;
+	color: #999;
+}
+.index-nav {
+	margin-top: 30px;
+	font-size: 18px;
+	background-color: #fff;
+	z-index: 4;
+	border-bottom: 1px solid #eee
+}
+
+.index-nav span {
+	display: inline-block;
+	margin-right: 30px;
+	line-height: 30px;
+	padding: 10px 0;
+	cursor: pointer
+}
+
+.index-nav span.current {
+	border-bottom: 2px solid #e9515d;
+	color:#e9515d
+}
+
+.index-nav span.mySub {
+	margin-right: 0
+}
+
+.index-nav span.mySub .iconfont {
+	margin-right: 5px;
+	color: #3889c2
+}
+select::-ms-expand { display: none; }
+
+/*新*/
+.list-wen{position: relative;}
+.list-wen-r{position: absolute;top:0;padding-left:130px;width:100%;}
+.content{min-height:685px;}
+.top-list{display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 1;overflow: hidden;height:37px;}
+.top-midd{display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 2;overflow: hidden;max-height:46px;}
+#toGoPage{height:34px;width:52px!important;}
+.pagination > li > a{height:34px;}
+.pagination > li > select{height:34px;margin-top:0px!important;}
+img.hotel_jt{display:none;}

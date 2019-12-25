@@ -1,0 +1,349 @@
+<<<<<<< .mine
+.wrap {
+	min-width: 1200px;
+	width: 100%;
+	/*background-color: #eee;*/
+	padding: 15px 0;
+	color: #333333;
+	font-size: 14px;
+}
+
+.content {
+	width: 1200px;
+	margin: 0 auto;
+	padding: 10px 40px 40px;
+	background-color: #fff;
+}
+
+.title {
+	font-weight: bold;
+	font-size: 18px;
+	color: red;
+	height: 50px;
+	line-height: 50px;
+	border-bottom: dotted 1px #eeeeee;
+	margin-top: 10px;
+}
+
+.box {
+	padding: 15px 5px;
+	border-bottom: dotted 1px #eeeeee;
+}
+
+.box ul li {
+	clear: both;
+	height: 40px;
+	line-height: 40px;
+	padding-bottom: 5px;
+}
+
+.box li span {
+	display: inline-block;
+	width: 85px;
+	clear: both;
+	float: left;
+}
+
+input[type=text]{
+	background-color: #f6f6f7;
+	border: solid 1px #dedede;
+	height: 33px;
+	width: 214px;
+}
+
+.ll input,
+.ll textarea {
+	width: 500px;
+}
+
+.ll input {
+	height: 40px;
+	line-height: 40px;
+}
+
+.spinner {
+	display: inline-block;
+	float: left;
+}
+
+.spinner a {
+	float: left;
+	display: inline-block;
+	background-color: #f6f6f7;
+	border: solid 1px #dedede;
+	height: 30px;
+	line-height: 30px;
+	width: 30px;
+	text-align: center;
+	color: #333333;
+}
+
+.spinner a:link {
+	color: #333333;
+}
+
+.spinner a:visited {
+	color: #333333;
+}
+
+.spinner input {
+	float: left;
+	height: 30px;
+	line-height: 30px;
+	width: 50px;
+	background-color: #ffffff;
+	text-align: center;
+	border-left: none;
+	border-right: none;
+	text-indent: 0 !important;
+}
+.red {
+    color: #e34546;
+}
+#price {
+    font-size: 18px;
+    color: red;
+    font-weight: bold;
+}
+.right {
+    float: right;
+}
+.warmtips {
+    clear: both;
+}
+
+.warmtips span {
+    display: block;
+    height: 40px;
+    font-size: 16px;
+    color: red;
+}
+/*2*/
+.box-title {
+    padding: 5px 0;
+    border-bottom: 1px dashed #dddbdc;
+}
+.box-title h3 {
+    font-size: 18px;
+    font-weight: bold;
+    color: #e34546;
+}
+.box-content {
+    padding: 10px 0;
+}
+.box-item {
+    height: 70px;
+    border: 1px solid #dddbdc;
+    margin: 15px 0;
+}
+.box-item li {
+    text-align: center;
+    display: block;
+    float: left;
+    font-size: 14px;
+    height: 70px;
+    line-height: 70px;
+    padding: 0 25px;
+}
+.box-item li span {
+    margin-right: 10px;
+    color: #e34546;
+}
+.box-content label {
+    display: inline-block;
+    height: 50px;
+    line-height: 50px;
+    vertical-align: middle;
+}
+
+.box-content label img {
+    float: right;
+}
+.pay,.pay img{
+	vertical-align: middle;
+}
+
+
+.topmenu{
+	background:#fff !important;
+}
+.bottom-footer{
+	position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+=======
+.wrap {
+	min-width: 1200px;
+	width: 100%;
+	/*background-color: #eee;*/
+	padding: 15px 0;
+	color: #333333;
+	font-size: 14px;
+}
+
+.content {
+	width: 1200px;
+	margin: 0 auto;
+	padding: 10px 40px 40px;
+	background-color: #fff;
+}
+
+.title {
+	font-weight: bold;
+	font-size: 18px;
+	color: red;
+	height: 50px;
+	line-height: 50px;
+	border-bottom: dotted 1px #eeeeee;
+	margin-top: 10px;
+}
+
+.box {
+	padding: 15px 5px;
+	border-bottom: dotted 1px #eeeeee;
+}
+
+.box ul li {
+	clear: both;
+	height: 40px;
+	line-height: 40px;
+	padding-bottom: 5px;
+}
+
+.box li span {
+	display: inline-block;
+	width: 85px;
+	clear: both;
+	float: left;
+}
+
+input[type=text]{
+	background-color: #f6f6f7;
+	border: solid 1px #dedede;
+	height: 33px;
+	width: 214px;
+}
+
+.ll input,
+.ll textarea {
+	width: 500px;
+}
+
+.ll input {
+	height: 40px;
+	line-height: 40px;
+}
+
+.spinner {
+	display: inline-block;
+	float: left;
+}
+
+.spinner a {
+	float: left;
+	display: inline-block;
+	background-color: #f6f6f7;
+	border: solid 1px #dedede;
+	height: 30px;
+	line-height: 30px;
+	width: 30px;
+	text-align: center;
+	color: #333333;
+}
+
+.spinner a:link {
+	color: #333333;
+}
+
+.spinner a:visited {
+	color: #333333;
+}
+
+.spinner input {
+	float: left;
+	height: 30px;
+	line-height: 30px;
+	width: 50px;
+	background-color: #ffffff;
+	text-align: center;
+	border-left: none;
+	border-right: none;
+	text-indent: 0 !important;
+}
+.red {
+    color: #e34546;
+}
+#price {
+    font-size: 18px;
+    color: red;
+    font-weight: bold;
+}
+.right {
+    float: right;
+}
+.warmtips {
+    clear: both;
+}
+
+.warmtips span {
+    display: block;
+    height: 40px;
+    font-size: 16px;
+    color: red;
+}
+/*2*/
+.box-title {
+    padding: 5px 0;
+    border-bottom: 1px dashed #dddbdc;
+}
+.box-title h3 {
+    font-size: 18px;
+    font-weight: bold;
+    color: #e34546;
+}
+.box-content {
+    padding: 10px 0;
+}
+.box-item {
+    height: 70px;
+    border: 1px solid #dddbdc;
+    margin: 15px 0;
+}
+.box-item li {
+    text-align: center;
+    display: block;
+    float: left;
+    font-size: 14px;
+    height: 70px;
+    line-height: 70px;
+    padding: 0 25px;
+}
+.box-item li span {
+    margin-right: 10px;
+    color: #e34546;
+}
+.box-content label {
+    display: inline-block;
+    height: 50px;
+    line-height: 50px;
+    vertical-align: middle;
+}
+
+.box-content label img {
+    float: right;
+}
+.pay,.pay img{
+	vertical-align: middle;
+}
+
+
+.topmenu{
+	background:#fff !important;
+}
+.bottom-footer{
+	position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+>>>>>>> .r23329

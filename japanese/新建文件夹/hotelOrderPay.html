@@ -1,0 +1,150 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+%>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1"><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>
+	酒店预定 - 订单支付
+</title>
+    <!-- 头部 -->
+    <%@include file="bai-head.jsp" %>
+<link href="${appPath}/static/www/css/base.css" rel="stylesheet" />
+<link href="${appPath}/static/www/css/order.css" rel="stylesheet" />
+<link href="${appPath }/static/www/css/login.css" rel="stylesheet" />
+    <script type="text/javascript">
+        function submitPay(obj) {
+            obj.value = '处理中...';
+            obj.disabled = true;
+            var pid = $("input[type='radio'][name='payname']:checked").attr("pid");
+            $("input[type='radio'][name='payname']").attr("disabled", "disabled");
+            $('#payFrame').attr("src", "${appPath}/hotelDetails/qrPay.do?orderID=${model.param.orderID }&pid="+pid);
+            $('#divPay').show();
+        }
+        //判断是否登录
+        function loginValidate() {
+            $.ajax({
+                type: "post",
+                url: "${appPath}/hotelDetails/checklogin.do",
+                cache: false,
+                async: false,
+                data: {},
+                dataType: 'json',
+                success: function (result) {
+                    if (result.status == "n") {
+                    	showLogin();
+                        /* $('#divLogin').show(); */
+                        return false;
+                    }
+                },
+                error: function () {
+                    alert("网络连接错误，请检查");
+                    return false;
+                }
+            });
+            return true;
+        }
+    </script>
+</head>
+<body style="background-color: #eee;" onload="loginValidate();">
+<%--    <form name="form1" method="post" action="./bookpay.aspx?orderno=1803161007300130301135836119" id="form1">--%>
+
+        <input type="hidden" name="hidSCID" id="hidSCID" value="10073" />
+        <input type="hidden" name="hidShopID" id="hidShopID" value="20" />
+        <input type="hidden" name="hidHotelID" id="hidHotelID" value="11" />
+        <input type="hidden" name="hidOrderID" id="hidOrderID" value="227" />
+        
+<%-- <script src="${appPath }/static/www/js/jquery-1.8.3.min.js"></script> --%>
+<script src="${appPath }/static/www/js/common.js"></script>
+<style type="text/css">
+    .rewritenav li a {
+        padding: 0 10px;
+    }
+</style>
+<script type="text/javascript">
+    //菜单选择
+    var cUrl = location.href; //取得当前文件名
+    cUrl = cUrl.toLowerCase(); //转换成小写
+    var MenuFlag = new Array("", "resort/room", "resort/ticket", "resort/metting", "resort/gourmet", "resort/shop", "resort/help");
+    // 将导航菜单中的页面文件名存入arr数组
+    var flag = 0;
+    for (var Menui = 0; Menui < 7; Menui++) {
+        if (cUrl.indexOf(MenuFlag[Menui]) > 0) //判断当前页面是否存在数组中
+        {
+            document.getElementById("TopMenu" + Menui).className = "location";
+            flag++;
+        }
+    }
+    if (flag == 0) {
+        document.getElementById("TopMenu0").className = "location";
+    }
+</script>
+<link rel="stylesheet" href="${appPath}/static/www/css/login.css" />
+<!--忘记密码 end-->
+
+<!--支付页面 begin-->
+<div id="divPay" style="display: none;">
+    <div class="loginMask"></div>
+    <div class="loginPop">
+        <iframe id="payFrame" style="border: 0; width: 100%; height: 500px;"></iframe>
+    </div>
+</div>
+<!--支付页面 end-->
+        <!--内容-->
+        <div class="wrap body">
+            <div class="content" id="content">
+                <div class="box-title">
+                    <h3>支付信息</h3>
+                </div>
+                <div class="box-content">
+                    <ul class="box-item">
+                        <li><span>订单号</span>${model.param.orderID }</li>
+                        <li><span>预订人</span>${model.param.userName }(${model.param.phone })</li>
+                        <li><span>订单信息</span>${model.param.name }*${model.param.num }[${model.param.hotelName }]</li>
+                        <li><span>金额</span>¥${model.param.orderAmt }元</li>
+                    </ul>
+                </div>
+                <p class="text-right">本单需支付<span class="red">￥${model.param.orderAmt }元</span></p>
+
+                <div class="box-title">
+                    <h3>第三方支付</h3>
+                </div>
+
+                <div class="box-content">
+                    <p>订单提交成功请在30分钟内完成网上支付，超时订单将做无效处理。</p>
+                </div>
+
+                <div style="text-align: center; margin-top: 20px;">
+                     <label class="pay">
+                        <input type="radio" name="payname" pid="4" checked="checked"><img src="${appPath}/static/www/images/alipay.jpg"></label>
+                    <label class="pay">
+                        <input type="radio" name="payname" pid="3"><img src="${appPath}/static/www/images/wxpay.jpg"></label>
+                    <label class="pay" style="display: none;">
+                        <input type="radio" name="payname"><img src="${appPath}/static/www/images/unionpay.jpg"></label>
+                    <div class="text-center" style="margin-top: 30px;">
+                        <input type="button" id="btnSubmit" value="确 定 支 付" onclick="submitPay(this);" class="redBtn">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end-->
+  <%@ include file="footer.jsp" %>
+<!---->
+<script type="text/javascript">
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "http://v1.cnzz.com/stat.php?id=1262940786&web_id=1262940786";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+<%--    </form>--%>
+</body>
+</html>

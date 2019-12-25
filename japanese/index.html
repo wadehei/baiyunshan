@@ -6,14 +6,13 @@
     <title>洛阳白云山景区官方网站</title>
     <!-- <base href="http://www.chinabym.com:80/"> -->
     <meta name="keywords" content="洛阳白云山|河南白云山|洛阳白云山景区|嵩县白云山|白云山国家森林公园|白云山" />
-    <meta name="description"
-        content="洛阳白云山景区唯一官方网站，为广大游客提供最新最详实的出行信息：交通指南、景区景点、食实住宿等，白云山国家森林公园欢迎您的到来。旅游热线：0379—66590158 66590004 66590127" />
+    <meta name="description" content="洛阳白云山景区唯一官方网站，为广大游客提供最新最详实的出行信息：交通指南、景区景点、食实住宿等，白云山国家森林公园欢迎您的到来。旅游热线：0379—66590158 66590004 66590127" />
     <link rel="stylesheet" href="../static/css/portal.css" />
     <style type="text/css">
         .content {
             padding-bottom: 135px;
         }
-
+        
         #banner_tabs a {
             cursor: default;
         }
@@ -21,174 +20,31 @@
 </head>
 
 <body>
-    <!-- 官网头部 -->
-    <!--头部-->
-    <div class="top">
-        <div class="divider"></div>
-        <div class="center">
-            <div class="logo">
-                <img src="../static/images/logo.png" alt="白云山" />
-            </div>
-            <div class="nav">
-                <ul>
-                    <li onclick="location.href='/website/websiteView.do'">
-                        <div class="nav_divider"></div>
-                        <p class="nav_txt">トップページ<span>HOME</span></p>
-                    </li>
-                    <li onclick="window.location.href='/website/resortHotelView.do'">
-                        <div class="nav_divider"></div>
-                        <p class="nav_txt">観光地案内<span>INTRODUCTIN</span></p>
-                    </li>
-                    <li onclick="window.location.href='/website/zhutihuodonglView.do?type=1&daima=activity'">
-                        <div class="nav_divider"></div>
-                        <p class="nav_txt">入場予定<span>TICKET</span></p>
-                    </li>
-                    <li onclick="window.location.href='/website/zhutihuodonglView.do?type=1&daima=estate'">
-
-                        <div class="nav_divider"></div>
-                        <p class="nav_txt">ホテルパンフレット<span>HOTEL</span></p>
-                    </li>
-                    <li onclick="window.location.href='/website/zhutihuodonglView.do?type=1&daima=club'">
-
-                        <div class="nav_divider"></div>
-                        <p class="nav_txt">電話<span>PHONE</span></p>
-                    </li>
-                    <li onclick="window.location.href='/website/aboutUsView.do?type=2&daima=about'">
-                        <div class="nav_divider"></div>
-                        <p class="nav_txt">私たちについて<span>ABOUT US</span></p>
-                    </li>
-                </ul>
-            </div>
-            <div style="padding-top: 40px;text-align: left;">
-                <a href="/website/websiteView.do?request_locale=en_US">choose english</a>
-            </div>
-            <!--头部 end-->
-            <!-- 登录注册 -->
-            <script src="../static/js/jquery-2.1.4.min.js"></script>
-            <script type="text/javascript">
-                $(function () {
-                    if (0) {
-                        document.getElementById("ctlhd_divLoginBefor").style.display = "none";
-                        document.getElementById("ctlhd_divLoginAfter").style.display = "";
-                    }
-                })
-            </script>
-            <!--未登录显示这个div -->
-            <div id="ctlhd_divLoginBefor" class="top_right login_befor">
-                <img src="../static/images/tell.png">
-                <img src="../static/images/login.png" style="margin-left: 10px;">
-                <a href="javascript:;" id="loginP" onclick="showLogin();">登录</a><!-- $('#divLogin').show(); -->
-                <a href="javascript:;" id="signP" onclick="showRegister();">注册</a><!-- $('#divRegister').show(); -->
-            </div>
-            <!--新增加的  登录后显示这个div-->
-            <div id="ctlhd_divLoginAfter" class="top_right" style="display:none;">
-                <img src="../static/images/tell.png">
-                <div class="lg_icon">
-                    <img src="../static/images/login.png" style="margin-left: 10px; cursor: pointer;">
-                    <span class="show">
-                        <a href="/personal/personalView.do">个人中心</a><a href="/websiteLogin/logout.do">退出</a>
-                    </span>
-                </div>
-            </div>
-        </div>
-    </div>
-    <link rel="stylesheet" href="../static/css/login.css" />
-    <!--注册 begin-->
-    <div id="divRegister" style="display: none;">
-    </div>
-    <!--注册 end-->
-    <!--登录 begin-->
-    <div id="divLogin" style="display: none;">
-    </div>
-    <!--登录 end-->
-    <!--忘记密码 begin-->
-    <div id="divForget" style="display: none;">
-    </div>
-    <!--忘记密码 end-->
-    <script type="text/javascript">
-        /* 打开登录窗口 */
-        function showLogin() {
-            $('#divLogin').show();
-            $('#divLogin').empty();
-            var text = "<div class='loginMask'></div>" +
-                "<div class='loginPop'>" +
-                "<iframe src='/websiteLogin/loginView.do' style='border: 0; width: 100%; height: 449px;'></iframe>" +
-                "</div>";
-            $('#divLogin').append(text);
-        }
-        /* 关闭登录窗口 */
-        function hideLogin() {
-            $('#divLogin').hide();
-            $('#divLogin').empty();
-        }
-        /* 打开注册窗口 */
-        function showRegister() {
-            $('#divRegister').show();
-            $('#divRegister').empty();
-            var text = "<div class='loginMask'></div>" +
-                "<div class='loginPop'>" +
-                "<iframe src='/websiteLogin/registerView.do' style='border: 0; width: 100%; height: 656px;'></iframe>" +
-                "</div>";
-            $('#divRegister').append(text);
-        }
-        /* 关闭注册窗口 */
-        function hideRegister() {
-            $('#divRegister').hide();
-            $('#divRegister').empty();
-        }
-        /* 打开忘记密码窗口 */
-        function showForget() {
-            $('#divForget').show();
-            $('#divForget').empty();
-            var text = "<div class='loginMask'></div>" +
-                "<div class='loginPop'>" +
-                "<iframe src='/websiteLogin/forgetPasswordView.do' style='border: 0; width: 100%; height: 609px;'></iframe>" +
-                "</div>";
-            $('#divForget').append(text);
-
-        }
-        /* 关闭忘记密码窗口 */
-        function hideForget() {
-            $('#divForget').hide();
-            $('#divForget').empty();
-        }
-    </script>
-    <!-- 登录注册end -->
     <div id="banner_tabs" class="flexslider banner">
         <ul class="slides">
             <li>
                 <a href="javascript:void(0);">
-                    <img alt="" width="" height=""
-                        style="background: url(http://www.chinabym.com/imgs/bysticket/images/uploadFiles/uploadImgs/2018/09/19/1537318986296.png) no-repeat center;"
-                        src="../static/images/alpha.png" />
+                    <img alt="" width="" height="" style="background: url(http://www.chinabym.com/imgs/bysticket/images/uploadFiles/uploadImgs/2018/09/19/1537318986296.png) no-repeat center;" src="../static/images/alpha.png" />
                 </a>
             </li>
             <li>
                 <a href="javascript:void(0);">
-                    <img alt="" width="1920" height="745"
-                        style="background: url(http://www.chinabym.com/imgs/bysticket/images/uploadFiles/uploadImgs/2018/03/16/1521189218408.png) no-repeat center;"
-                        src="../static/images/alpha.png" />
+                    <img alt="" width="1920" height="745" style="background: url(http://www.chinabym.com/imgs/bysticket/images/uploadFiles/uploadImgs/2018/03/16/1521189218408.png) no-repeat center;" src="../static/images/alpha.png" />
                 </a>
             </li>
             <li>
                 <a href="javascript:void(0);">
-                    <img alt="" width="1920" height="745"
-                        style="background: url(http://www.chinabym.com/imgs/bysticket/images/uploadFiles/uploadImgs/2018/09/19/1537319070787.png) no-repeat center;"
-                        src="../static/images/alpha.png" />
+                    <img alt="" width="1920" height="745" style="background: url(http://www.chinabym.com/imgs/bysticket/images/uploadFiles/uploadImgs/2018/09/19/1537319070787.png) no-repeat center;" src="../static/images/alpha.png" />
                 </a>
             </li>
             <li>
                 <a href="javascript:void(0);">
-                    <img alt="" width="1920" height="745"
-                        style="background: url(http://www.chinabym.com/imgs/bysticket/images/uploadFiles/uploadImgs/2018/03/16/1521188838963.png) no-repeat center;"
-                        src="../static/images/alpha.png" />
+                    <img alt="" width="1920" height="745" style="background: url(http://www.chinabym.com/imgs/bysticket/images/uploadFiles/uploadImgs/2018/03/16/1521188838963.png) no-repeat center;" src="../static/images/alpha.png" />
                 </a>
             </li>
             <li>
                 <a href="javascript:void(0);">
-                    <img alt="" width="1920" height="745"
-                        style="background: url(http://www.chinabym.com/imgs/bysticket/images/uploadFiles/uploadImgs/2018/09/19/1537319350341.png) no-repeat center;"
-                        src="../static/images/alpha.png" />
+                    <img alt="" width="1920" height="745" style="background: url(http://www.chinabym.com/imgs/bysticket/images/uploadFiles/uploadImgs/2018/09/19/1537319350341.png) no-repeat center;" src="../static/images/alpha.png" />
                 </a>
             </li>
         </ul>
@@ -264,13 +120,12 @@
                 </ul>
             </div>
             <!--end-->
-           
+
             <!--end！-->
             <!---->
             <div class="cont_mag">
                 <ul>
-                    <li class="item1"
-                        onclick="window.location.href='/website/zhutihuodonglView.do?type=1&daima=scenic'">
+                    <li class="item1" onclick="window.location.href='/website/zhutihuodonglView.do?type=1&daima=scenic'">
                         <div class="cont_item">
                             <div class="cont_icon contact_icon"></div>
                             <div class="cont_txt">
@@ -279,8 +134,7 @@
                             <img src="../static/images/cont_foot.png" class="bg_img" />
                         </div>
                     </li>
-                    <li class="item2 active"
-                        onclick="window.location.href='/website/zhutihuodonglView.do?type=1&daima=culture'">
+                    <li class="item2 active" onclick="window.location.href='/website/zhutihuodonglView.do?type=1&daima=culture'">
                         <div class="cont_item">
                             <div class="cont_icon contact_icon"></div>
                             <div class="cont_txt">
@@ -299,8 +153,7 @@
                             <img src="../static/images/cont_foot.png" class="bg_img" />
                         </div>
                     </li>
-                    <li class="item4"
-                        onclick="window.location.href='/website/zhutihuodonglView.do?type=1&daima=raiders'">
+                    <li class="item4" onclick="window.location.href='/website/zhutihuodonglView.do?type=1&daima=raiders'">
                         <div class="cont_item">
                             <div class="cont_icon contact_icon"></div>
                             <div class="cont_txt">
@@ -344,23 +197,7 @@
             <!---->
         </div>
     </div>
-    <!--底部-->
-    <div class="footer">
-        <div class="footer-detail">
-            <span><i class="footer-icon1"></i>世界地质公园</span>
-            <span><i class="footer-icon2"></i>国家5A级旅游景区</span>
-            <span><i class="footer-icon3"></i>中国十佳旅游胜地</span>
-            <span><i class="footer-icon4"></i>国家森林公园</span>
-            <span><i class="footer-icon5"></i>国家级自然保护区</span>
-        </div>
-        <div class="footer-weixin">
-            洛阳白云山旅游有限责任公司©版权所有<a style="color: #888888;" href="http://www.beian.miit.gov.cn/"
-                target="_blank">豫ICP17018704号—2</a>
-            <img src="../static/images/beianicon.png" />&nbsp;<a style="color: #888888;"
-                href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=41032502000114" target="_blank">豫公网安备
-                41032502000114号</a>
-        </div>
-    </div>
+
 
     <!---->
     <!--弹出二维码-->
@@ -383,13 +220,11 @@
     <div class="code_box">
         <div class="code">
             <img src="../static/images/weixin.jpg" alt="微信二维码" />
-            <br />
-            关注白云山微信公众号
+            <br /> 关注白云山微信公众号
         </div>
         <div class="code">
             <img src="../static/images/weibo.png" alt="微博二维码" />
-            <br />
-            关注白云山微博
+            <br /> 关注白云山微博
         </div>
         <div class=""></div>
         <div class=""></div>
@@ -401,8 +236,13 @@
     <script src="../static/js/jquery.SuperSlide.js"></script>
     <script src="../static/js/slider.js"></script>
     <script src="../static/js/login.js"></script>
+    <!--语言逻辑-->
+    <script src="../static/www/js/template-web.js"></script>
+    <script src="../static/www/js/lang/japanese.js"></script>
+    <script src="../static/www/js/commonLang.js"></script>
+
     <script>
-        $(function () {
+        $(function() {
             //轮播图
             var bannerSlider = new Slider($('#banner_tabs'), {
                 time: 5000,
@@ -423,28 +263,28 @@
                 vis: 5
             });
             //联系方式显示
-            $(".contact li").each(function (i) {
-                $(this).mouseover(function () {
-                    $(this).addClass("active").siblings().removeClass("active");
-                    $(".code_box>div:eq(" + i + ")").show().siblings().hide()
-                });
-                $(this).mouseout(function () {
-                    $(".code_box>div:eq(" + i + ")").hide()
+            $(".contact li").each(function(i) {
+                    $(this).mouseover(function() {
+                        $(this).addClass("active").siblings().removeClass("active");
+                        $(".code_box>div:eq(" + i + ")").show().siblings().hide()
+                    });
+                    $(this).mouseout(function() {
+                        $(".code_box>div:eq(" + i + ")").hide()
+                    })
                 })
-            })
-            //
-            $(".cont_mag li").hover(function () {
+                //
+            $(".cont_mag li").hover(function() {
                 $(this).addClass("active").siblings().removeClass("active")
             })
         })
     </script>
     <script type="text/javascript">
-            (function () {
-                var hm = document.createElement("script");
-                hm.src = "../static/js/stat.js";
-                var s = document.getElementsByTagName("script")[0];
-                s.parentNode.insertBefore(hm, s);
-            })();
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "../static/js/stat.js";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
     </script>
 </body>
 

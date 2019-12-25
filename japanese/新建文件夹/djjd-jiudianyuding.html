@@ -1,0 +1,314 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>	
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<<s:i18n name="i18n.djjd-jiudianyuding">
+
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<base href="<%=basePath%>">
+<meta charset="UTF-8" />
+<title><s:text name="title" /></title>
+<meta name="keywords" content="洛阳白云山|河南白云山|洛阳白云山景区|嵩县白云山|白云山国家森林公园|白云山" />
+<meta name="description" content="洛阳白云山景区唯一官方网站，为广大游客提供最新最详实的出行信息：交通指南、景区景点、食实住宿等，白云山国家森林公园欢迎您的到来。旅游热线：0379—66590158 66590004 66590127" />
+<link href="${appPath}/static/www/css/base.css" rel="stylesheet" />
+<link href="${appPath}/static/www/css/room.css" rel="stylesheet" />
+<link href="${appPath}/static/www/css/slide.css" rel="stylesheet" />
+<link href="${appPath }/static/www/css/login.css" rel="stylesheet" />
+<link rel="stylesheet" href="${appPath}/static/www/css/pagination.css" />
+    <script type="text/javascript">
+        //酒店主题筛选
+        function themeFilter(theme) {
+        	var price = null;
+        	var hotelstar = null;
+        	var inORout = null;
+        	if($("#price").val() != null && $("#price").val() != '')price = $("#price").val();
+        	else {
+        		price = "";
+			}
+        	if($("#hotelstar").val() != null && $("#hotelstar").val() != '') hotelstar = $("#hotelstar").val();
+        	else {
+        		hotelstar = "";
+			}
+        	if($("#inORout").val() != null && $("#inORout").val() != '')inORout = $("#inORout").val();
+        	else {
+        		inORout = "";
+			}
+        	if(theme != null && theme != '' && theme != 0)jdType = $("#jdType").val();
+        	else {
+        		theme="";
+			}
+            location.href = "${appPath }/website/jiudianyudingView.do?jdType="+ theme 
+            		+ "&highPrice=" + price + "&hotelstar=" + hotelstar  + "&inORout=" + inORout;
+        }
+        //排序筛选
+        function sortFilter(type) {
+            if (type == "1") {//综合
+                var sort = "1";
+                sort = (sort == 1 ? 2 : 1);
+             //   location.href = "?theme=0&price=0&star=0&place=&sdate=2018-03-07&edate=2018-03-08&key=&sort=" + sort;
+            }
+            else if (type == "2") {//价格
+                var sort = "1";
+                sort = (sort == 3 ? 4 : 3);
+                console.log(sort);
+               // location.href = "${appPath }/website/jiudianyudingView.do?hotelName=";
+            }
+        }
+        //搜索
+        function goSearch() {
+            var hotelName = $("#txtHotelName").val();
+            var price = null;
+        	var hotelstar = null;
+        	var inORout = null;
+        	var jdType = null;
+        	
+        	if($("#price").val() != null && $("#price").val() != '')price = $("#price").val();
+        	else {
+        		price = "";
+			}
+        	if($("#hotelstar").val() != null && $("#hotelstar").val() != '') hotelstar = $("#hotelstar").val();
+        	else {
+        		hotelstar = "";
+			}
+        	if($("#inORout").val() != null && $("#inORout").val() != '')inORout = $("#inORout").val();
+        	else {
+        		inORout="";
+			}
+        	if($("#jdType").val() != null && $("#jdType").val() != '')jdType = $("#jdType").val();
+        	else {
+        		jdType="";
+			}
+            location.href = "${appPath }/website/jiudianyudingView.do?hotelName="+hotelName + "&jdType=" + jdType + "&highPrice=" + price + "&hotelstar=" + hotelstar  + "&inORout=" + inORout;
+        }
+    </script>
+    <style>
+        .hotel-feature {
+            height: 24px;
+            width: 1000px;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 1;
+        }
+        .roomtype-list{width: 25%;float: right;margin-right: 5%;}
+        .roomtype-detail{border-bottom:0}  
+    </style>
+</head>
+<body>
+<%--<form name="form1" method="post" action="./" id="form1">--%>
+   
+    <!-- 头部 -->
+    <%@include file="bai-head.jsp" %>
+    <div class="content">
+        <div id="slideBox" class="slideBox">
+            <div class="filter-overlay"></div>
+            <div class="bd">
+                <ul>
+                    <c:forEach items="${model.txtContent }" var="gl">
+                		${gl }
+                	</c:forEach>
+                </ul>
+            </div>
+        </div>
+        <div class="head-nav" id="head-nav">
+            <div class="head-content">
+            	
+                <div class="div-left" >
+                	<ul class="select">
+                		<li class="select-list" id="jdType" value="${model.param.jdType}">
+                			
+	                    <label>
+	                        <input type="radio" name="hoteltype" <s:if test="model.param.jdType == 1" >checked='checked'</s:if>  value="1" onclick="themeFilter(1);" /><span><s:text name="jing_pin" /></span></label>
+	                    <label>
+	                        <input type="radio" name="hoteltype" <s:if test="model.param.jdType == 2" >checked='checked'</s:if>  value="2" onclick="themeFilter(2);" /><span><s:text name="zhu_ti" /></span></label>
+	                    <label>
+	                        <input type="radio" name="hoteltype" <s:if test="model.param.jdType == 3" >checked='checked'</s:if>  value="3" onclick="themeFilter(3);" /><span><s:text name="te_se" /></span></label>
+	                    <label>
+                        <input type="radio" name="hoteltype" <s:if test="model.param.jdType == 'null' || model.param.jdType == 0 || model.param.jdType == '' || model.param.jdType == null" >checked='checked'</s:if>  value="0" onclick="themeFilter(0);" /><span><s:text name="all" /></span></label>
+                		
+                		</li>
+                	</ul>
+                </div>
+                <div class="div-right">
+                    <%-- <ul class="order">
+                        <li onclick="sortFilter('1');">
+                            <input type="hidden" id="sortorder" name="sortorder" value="desc" />
+                            综合
+                            <img src="${appPath }/website/static/images/asc1.png" id="sortasc" style="" />
+                            <img src="${appPath }/website/static/images/desc1.png" id="sortdesc" style="display: none" />
+                            <img src="${appPath }/website/static/images/none1.png" id="sortdnone" style="display: none" />
+                        </li>
+                        <li onclick="sortFilter('2');">
+                            <input type="hidden" id="priceorder" name="priceorder" value="" />
+                            价格
+                            <img src="${appPath }/website/static/images/asc1.png" id="priceasc" style="display: none" />
+                            <img src="${appPath }/website/static/images/desc1.png" id="pricedesc" style="display: none" />
+                            <img src="${appPath }/website/static/images/none1.png" id="pricenone" style="" />
+                        </li>
+                    </ul> --%>
+                </div>
+            </div>
+        </div>
+        <div class="filter">
+            <ul class="select">
+                <li class="select-list" id="price" value="${model.param.highPrice}">
+                    <dl>
+                        <dt><s:text name="price" />：</dt>
+                        <dd id="price-0" class="<s:if test="model.param.highPrice == null || model.param.highPrice == '' || model.param.highPrice == 'null'">selected</s:if>">
+                        	<a href="${appPath }/website/jiudianyudingView.do?hotelstar=${model.param.hotelstar}&jdType=${model.param.jdType}&inORout=${model.param.inORout}">不限</a></dd>
+                        <dd id="price-1" class="<s:if test="model.param.highPrice == 500 ">selected</s:if>">
+                        	<a href="${appPath }/website/jiudianyudingView.do?lowPrice=0&highPrice=500&hotelstar=${model.param.hotelstar}&jdType=${model.param.jdType}&inORout=${model.param.inORout}">500↓</a></dd>
+                        <dd id="price-2" class="<s:if test="model.param.highPrice == 1000 ">selected</s:if>">
+                        	<a href="${appPath }/website/jiudianyudingView.do?lowPrice=501&highPrice=1000&hotelstar=${model.param.hotelstar}&jdType=${model.param.jdType}&inORout=${model.param.inORout}">501-1000</a>
+                        </dd>
+                        <dd id="price-3" class="<s:if test="model.param.highPrice == 2000 ">selected</s:if>">
+                        	<a href="${appPath }/website/jiudianyudingView.do?lowPrice=1001&highPrice=2000&hotelstar=${model.param.hotelstar}&jdType=${model.param.jdType}&inORout=${model.param.inORout}">1001-2000</a>
+                        </dd>
+                        <dd id="price-4" class="<s:if test="model.param.highPrice == 3000 ">selected</s:if>">
+                        	<a href="${appPath }/website/jiudianyudingView.do?lowPrice=2001&highPrice=3000&hotelstar=${model.param.hotelstar}&jdType=${model.param.jdType}&inORout=${model.param.inORout}">2001-3000</a>
+                        </dd>
+                        <dd id="price-5" class="<s:if test="model.param.highPrice == 100000 ">selected</s:if>">
+                        	<a href="${appPath }/website/jiudianyudingView.do?lowPrice=3000&highPrice=100000&hotelstar=${model.param.hotelstar}&jdType=${model.param.jdType}&inORout=${model.param.inORout}">3000↑</a>
+                        </dd>
+                    </dl>
+                </li>
+                <li class="select-list" id="hotelstar" value="${model.param.hotelstar}">
+                    <dl>
+                        <dt><s:text name="star" />：</dt>
+                        <dd id="star-0" class="<s:if test="model.param.hotelstar == null || model.param.hotelstar == '' || model.param.hotelstar == 'null'">selected</s:if>">
+                        	<a href="${appPath }/website/jiudianyudingView.do?jdType=${model.param.jdType}&highPrice=${model.param.highPrice}&inORout=${model.param.inORout}"><s:text name="all" /></a>
+                        </dd>
+                        <dd id="star-2" class="<s:if test="model.param.hotelstar != ''  && model.param.hotelstar == 0">selected</s:if>">
+                        	<a href="${appPath }/website/jiudianyudingView.do?hotelstar=0&jdType=${model.param.jdType}&highPrice=${model.param.highPrice}&inORout=${model.param.inORout}"><s:text name="star1" /></a>
+                        </dd>
+                        <dd id="star-3" class="<s:if test="model.param.hotelstar == 3">selected</s:if>">
+                        	<a href="${appPath }/website/jiudianyudingView.do?hotelstar=3&jdType=${model.param.jdType}&highPrice=${model.param.highPrice}&inORout=${model.param.inORout}"><s:text name="star3" /></a>
+                        </dd>
+                        <dd id="star-4" class="<s:if test="model.param.hotelstar == 4">selected</s:if>">
+                        	<a href="${appPath }/website/jiudianyudingView.do?hotelstar=4&jdType=${model.param.jdType}&highPrice=${model.param.highPrice}&inORout=${model.param.inORout}"><s:text name="star4" /></a>
+                        </dd>
+                        <dd id="star-5" class="<s:if test="model.param.hotelstar == 5">selected</s:if>">
+                        	<a href="${appPath }/website/jiudianyudingView.do?hotelstar=5&jdType=${model.param.jdType}&highPrice=${model.param.highPrice}&inORout=${model.param.inORout}"><s:text name="star5" /></a>
+                        </dd>
+                    </dl>
+                </li>
+                <li class="select-list" id="inORout" value="${model.param.inORout}">
+                    <dl id="place_dl">
+                        <dt><s:text name="place" />：</dt>
+                        
+                        <dd id="place_" class="<s:if test="model.param.inORout == null || model.param.inORout == '' ||  model.param.inORout == 'null'">selected</s:if>">
+                        	<a href="${appPath }/website/jiudianyudingView.do?hotelstar=${model.param.hotelstar}&jdType=${model.param.jdType}&highPrice=${model.param.highPrice}"><s:text name="all" /></a>
+                        </dd>
+                        <dd id="place_inside" class="<s:if test="model.param.inORout != '' && model.param.inORout == 0 ">selected</s:if>">
+                        	<a href="${appPath }/website/jiudianyudingView.do?inORout=0&hotelstar=${model.param.hotelstar}&jdType=${model.param.jdType}&highPrice=${model.param.highPrice}"><s:text name="in" /></a>
+                        </dd>
+                        <dd id="place_outside" class="<s:if test="model.param.inORout == 1 ">selected</s:if>">
+                        	<a href="${appPath }/website/jiudianyudingView.do?inORout=1&hotelstar=${model.param.hotelstar}&jdType=${model.param.jdType}&highPrice=${model.param.highPrice}"><s:text name="out" /></a>
+                        </dd>
+                    </dl>
+                </li>
+            </ul>
+        </div>
+       
+        <div class="search-div">
+            <ul class="search-content">
+            <!--     <li class="date">
+                    <span>入住日期</span>
+                    <input name="txtStartDate" type="text" id="txtStartDate" class="dateico" onclick="WdatePicker({ readOnly: true, onpicked: function () { set_enddate(&#39;txtStartDate&#39;, &#39;txtEndDate&#39;); update_date(); }, minDate: &#39;%y-%M-%d&#39;, maxDate: &#39;%y-%M-{%d+90}&#39; })" value="2018-03-07" />
+                </li> -->
+         <!--        <li class="date">
+                    <span>离店日期</span>
+                    <input name="txtEndDate" type="text" id="txtEndDate" class="dateico" onclick="WdatePicker({ readOnly: true, minDate: &#39;#F{ $dp.$D(\&#39;txtStartDate\&#39;,{d:1})}&#39;, maxDate: &#39;%y-%M-{%d+91}&#39;, onpicked: function () { update_date(); } })" value="2018-03-08" />
+                </li> -->
+                <li>
+                    <span><s:text name="hotel_name" /></span>
+                    <input name="txtHotelName" type="text" id="txtHotelName" />
+                </li>
+                <li class="search-button">
+                    <button type="button" class="redBtn w_60" onclick="goSearch();"><s:text name="search" /></button>
+                </li>
+            </ul>
+        </div>
+        <div class="hotellist" id="hotellist">
+            <input type="hidden" name="rptHotel$ctl00$hidHotelID" id="rptHotel_ctl00_hidHotelID" value="11" />
+           <c:forEach items="${model.data}" var="v" varStatus="vs">
+            <ul class="hotel-div">
+                <li class="hotel-content">
+                    <div class="hotel-head">
+                        <div class="hotel-name">
+                            <a href="hotelview.aspx?id=11&sdate=2018-03-07&edate=2018-03-08">${v.hotelName }</a>
+                        </div>
+                        <div class="hotel-instruction">
+                            <span class="hotel-feature"><s:text name="pei_tao" />：
+                            <c:if test="${v.isWIFI==0 }"><s:text name="wifi" /> </c:if>
+                            		<s:text name="pc" />
+                            <c:if test="${v.isLuggage==1 }"><s:text name="xing_li" /></c:if>
+                            <c:if test="${v.iswater==1 }"><s:text name="water" /> </c:if>
+                            <c:if test="${v.iswash==0 }"><s:text name="xi" /> </c:if>
+                            <c:if test="${v.isdrier== 0}"><s:text name="chui" /> </c:if>
+                            <c:if test="${v.isclock== 0}"><s:text name="jiao" /></c:if>
+                            <c:if test="${v.ispay== 0}"><s:text name="pay" /></c:if>
+                            </span>
+                         
+                            <a href="${appPath }/hotelDetails/toHotelDetails.do?hID=${v.hID}"><span class="hotel-knowmore"><s:text name="liao_jie" /></span></a>
+                        </div>
+                    </div>
+                    <div class="hotel-img">
+                        <a href="${appPath }/hotelDetails/toHotelDetails.do?hID=${v.hID}">
+                            <img
+                                    src="${image_base_path}${v.coverPhoto}" class="yasuoimg"></a>
+                    </div>
+                </li>
+                   <span class="hotel-feature"></span>
+              <!--   <li class="roomtype-div"> -->
+                    <!-- <ul class="roomtype-head">
+                        <li class="rt-name">房型</li>
+                        <li class="rt-breakfast">早餐</li>
+                        <li class="rt-wifi">宽带</li>
+                        <li class="rt-price">均价</li>
+                        <li class="rt-operate">操作</li>
+                    </ul> -->
+                    <ul class="roomtype-list GB">
+                        <div class="roomtype-detail">
+                           <!--  <li class="rt-name">
+                                <a href="view.aspx?id=25&sdate=2018-03-07&edate=2018-03-08">豪华标间</a>
+                            </li>
+                            <li class="rt-breakfast">含早</li>
+                            <li class="rt-wifi">免费
+                            </li> -->
+                                <span>￥<span class="price">${v.price }<s:text name="up" /></span></span>
+                                <button style="float: right;" class="redBtn w_60" type="button" onclick="location.href='${appPath }/hotelDetails/toHotelDetails.do?hID=${v.hID}'"><s:text name="ding" /></button>
+                        </div>
+
+                    </ul>
+               <!--  </li> -->
+            </ul>
+           </c:forEach>
+            <div class="pagelist">
+            </div>
+        </div>
+    </div>
+     <%@ include file="footer.jsp" %>
+    <!---->
+    <script type="text/javascript">
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "http://v1.cnzz.com/stat.php?id=1262940786&web_id=1262940786";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    <script type="text/javascript" src="${appPath}/static/www/js/WdatePicker.js"></script>
+<%--</form>--%>
+</body>
+</html>
+</s:i18n>
