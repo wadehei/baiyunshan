@@ -239,7 +239,7 @@ select::-ms-expand { display: none; }
 .list-wen{position: relative;}
 .list-wen-r{position: absolute;top:0;padding-left:130px;width:100%;}
 .content{min-height:685px;}
-.top-list{display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 1;overflow: hidden;height:37px;}
+.top-list{display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 1;overflow: hidden;height:37px;margin-bottom: 0;margin-top: 20px;}
 .top-midd{display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 2;overflow: hidden;max-height:46px;}
 #toGoPage{height:34px;width:52px!important;}
 .pagination > li > a{height:34px;}
