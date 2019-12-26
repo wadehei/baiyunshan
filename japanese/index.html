@@ -16,6 +16,21 @@
         #banner_tabs a {
             cursor: default;
         }
+
+        .contact{
+
+            margin: 0;
+        }
+        .contact_icon{
+            top: 27px;
+        }
+        .contact_item{
+            border: 0;
+            padding-top: 9px;
+        }
+        .active .contact_item{
+            border: 0;
+        }
     </style>
 </head>
 
@@ -73,158 +88,127 @@
             <div class="tab_info">
                 <ul>
                     <li>
-                        <a href="/website/piaowuyudingView.do">
+                        <a href="./ticket.html">
                             <div class="tab_item">
                                 <div class="tab_icon icon1"></div>
                                 <div class="tab_txt">
-                                    票务预订<span>TICKET</span>
+                                    チケット予約<span>TICKET</span>
                                 </div>
                                 <div class="nav_divider"></div>
                             </div>
                         </a>
                     </li>
                     <li>
-                        <a href="/website/jiudianyudingView.do">
+                        <a href="./hotel.html">
                             <div class="tab_item">
                                 <div class="tab_icon icon2"></div>
                                 <div class="tab_txt">
-                                    酒店预订<span>HOTEL</span>
+                                    ホテル予約<span>HOTEL</span>
                                 </div>
                                 <div class="nav_divider"></div>
                             </div>
                         </a>
-
                     </li>
-                    <li onclick="window.location.href='/website/zhutihuodonglView.do?type=1&daima=coffee'">
-
-                        <div class="tab_item">
-                            <div class="tab_icon icon3"></div>
-                            <div class="tab_txt">
-                                休闲娱乐<span>COFFEE</span>
-                            </div>
-                            <div class="nav_divider"></div>
-                        </div>
-
+                    <li class="contact">
+                        <ul class="tab_item">
+                            <li class="active">
+                                <div class="contact_item">
+                                    <div class="contact_icon iconAll contact_icon1"></div>
+                                    wechat
+                                </div>
+                            </li>
+                            <li>
+                                <div class="contact_item">
+                                    <div class="contact_icon iconAll contact_icon2"></div>
+                                    微博
+                                </div>
+                            </li>
+                        </ul>
                     </li>
-                    <li onclick="window.location.href='/website/zhutihuodonglView.do?type=1&daima=estate'">
-
-                        <div class="tab_item">
-                            <div class="tab_icon icon4"></div>
-                            <div class="tab_txt">
-                                旅游地产<span>ESTATE</span>
-                            </div>
-                            <div class="nav_divider"></div>
-                        </div>
-
+                    <li class="contact">
+                        <ul class="tab_item">
+                            <li class="">
+                                <div class="contact_item" style="text-align: right;">
+                                    <div class="contact_icon iconAll contact_icon3"></div>
+                                    <img src="../static/www/images/tell2.png" style="vertical-align: middle; position: relative; top: -3px;">
+                                </div>
+                            </li>
+                            <li class="">
+                                <div class="contact_item">
+                                    <div class="contact_icon iconAll contact_icon4"></div>
+                                    コール
+                                </div>
+                            </li>
+                        </ul>
                     </li>
                 </ul>
             </div>
-            <!--end-->
 
             <!--end！-->
             <!---->
             <div class="cont_mag">
                 <ul>
-                    <li class="item1" onclick="window.location.href='/website/zhutihuodonglView.do?type=1&daima=scenic'">
+                    <li class="item1" onclick="window.location.href='./scenic.html'">
                         <div class="cont_item">
                             <div class="cont_icon contact_icon"></div>
                             <div class="cont_txt">
-                                景点<span>SCENIC SPOT</span>
+                                スポット<span>SCENIC SPOT</span>
                             </div>
                             <img src="../static/www/images/cont_foot.png" class="bg_img" />
                         </div>
                     </li>
-                    <li class="item2 active" onclick="window.location.href='/website/zhutihuodonglView.do?type=1&daima=culture'">
+                    <li class="item2 active" onclick="window.location.href='./ticket.html'">
                         <div class="cont_item">
                             <div class="cont_icon contact_icon"></div>
                             <div class="cont_txt">
-                                景区文化 <span>CULTURE</span>
+                                チケット <span>TICKET</span>
                             </div>
                             <img src="../static/www/images/cont_foot.png" class="bg_img" />
                         </div>
 
                     </li>
-                    <li class="item3" onclick="window.location.href='/website/zhutihuodonglView.do?type=1&daima=guide'">
+                    <li class="item3" onclick="window.location.href='./hotel.html'">
                         <div class="cont_item">
                             <div class="cont_icon contact_icon"></div>
                             <div class="cont_txt">
-                                旅游指南 <span>GUIDE</span>
+                                ホテル予約 <span>HOTEL</span>
                             </div>
                             <img src="../static/www/images/cont_foot.png" class="bg_img" />
                         </div>
                     </li>
-                    <li class="item4" onclick="window.location.href='/website/zhutihuodonglView.do?type=1&daima=raiders'">
+                    <li class="item4" onclick="window.location.href='./phone.html'">
                         <div class="cont_item">
                             <div class="cont_icon contact_icon"></div>
                             <div class="cont_txt">
-                                旅游攻略 <span>RAIDERS</span>
+                                電話 <span>PHONE</span>
                             </div>
                             <img src="../static/www/images/cont_foot.png" class="bg_img" />
                         </div>
                     </li>
-                    <li class="item5" onclick="window.location.href='/website/aboutUsView.do?type=2&daima=about'">
+                    <li class="item5" onclick="window.location.href='./about-us.html'">
                         <div class="cont_item">
                             <div class="cont_icon contact_icon"></div>
                             <div class="cont_txt">
-                                关于我们 <span>ABOUT US</span>
+                                私たちについて <span>ABOUT US</span>
                             </div>
                             <img src="../static/www/images/cont_foot.png" class="bg_img" />
                         </div>
                     </li>
-                    <!--
-                    <li class="item6" onclick="window.location.href='/website/zhutihuodonglView.do?type=1&daima=service'">
-                        <div class="cont_item">
-                            <div class="cont_icon contact_icon"></div>
-                            <div class="cont_txt">
-                             	 便民服务<span>SERVICES</span>
-                            </div>
-                            <img src="../static/www/images/cont_foot.png" class="bg_img" />
-                        </div>
-                    </li>
-                    
-                    <li class="item7" onclick="window.location.href='/website/zhutihuodonglView.do?type=1&daima=helpcenter'">
-                        <div class="cont_item">
-                            <div class="cont_icon contact_icon"></div>
-                            <div class="cont_txt">
-                             	 帮助中心<span>HELP</span>
-                            </div>
-                            <img src="../static/www/images/cont_foot.png" class="bg_img" />
-                        </div>
-                    </li>
-					-->
                 </ul>
             </div>
             <!---->
         </div>
     </div>
 
-
-    <!---->
-    <!--弹出二维码-->
-    <!--<div class="code_box">
-        <div class="code">
-            <img src="uploadFiles/uploadImgs//20190517100856\1558058936598.png" alt="关注白云山微信公众号" />
-            <br />
-            关注白云山微信公众号
-        </div>
-        <div class="code">
-            <img src="uploadFiles/uploadImgs//20190517100856\1558058936605.png" alt="关注白云山微博" />
-            <br />
-         	关注白云山微博
-        </div>
-        <div class=""></div>
-        <div class=""></div>
-    </div>-->
-
     <!--弹出二维码-->
     <div class="code_box">
         <div class="code">
             <img src="../static/www/images/weixin.jpg" alt="微信二维码" />
-            <br /> 关注白云山微信公众号
+            <br /> 白雲山微信公号に注目する
         </div>
         <div class="code">
             <img src="../static/www/images/weibo.png" alt="微博二维码" />
-            <br /> 关注白云山微博
+            <br /> 白雲山微博に注目
         </div>
         <div class=""></div>
         <div class=""></div>
