@@ -3,183 +3,183 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
     <title>用户注册</title>
-    <meta name="keywords" content="" />
-    <meta name="description" content="" />
-    <link href="../static/www/css/help.css" rel="stylesheet" />
-    <link href="../static/www/css/portal.css" rel="stylesheet" />
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
+    <link href="../static/www/css/help.css" rel="stylesheet"/>
+    <link href="../static/www/css/portal.css" rel="stylesheet"/>
 </head>
 
 <body style="background-color: #eee;">
-    <form name="form1" method="post" action="/website/aboutUsView.do?type=2&daima=about" id="form1">
+<form name="form1" method="post" action="/website/aboutUsView.do?type=2&daima=about" id="form1">
 
-        <script src="../static/www/js/jquery-2.1.4.min.js"></script>
-        <script src="../static/www/js/common.js"></script>
-        <script type="text/javascript">
-            $(function() {
-                //导航效果
-                $(".nav li ").mouseover(function() {
-                    $(this).append('<div class="long_nav "></div>');
-                    $(this).addClass("active ");
-                    $(this).find(".hotel_top ").show()
-                })
-                $(".nav li ").mouseout(function() {
-                    $(this).children(".long_nav ").remove();
-                    $(this).removeClass("active ");
-                    $(this).find(".hotel_top ").hide()
-                })
+    <script src="../static/www/js/jquery-2.1.4.min.js"></script>
+    <script src="../static/www/js/common.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            //导航效果
+            $(".nav li ").mouseover(function () {
+                $(this).append('<div class="long_nav "></div>');
+                $(this).addClass("active ");
+                $(this).find(".hotel_top ").show()
             })
-        </script>
-        <!-- 头部 -->
+            $(".nav li ").mouseout(function () {
+                $(this).children(".long_nav ").remove();
+                $(this).removeClass("active ");
+                $(this).find(".hotel_top ").hide()
+            })
+        })
+    </script>
+    <!-- 头部 -->
 
 
+    <!--头部-->
 
+    <link rel="stylesheet" href="../static/www/css/login.css"/>
+    <!--注册 begin-->
+    <div id="divRegister" style="display: none;">
+    </div>
+    <!--注册 end-->
 
-        <!--头部-->
+    <!--登录 begin-->
+    <div id="divLogin" style="display: none;">
+    </div>
+    <!--登录 end-->
 
-        <link rel="stylesheet" href="../static/www/css/login.css" />
-        <!--注册 begin-->
-        <div id="divRegister" style="display: none;">
-        </div>
-        <!--注册 end-->
+    <!--忘记密码 begin-->
+    <div id="divForget" style="display: none;">
+    </div>
+    <!--忘记密码 end-->
 
-        <!--登录 begin-->
-        <div id="divLogin" style="display: none;">
-        </div>
-        <!--登录 end-->
+    <script type="text/javascript">
+        /* 打开登录窗口 */
+        function showLogin() {
+            $('#divLogin').show();
+            $('#divLogin').empty();
+            var text = "<div class='loginMask'></div>" +
+                "<div class='loginPop'>" +
+                "<iframe src='/websiteLogin/loginView.do' style='border: 0; width: 100%; height: 449px;'></iframe>" +
+                "</div>";
+            $('#divLogin').append(text);
 
-        <!--忘记密码 begin-->
-        <div id="divForget" style="display: none;">
-        </div>
-        <!--忘记密码 end-->
+        }
+        /* 关闭登录窗口 */
+        function hideLogin() {
+            $('#divLogin').hide();
+            $('#divLogin').empty();
+        }
+        /* 打开注册窗口 */
+        function showRegister() {
+            $('#divRegister').show();
+            $('#divRegister').empty();
+            var text = "<div class='loginMask'></div>" +
+                "<div class='loginPop'>" +
+                "<iframe src='/websiteLogin/registerView.do' style='border: 0; width: 100%; height: 656px;'></iframe>" +
+                "</div>";
+            $('#divRegister').append(text);
+        }
+        /* 关闭注册窗口 */
+        function hideRegister() {
+            $('#divRegister').hide();
+            $('#divRegister').empty();
+        }
+        /* 打开忘记密码窗口 */
+        function showForget() {
+            $('#divForget').show();
+            $('#divForget').empty();
+            var text = "<div class='loginMask'></div>" +
+                "<div class='loginPop'>" +
+                "<iframe src='/websiteLogin/forgetPasswordView.do' style='border: 0; width: 100%; height: 609px;'></iframe>" +
+                "</div>";
+            $('#divForget').append(text);
 
-        <script type="text/javascript">
-            /* 打开登录窗口 */
-            function showLogin() {
-                $('#divLogin').show();
-                $('#divLogin').empty();
-                var text = "<div class='loginMask'></div>" +
-                    "<div class='loginPop'>" +
-                    "<iframe src='/websiteLogin/loginView.do' style='border: 0; width: 100%; height: 449px;'></iframe>" +
-                    "</div>";
-                $('#divLogin').append(text);
+        }
+        /* 关闭忘记密码窗口 */
+        function hideForget() {
+            $('#divForget').hide();
+            $('#divForget').empty();
+        }
+    </script>
 
-            }
-            /* 关闭登录窗口 */
-            function hideLogin() {
-                $('#divLogin').hide();
-                $('#divLogin').empty();
-            }
-            /* 打开注册窗口 */
-            function showRegister() {
-                $('#divRegister').show();
-                $('#divRegister').empty();
-                var text = "<div class='loginMask'></div>" +
-                    "<div class='loginPop'>" +
-                    "<iframe src='/websiteLogin/registerView.do' style='border: 0; width: 100%; height: 656px;'></iframe>" +
-                    "</div>";
-                $('#divRegister').append(text);
-            }
-            /* 关闭注册窗口 */
-            function hideRegister() {
-                $('#divRegister').hide();
-                $('#divRegister').empty();
-            }
-            /* 打开忘记密码窗口 */
-            function showForget() {
-                $('#divForget').show();
-                $('#divForget').empty();
-                var text = "<div class='loginMask'></div>" +
-                    "<div class='loginPop'>" +
-                    "<iframe src='/websiteLogin/forgetPasswordView.do' style='border: 0; width: 100%; height: 609px;'></iframe>" +
-                    "</div>";
-                $('#divForget').append(text);
-
-            }
-            /* 关闭忘记密码窗口 */
-            function hideForget() {
-                $('#divForget').hide();
-                $('#divForget').empty();
-            }
-        </script>
-
-        <!-- 登录注册end -->
-        <!--内容-->
-        <div class="wrap">
-            <div class="content" id="content">
-                <div class="home_body_l clearfix">
-                    <ul class="pact-nav">
-
-
-                        <li class="active"><a href="/website/aboutUsView.do?id=5737ef2fc1b045458b40600d4bf61af7&type=2&daima=about">私たちについて</a>
-                        </li>
-
-
-
-
-
-                        <li class=""><a href="/website/aboutUsView.do?id=d3148620dacb487a8afacde6cd1dd778&type=2&daima=about">私たちに連絡する</a>
-                        </li>
-
-
-                    </ul>
+    <!-- 登录注册end -->
+    <!--内容-->
+    <div class="wrap">
+        <div class="content" id="content">
+            <div class="home_body_l clearfix">
+                <ul class="pact-nav">
+                    <li class="active"><a
+                            href="javascript:void(0)">私たちについて</a>
+                    </li>
+                    <li class=""><a
+                            href="javascript:void(0)">私たちに連絡する</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="home_body_r clearfix">
+                <div class="pact_box pact_4">
+                    <h3>우리가 어떻게</h3>
+                    <div class="pact_content aboutLY">
+                        <p style="word-wrap: break-word; white-space: normal; font-size: 14px; color: rgb(51, 51, 51); font-family: arial, 宋体, sans-serif; background-color: rgb(255, 255, 255);">
+                            &nbsp; &nbsp; &nbsp; &nbsp; 白雲山(Baiyun Mountain):世界地質公園、国家AAAAA級観光地、国立科学普及教育センター。</p>
+                        <p style="word-wrap: break-word; white-space: normal; font-size: 14px; color: rgb(51, 51, 51); font-family: arial, 宋体, sans-serif; background-color: rgb(255, 255, 255);">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;白雲山は河南省洛陽市嵩県南部の伏牛山腹地の原始林区に位置し、総面積は168平方キロメートル、動物204種、植物1991種、森林率は98.5%以上であり、専門家と学者から「自然博物館」と称されている。海抜1500メートル以上の峰は37座あり、その中の玉皇頂は海抜2216メートルで、白雲山第一峰であり、日の出と雲海を見るのに最も良い所の一つである。</p>
+                        <p style="word-wrap: break-word; white-space: normal; font-size: 14px; color: rgb(51, 51, 51); font-family: arial, 宋体, sans-serif; background-color: rgb(255, 255, 255);">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            白雲山の主な景勝地は白雲峰、玉皇頂、鶏角曼(小黄山)、九龍滝、原始林五大観光区と白雲湖、高山森林酸素バー、高山牡丹園、留侯祠、蘆花谷五大レジャー区。</p>
+                        <p style="word-wrap: break-word; white-space: normal; font-size: 14px; color: rgb(51, 51, 51); font-family: arial, 宋体, sans-serif; background-color: rgb(255, 255, 255);">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;春融山、石、水、洞、林や草、花、鸟、獣が一体、雄、手当、奇、幽、米、妙一つに鳗の形成は各自の特色ある景観区、中原地域の集に観光、休暇の避暑、研究のインターン、尋古進めるそうだを組み合わせた複合リゾートを、「人間のワンダーランド」と呼ばれ、「中原名山」。</p>
+                        <p style="word-wrap: break-word; white-space: normal; font-size: 14px; color: rgb(51, 51, 51); font-family: arial, 宋体, sans-serif; background-color: rgb(255, 255, 255);">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;白雲山国家森林公園は河南省洛陽市嵩県南部の伏牛山腹地原始林区に位置し、総面積は168平方キロメートルである。動物は204種、植物は1991種で、森林率が95%以上を占め、専門家や学者たちから「自然博物館」と呼ばれている。境内には海抜1500メートル以上の峰が37座あり、その中の玉皇頂は海抜2216メートルで、白雲山第一峰であり、日の出と雲海を見るのに最も良い所の一つである。白雲峰、玉皇頂、小黄山、鶏角尖、千尺崖を代表とする険峰奇石景観がある。万畝の原始林、唐代の銀杏林、野生の牡丹園、高山のツツジ園、赤樺林、白樺林、矢竹林を代表とする森林景観;竜竜潭、黄龍井、真珠潭、青龍滝、白龍滝、九竜滝をはじめとする滝潭観観。</p>
+                        <p style="word-wrap: break-word; white-space: normal; font-size: 14px; color: rgb(51, 51, 51); font-family: arial, 宋体, sans-serif; background-color: rgb(255, 255, 255);">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;白雲洞、青蛇洞、鑼鼓洞、洞天桟道、サボテン橋に代表される洞窟の景観。烏曼寺、雲岩寺、玉皇閣を代表とする人文景観;雲海の日の出、真夏の避暑、金の秋の紅葉に代表される季節の景観。景胜地融山全体が、石、水、洞、林や草、花、鸟、獣が一体、雄、手当、奇、幽玄、米、妙一つを譲って、各自の特色ある白云峰の形成、玉皇顶、小さな錦上、九竜瀧から、原始林の5大観光区、中原地域の集に観光、休暇の避暑、研究のインターン、尋古進めるそうだを組み合わせた複合リゾートを、「人間のワンダーランド」と呼ばれ、「中原名山」。1992年に林業省から国家級森林公園に認定され、1998年に国家級自然保護区に昇格し、1997年には「河南省十佳景区好行地」の第3位に推薦された。
+                            10年の開発と建設を経て、公園は初歩的に飲食、宿泊、旅行、娯楽、購入のセットの観光サービス体系を形成し、10大ホテルの建設を計画し、道路とサービス施設を完備し、玉皇頂高山滑道を建設し、万人日の接待能力を形成した。
+                        </p>
+                        <p style="word-wrap: break-word; white-space: normal; font-size: 14px; color: rgb(51, 51, 51); font-family: arial, 宋体, sans-serif; background-color: rgb(255, 255, 255);">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;人间仙境白云山</p>
+                        <p style="word-wrap: break-word; white-space: normal; font-size: 14px; color: rgb(51, 51, 51); font-family: arial, 宋体, sans-serif; background-color: rgb(255, 255, 255);">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;洛陽白雲山は河南省洛陽市嵩県南部の世界地質公園伏牛山の中腹に位置し、国家森林公園、国家級自然保護区、国家AAAAA級観光地、中国十佳レジャー地であり、2005年に「中国で最も美しい地方の一つ」に選ばれた。2010年に世界地質公園に昇格した。</p>
+                        <p style="word-wrap: break-word; white-space: normal; font-size: 14px; color: rgb(51, 51, 51); font-family: arial, 宋体, sans-serif; background-color: rgb(255, 255, 255);">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;面積は168平方キロメートルで、現在は白雲峰、玉皇頂、鶏角曼(小黄山)、九竜滝、原始林五大観光区と白雲湖、高山森林酸素バー、高山牡丹園、留侯祠、蘆花谷五大レジャー区が開発されている。</p>
+                        <p style="word-wrap: break-word; white-space: normal; font-size: 14px; color: rgb(51, 51, 51); font-family: arial, 宋体, sans-serif; background-color: rgb(255, 255, 255);">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;白雲山景勝地は長江、黄河、淮河の三大流域の水を一峰にまたがり、三河の霊を一山に集めている。</p>
+                        <p style="word-wrap: break-word; white-space: normal; font-size: 14px; color: rgb(51, 51, 51); font-family: arial, 宋体, sans-serif; background-color: rgb(255, 255, 255);">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;春は暖かく温帯と北東アジアの熱帯暫定地帯、平均標高1800
+                            m、夏の最高気温は26℃を超えない、動植物が豊富だ。ここの奇峰の俊秀、白雲は悠々として、滝は転んで、林深谷幽。主な景観は：</p>
+                        <p style="word-wrap: break-word; white-space: normal; font-size: 14px; color: rgb(51, 51, 51); font-family: arial, 宋体, sans-serif; background-color: rgb(255, 255, 255);">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ここに中原第一峰の玉皇頂、鶏角曼、サボテン橋を代表とする奇石険峰の景観があります;高山のツツジ林、万ムーの原始林、唐代の銀杏林を代表とする森林景観;九竜滝、真珠潭、黄龍井を代表とする滝潭の景観;留侯祠、玉皇閣、烏曼寺、雲岩寺を代表とする人文景観;雲海の日の出、鶏の角の夕焼け、金の秋の紅葉に代表される季節の景観。現在、中原地区は観光旅行、避暑、科学研究実習、古跡探索を一体化した複合型リゾート地となっている。</p>
+                        <p style="word-wrap: break-word; white-space: normal; font-size: 14px; color: rgb(51, 51, 51); font-family: arial, 宋体, sans-serif; background-color: rgb(255, 255, 255);">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;洛陽白雲山景勝地内林深谷幽、奇峰俊秀、白雲悠々、白雲仙境に身を置くと、いつも「人が絵の中で泳いでいる、雲が木の上で漂っている、水が空中で舞っている」という美感がある。李長春が洛陽白雲山景勝地を視察した際に「中原名山」と命名した。穆青は「白雲天下秀」という題を書き、著名な書家の啓功先生が「人間仙境白雲山」を揮毫した”。</p>
+                        <p><br/></p>
+                    </div>
                 </div>
-                <div class="home_body_r clearfix">
-                    <div class="pact_box pact_4">
-                        <h3>우리가 어떻게</h3>
+                <div class="pact_box pact_4" style="display: none">
+                    <h3>우리가 어떻게</h3>
+                    <div class="pact_content aboutLY">
                         <div class="pact_content aboutLY">
-                            <p style="word-wrap: break-word; white-space: normal; font-size: 14px; color: rgb(51, 51, 51); font-family: arial, 宋体, sans-serif; background-color: rgb(255, 255, 255);">&nbsp; &nbsp; &nbsp; &nbsp; 白雲山(Baiyun Mountain):世界地質公園、国家AAAAA級観光地、国立科学普及教育センター。</p>
-                            <p style="word-wrap: break-word; white-space: normal; font-size: 14px; color: rgb(51, 51, 51); font-family: arial, 宋体, sans-serif; background-color: rgb(255, 255, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;白雲山は河南省洛陽市嵩県南部の伏牛山腹地の原始林区に位置し、総面積は168平方キロメートル、動物204種、植物1991種、森林率は98.5%以上であり、専門家と学者から「自然博物館」と称されている。海抜1500メートル以上の峰は37座あり、その中の玉皇頂は海抜2216メートルで、白雲山第一峰であり、日の出と雲海を見るのに最も良い所の一つである。</p>
-                            <p style="word-wrap: break-word; white-space: normal; font-size: 14px; color: rgb(51, 51, 51); font-family: arial, 宋体, sans-serif; background-color: rgb(255, 255, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 白雲山の主な景勝地は白雲峰、玉皇頂、鶏角曼(小黄山)、九龍滝、原始林五大観光区と白雲湖、高山森林酸素バー、高山牡丹園、留侯祠、蘆花谷五大レジャー区。</p>
-                            <p style="word-wrap: break-word; white-space: normal; font-size: 14px; color: rgb(51, 51, 51); font-family: arial, 宋体, sans-serif; background-color: rgb(255, 255, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;春融山、石、水、洞、林や草、花、鸟、獣が一体、雄、手当、奇、幽、米、妙一つに鳗の形成は各自の特色ある景観区、中原地域の集に観光、休暇の避暑、研究のインターン、尋古進めるそうだを組み合わせた複合リゾートを、「人間のワンダーランド」と呼ばれ、「中原名山」。</p>
-                            <p style="word-wrap: break-word; white-space: normal; font-size: 14px; color: rgb(51, 51, 51); font-family: arial, 宋体, sans-serif; background-color: rgb(255, 255, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;白雲山国家森林公園は河南省洛陽市嵩県南部の伏牛山腹地原始林区に位置し、総面積は168平方キロメートルである。動物は204種、植物は1991種で、森林率が95%以上を占め、専門家や学者たちから「自然博物館」と呼ばれている。境内には海抜1500メートル以上の峰が37座あり、その中の玉皇頂は海抜2216メートルで、白雲山第一峰であり、日の出と雲海を見るのに最も良い所の一つである。白雲峰、玉皇頂、小黄山、鶏角尖、千尺崖を代表とする険峰奇石景観がある。万畝の原始林、唐代の銀杏林、野生の牡丹園、高山のツツジ園、赤樺林、白樺林、矢竹林を代表とする森林景観;竜竜潭、黄龍井、真珠潭、青龍滝、白龍滝、九竜滝をはじめとする滝潭観観。</p>
-                            <p style="word-wrap: break-word; white-space: normal; font-size: 14px; color: rgb(51, 51, 51); font-family: arial, 宋体, sans-serif; background-color: rgb(255, 255, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;白雲洞、青蛇洞、鑼鼓洞、洞天桟道、サボテン橋に代表される洞窟の景観。烏曼寺、雲岩寺、玉皇閣を代表とする人文景観;雲海の日の出、真夏の避暑、金の秋の紅葉に代表される季節の景観。景胜地融山全体が、石、水、洞、林や草、花、鸟、獣が一体、雄、手当、奇、幽玄、米、妙一つを譲って、各自の特色ある白云峰の形成、玉皇顶、小さな錦上、九竜瀧から、原始林の5大観光区、中原地域の集に観光、休暇の避暑、研究のインターン、尋古進めるそうだを組み合わせた複合リゾートを、「人間のワンダーランド」と呼ばれ、「中原名山」。1992年に林業省から国家級森林公園に認定され、1998年に国家級自然保護区に昇格し、1997年には「河南省十佳景区好行地」の第3位に推薦された。
-                                10年の開発と建設を経て、公園は初歩的に飲食、宿泊、旅行、娯楽、購入のセットの観光サービス体系を形成し、10大ホテルの建設を計画し、道路とサービス施設を完備し、玉皇頂高山滑道を建設し、万人日の接待能力を形成した。
-                            </p>
-                            <p style="word-wrap: break-word; white-space: normal; font-size: 14px; color: rgb(51, 51, 51); font-family: arial, 宋体, sans-serif; background-color: rgb(255, 255, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;人间仙境白云山</p>
-                            <p style="word-wrap: break-word; white-space: normal; font-size: 14px; color: rgb(51, 51, 51); font-family: arial, 宋体, sans-serif; background-color: rgb(255, 255, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;洛陽白雲山は河南省洛陽市嵩県南部の世界地質公園伏牛山の中腹に位置し、国家森林公園、国家級自然保護区、国家AAAAA級観光地、中国十佳レジャー地であり、2005年に「中国で最も美しい地方の一つ」に選ばれた。2010年に世界地質公園に昇格した。</p>
-                            <p style="word-wrap: break-word; white-space: normal; font-size: 14px; color: rgb(51, 51, 51); font-family: arial, 宋体, sans-serif; background-color: rgb(255, 255, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;面積は168平方キロメートルで、現在は白雲峰、玉皇頂、鶏角曼(小黄山)、九竜滝、原始林五大観光区と白雲湖、高山森林酸素バー、高山牡丹園、留侯祠、蘆花谷五大レジャー区が開発されている。</p>
-                            <p style="word-wrap: break-word; white-space: normal; font-size: 14px; color: rgb(51, 51, 51); font-family: arial, 宋体, sans-serif; background-color: rgb(255, 255, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;白雲山景勝地は長江、黄河、淮河の三大流域の水を一峰にまたがり、三河の霊を一山に集めている。</p>
-                            <p style="word-wrap: break-word; white-space: normal; font-size: 14px; color: rgb(51, 51, 51); font-family: arial, 宋体, sans-serif; background-color: rgb(255, 255, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;春は暖かく温帯と北東アジアの熱帯暫定地帯、平均標高1800 m、夏の最高気温は26℃を超えない、動植物が豊富だ。ここの奇峰の俊秀、白雲は悠々として、滝は転んで、林深谷幽。主な景観は：</p>
-                            <p style="word-wrap: break-word; white-space: normal; font-size: 14px; color: rgb(51, 51, 51); font-family: arial, 宋体, sans-serif; background-color: rgb(255, 255, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ここに中原第一峰の玉皇頂、鶏角曼、サボテン橋を代表とする奇石険峰の景観があります;高山のツツジ林、万ムーの原始林、唐代の銀杏林を代表とする森林景観;九竜滝、真珠潭、黄龍井を代表とする滝潭の景観;留侯祠、玉皇閣、烏曼寺、雲岩寺を代表とする人文景観;雲海の日の出、鶏の角の夕焼け、金の秋の紅葉に代表される季節の景観。現在、中原地区は観光旅行、避暑、科学研究実習、古跡探索を一体化した複合型リゾート地となっている。</p>
-                            <p style="word-wrap: break-word; white-space: normal; font-size: 14px; color: rgb(51, 51, 51); font-family: arial, 宋体, sans-serif; background-color: rgb(255, 255, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;洛陽白雲山景勝地内林深谷幽、奇峰俊秀、白雲悠々、白雲仙境に身を置くと、いつも「人が絵の中で泳いでいる、雲が木の上で漂っている、水が空中で舞っている」という美感がある。李長春が洛陽白雲山景勝地を視察した際に「中原名山」と命名した。穆青は「白雲天下秀」という題を書き、著名な書家の啓功先生が「人間仙境白雲山」を揮毫した”。</p>
-                            <p><br/></p>
+                            <p style="word-wrap: break-word; font-family: &quot;sans serif&quot;, tahoma, verdana, helvetica; font-size: 12px; white-space: normal;">
+                                <span style="font-size: 16px;">리조트 문의 전화：0379-66586666</span></p>
+                            <p style="word-wrap: break-word; font-family: &quot;sans serif&quot;, tahoma, verdana, helvetica; font-size: 12px; white-space: normal;">
+                                <span style="font-size: 16px;">리조트 어드레스：뤄양 바이윈산 국가삼림공원 관리국 오피스빌딩 3 층</span></p>
+                            <p><br></p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!--end-->
-        <!--底部-->
-
-        <!-- <div class="footer">
-            <div class="footer-detail">
-                <span><i class="footer-icon1"></i>世界地质公园</span>
-                <span><i class="footer-icon2"></i>国家5A级旅游景区</span>
-                <span><i class="footer-icon3"></i>中国十佳旅游胜地</span>
-                <span><i class="footer-icon4"></i>国家森林公园</span>
-                <span><i class="footer-icon5"></i>国家级自然保护区</span>
-            </div>
-            <div class="footer-weixin">
-                洛阳白云山旅游有限责任公司©版权所有<a style="color: #888888;" href="http://www.beian.miit.gov.cn/" target="_blank">豫ICP17018704号—2</a>
-                <img src="../static/www/images/beianicon.png" />&nbsp;<a style="color: #888888;" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=41032502000114" target="_blank">豫公网安备 41032502000114号</a>
-            </div>
-        </div> -->
-
-        <!---->
-        <!-- <script type="text/javascript">
-            (function() {
-                var hm = document.createElement("script");
-                hm.src = "http://v1.cnzz.com/stat.php?id=1262940786&web_id=1262940786";
-                var s = document.getElementsByTagName("script")[0];
-                s.parentNode.insertBefore(hm, s);
-            })();
-        </script> -->
-    </form>
+    </div>
+</form>
 </body>
 <script src="../static/www/js/template-web.js"></script>
 <script src="../static/www/js/lang/korean.js"></script>
 <script src="../static/www/js/commonLang.js"></script>
+<script>
+    $(".pact-nav li").on("click", function () {
+        var $this = $(this), index = $this.index();
+        $this.addClass("active").siblings().removeClass("active");
+        $(".home_body_r").find(".pact_box").eq(index).show().siblings().hide();
+
+    });
+</script>
 
 </html>
