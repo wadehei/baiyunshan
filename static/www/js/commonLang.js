@@ -1,4 +1,4 @@
-+function($,window) {
++ function($, window) {
 
 
     // $(function init(window) {
@@ -31,14 +31,14 @@
         };
 
         //生成门票
-        this.initScenic = function () {
+        this.initScenic = function() {
             var vm = this;
             var scenic = template("scenic", window.constant.scenic);
             vm.$body.find(".scenic-container").append(scenic);
         };
 
         //生成门票
-        this.initTicket = function () {
+        this.initTicket = function() {
             var vm = this;
             var ticket = template("ticket", window.constant.ticket);
 
@@ -46,7 +46,7 @@
         };
 
         //生成酒店
-        this.initHotel = function () {
+        this.initHotel = function() {
             var vm = this;
             var hotel = template("hotel", window.constant.hotel);
             vm.$body.find(".hotel-container").append(hotel);
@@ -65,6 +65,23 @@
                     vm.$body.append(footer);
                 }
             });
+        }
+
+        //生成景区详情
+        this.initScenicDetail = function() {
+            var vm = this;
+            var index = vm.getUrl("index");
+            var detail = window.constant.scenic.data[index];
+            var $detailContainer = $(".detail-container");
+            $detailContainer.find(".title").html(detail.title);
+            $detailContainer.find(".description").html(detail.description);
+        };
+        this.getUrl = function(name) {
+            var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');  
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) {     return unescape(r[2]);   }  
+            return null;
+
         }
     }
 

@@ -25,11 +25,11 @@
                 </span>
                 <div class="scenic-container">
                     <script id="scenic" type="text/html">
-                        {{each data item as i }}
+                        {{each data item i }}
                         <div class="stream-list-content">
                             <article class="stream-list-item list-wen">
                                 <div class="stream-list-image">
-                                    <a href="/website/toActiveContentView.do?id=3efc991de87943608042874c6e9b9562"
+                                    <a href="./scenicDetail.html?index={{i}}"
                                        target="_blank"> <img
                                             src="http://www.chinabym.com/imgs/bysticket/images/uploadFiles/uploadImgs/2018/06/29/1530252886627.png">
                                     </a>
@@ -37,7 +37,7 @@
                                 <div class="list-wen-r">
                                     <h2 class="stream-list-title top-list">
                                         <a target="_blank"
-                                           href="/website/toActiveContentView.do?id=3efc991de87943608042874c6e9b9562"
+                                           href="./scenicDetail.html?index={{i}}"
                                            title="#97周年建党节#不忘初心，砥砺前行">{{item.title}}</a>
                                     </h2>
                                     <div class="stream-list-snipper top-midd"></div>
