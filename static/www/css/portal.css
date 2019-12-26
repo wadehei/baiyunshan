@@ -841,3 +841,9 @@ body {
 		min-width: 1200px;
 	}
 }
+
+#picture-list{margin-bottom: 20px;height: 500px;}
+.description{
+	line-height: 36px;
+	padding-bottom: 50px;
+}

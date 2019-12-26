@@ -75,6 +75,7 @@
             var $detailContainer = $(".detail-container");
             $detailContainer.find(".title").html(detail.title);
             $detailContainer.find(".description").html(detail.description);
+            this.initSwiper(detail.picturesList);
         };
         //生成酒店详情
         this.initHotelDetail = function() {
@@ -84,6 +85,7 @@
             var $detailContainer = $(".detail-container");
             $detailContainer.find(".title").html(detail.title);
             $detailContainer.find(".description").html(detail.description);
+            this.initSwiper(detail.picturesList);
         };
         this.getUrl = function(name) {
             var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');  
@@ -91,6 +93,32 @@
             if (r != null) {     return unescape(r[2]);   }  
             return null;
 
+        };
+        this.initSwiper = function (pictureList) {
+            if(pictureList.length > 0){
+                var picturlListTag = "";
+                var picturlListControl = "";
+                for(var i = 0;i < pictureList.length;i++){
+                    picturlListTag += '<li> <a href="javascript:void(0);"> <img alt="" width="" height="" style="background: url('+pictureList[i]+') no-repeat center;" src="../static/www/images/alpha.png" /> </a> </li>'
+                    picturlListControl += '<li class="active"> <a style="cursor:default;">{{i + 1}}</a> </li>'
+                }
+                $("#picture-list .slides").html(picturlListTag);
+                if(pictureList.length > 1){
+                    $("#picture-list-control").html(picturlListControl);
+                    //轮播图
+                    var bannerSlider = new Slider($('#picture-list'), {
+                        time: 5000,
+                        delay: 400,
+                        event: 'hover',
+                        auto: true,
+                        mode: 'fade',
+                        controller: $('#picture-list-control'),
+                        activeControllerCls: 'active'
+                    });
+                }
+            }else{
+                $("#picture-list").hide();
+            }
         }
     }
 
