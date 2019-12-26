@@ -147,13 +147,13 @@
 
     <div class="hotellist hotel-container" id="hotellist">
         <script id="hotel" type="text/html">
-            {{each data item as i }}
+            {{each data item i }}
             <ul class="hotel-div">
                 <input type="hidden" name="rptHotel$ctl00$hidHotelID" id="rptHotel_ctl00_hidHotelID" value="11">
                 <li class="hotel-content">
                     <div class="hotel-head">
                         <div class="hotel-name">
-                            <a href="hotelview.aspx?id=11&amp;sdate=2018-03-07&amp;edate=2018-03-08">{{item.title}}</a>
+                            <a href="./hotelDetail.html?index={{i}}">{{item.title}}</a>
                         </div>
                         <div class="hotel-instruction">
                             <span class="hotel-feature">ホテルが付属する：
@@ -166,12 +166,12 @@
                                 サービスを起こす
                                 モバイル支払い
                                 </span>
-                            <a href="/hotelDetails/toHotelDetails.do?hID=1063115208361287370"><span
+                            <a href="./hotelDetail.html?index={{i}}"><span
                                     class="hotel-knowmore">詳しいことを知る</span></a>
                         </div>
                     </div>
                     <div class="hotel-img">
-                        <a href="/hotelDetails/toHotelDetails.do?hID=1063115208361287370">
+                        <a href="./hotelDetail.html?index={{i}}">
                             <img src="http://www.chinabym.com/imgs/bysticket/images/uploadFiles/uploadImgs/2018/09/10/1536563296968.png"
                                  class="yasuoimg"></a>
                     </div>
@@ -179,7 +179,7 @@
                 <span class="hotel-feature"></span>
                 <ul class="roomtype-list GB">
                     <div class="roomtype-detail">
-                        <span>￥<span class="price">{{item.price}}元から</span></span>
+                        <!--<span>￥<span class="price">{{item.price}}元から</span></span>-->
                         <button style="float: right;" class="redBtn w_60" type="button"
                                 onclick="location.href='/hotelDetails/toHotelDetails.do?hID=1063115208361287370'">予算定
                         </button>

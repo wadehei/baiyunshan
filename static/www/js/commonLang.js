@@ -65,13 +65,22 @@
                     vm.$body.append(footer);
                 }
             });
-        }
+        };
 
         //生成景区详情
         this.initScenicDetail = function() {
             var vm = this;
             var index = vm.getUrl("index");
             var detail = window.constant.scenic.data[index];
+            var $detailContainer = $(".detail-container");
+            $detailContainer.find(".title").html(detail.title);
+            $detailContainer.find(".description").html(detail.description);
+        };
+        //生成酒店详情
+        this.initHotelDetail = function() {
+            var vm = this;
+            var index = vm.getUrl("index");
+            var detail = window.constant.hotel.data[index];
             var $detailContainer = $(".detail-container");
             $detailContainer.find(".title").html(detail.title);
             $detailContainer.find(".description").html(detail.description);
