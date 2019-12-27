@@ -4,7 +4,7 @@
 <head>
 
     <meta charset="UTF-8">
-    <title>白云山</title>
+    <title>風景区情報</title>
     <meta name="viewport" content="initial-scale=0.34, maximum-scale=0.34, minimum-scale=0.34, user-scalable=no">
     <meta name="keywords" content="白云山">
     <meta name="description" content="白云山">
@@ -20,7 +20,7 @@
             <div class="index-nav u-clearfix">
                 <span class="load-new-posts activity current"><a
                         href="./">
-                        景区资讯
+                        風景区情報
                     </a>
                 </span>
                 <div class="scenic-container">
@@ -38,9 +38,11 @@
                                     <h2 class="stream-list-title top-list">
                                         <a target="_blank"
                                            href="./scenicDetail.html?index={{i}}"
-                                           title="#97周年建党节#不忘初心，砥砺前行">{{item.title}}</a>
+                                           title="">{{item.title}}</a>
                                     </h2>
-                                    <div class="stream-list-snipper top-midd"></div>
+                                    <div class="stream-list-snipper top-midd">
+                                        {{item.description}}
+                                    </div>
                                     <div class="stream-list-footer">リリース時点： 2018-06-29 14:14:46
                                     </div>
                                 </div>
