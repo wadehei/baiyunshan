@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="../static/www/css/languageSelect.css">
 <script type="text/javascript">
     $(function() {
         //导航效果
@@ -55,7 +56,26 @@
                 </ul>
             </div>
             <div style="padding-top: 40px;text-align: left;">
-                <a href="../korean/index.html">한글을 선택하다</a>
+                <ul id="languageType" data-val="0">
+                    <li class="poiHeader">
+                        <span>日本語</span> <i class="selectFont icon-arrow"></i>
+                    </li>
+                    <ul class="content-hide">
+                        <li data-val="0">
+                            <a href="http://www.chinabym.com/website/websiteView.do?request_locale=zh_CN">中文</a>
+                        </li>
+                        <li data-val="1">
+                            <a href="http://www.chinabym.com/website/websiteView.do?request_locale=en_US">English</a>
+                        </li>
+                        <li data-val="2">
+                            <a href="http://www.chinabym.com/website/japanese/index.html">日本語</a>
+                        </li>
+                        <li data-val="3">
+                            <a href="http://www.chinabym.com/website/korean/index.html">한글</a>
+                        </li>
+                    </ul>
+                </ul>
+                <!-- <a href="../korean/index.html">한글을 선택하다</a> -->
             </div>
             <!--未登录显示这个div -->
             <div id="ctlhd_divLoginBefor" class="top_right login_befor" style="display: none">
@@ -154,3 +174,29 @@
         </script>
     </div>
 </div>
+
+
+<script>
+    $(document).on('click', '#languageType>ul>li', function(e) {
+        var _this = $(this),
+            val = _this.data('val');
+        var _languageType = _this.parents("#languageType");
+        _languageType.data("val", val);
+        _languageType.find("ul").addClass("content-hide");
+        var text = _this.text();
+        _languageType.find(".poiHeader span").text(text);
+        _this.find("ul").addClass("content-hide");
+        _languageType.removeClass("on");
+    }).on("click", ".poiHeader", function() {
+        var _this = $(this),
+            parnets = _this.parent("#languageType");
+        parnets.toggleClass("on");
+        if (parnets.hasClass("on")) {
+            parnets.find("ul").removeClass("content-hide");
+        } else {
+            parnets.find("ul").addClass("content-hide");
+        }
+
+
+    });
+</script>
