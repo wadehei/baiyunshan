@@ -1,8 +1,8 @@
-ul {
+#languageType ul {
     list-style-type: none
 }
 
-.content-hide {
+#languageType .content-hide {
     display: none !important;
 }
 
@@ -16,7 +16,7 @@ ul {
     cursor: pointer;
 }
 
-.transformRotate {
+#languageType .transformRotate {
     -o-transform: rotate(180deg);
     -webkit-transform: rotate(180deg);
     -moz-transform: rotate(180deg);
@@ -30,7 +30,7 @@ ul {
     z-index: 99
 }
 
-.selectFont {
+#languageType .selectFont {
     width: 0;
     height: 0;
     border-top: 8px solid #999;
@@ -60,9 +60,6 @@ ul {
     background-color: #f6f6f6;
 }
 
-.content-hide {
-    display: none;
-}
 
 #languageType>li {
     line-height: 36px;
@@ -82,8 +79,6 @@ ul {
     top: 14px;
 }
 
-
-/* #languageType>li i{-o-transform:rotate(90deg);-webkit-transform: rotate(90deg);-moz-transform:rotate(90deg) ;-ms-transform:rotate(90deg);transform: rotate(90deg);} */
 
 #languageType.on>li i {
     -o-transform: rotate(180deg);
